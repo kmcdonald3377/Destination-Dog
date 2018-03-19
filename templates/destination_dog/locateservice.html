@@ -1,0 +1,59 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Locate A Service
+{% endblock %}
+
+{% block header_block %}
+<h1>Find a Local Service!</h1>
+{% endblock %}
+
+{% block body_block %}
+<div>
+        <strong>{{ boldmessage }}</strong><br/>
+</div><br />
+
+<form action="/action_page.php">
+    Postcode:<br>
+    <input type="text" name="firstname" value="Mickey">
+    <br>
+    Distance:<br>
+    <select name="cars">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+    </select>
+    <br>
+    Service:<br>
+    <select name="cars">
+        <option value="Vets">Vets</option>
+        <option value="Groomers">Groomers</option>
+        <option value="Pet Store">Pet Store</option>
+        <option value="Kennels">Kennels</option>
+    </select>
+    <br>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form> 
+
+<div id="map" style="width:400px;height:400px;background:yellow"></div>
+
+
+
+{% block script_block %}
+<script>
+    function myMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(51.5, -0.12),
+            zoom: 4,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&callback=myMap"></script>
+{% endblock %}
+
+{% endblock %}
