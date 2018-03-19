@@ -5,4 +5,5 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'about', views.about, name='about'),
     url(r'locateservice', views.locateServices, name='locateservice'),
+    url(r'forum', views.forum, name='forum'),
 ]

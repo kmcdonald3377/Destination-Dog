@@ -12,3 +12,7 @@ def about(request):
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
+
+def forum(request):
+    context_dict = {'boldmessage' : "chat to people"}
+    return render(request, 'destination_dog/forum.html', context=context_dict)
