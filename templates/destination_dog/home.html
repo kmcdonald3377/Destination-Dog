@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>DestinationDog</title>
-    </head>
-    <body>
-        <h1>Welcome to DestinationDog</h1>
-        <div>
-            where all things dog are celebrated <br/>
-            <strong>{{ boldmessage }}</strong><br/>
-        </div>
-        <div>
-            <a href="/destinationdog/about/">About</a><br/>
-        </div>
-    </body>
-</html>
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+
+{% block header_block %}
+<h1>Welcome to DestinationDog</h1>
+<div>
+    <ul>
+        <li><a class="active" href="/destinationdog/">Home</a></li>
+        <li><a href="/destinationdog/about/">About</a></li>
+    </ul>
+    </div>
+{% endblock %}
+
+{% block body_block %}
+
+<div>
+        where all things dog are celebrated <br/>
+        <strong>{{ boldmessage }}</strong><br/>
+    </div>
+    
+{% endblock %}
