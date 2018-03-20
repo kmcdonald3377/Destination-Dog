@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'about', views.about, name='about'),
     url(r'contactus', views.contactus, name='contactus'),
     url(r'sitemap', views.sitemap, name='sitemap'),
+    
 ]
