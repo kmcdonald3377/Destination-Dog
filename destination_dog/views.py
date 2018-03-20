@@ -4,17 +4,13 @@ from django.shortcuts import render
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
     return render(request, 'destination_dog/home.html', context=context_dict)
-    
-def articles(request):
-    context_dict = {'boldmessage': "learn about dogs"}
-    return render(request, 'destination_dog/article_list.html', context=context_dict)
+
+def article_list(request):
+    return render(request, 'destination_dog/article_list.html')    
 
 def dogofweek(request):
     context_dict = {'boldmessage': "pretty dogs"}
     return render(request, 'destination_dog/dow.html', context=context_dict)
-
-def article_list(request):
-    return render(request, 'destination_dog/article_list.html')
 
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}
