@@ -13,6 +13,9 @@ def dogofweek(request):
     context_dict = {'boldmessage': "pretty dogs"}
     return render(request, 'destination_dog/dow.html', context=context_dict)
 
+def article_list(request):
+    return render(request, 'destination_dog/article_list.html')
+
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
@@ -36,5 +39,6 @@ def contactus(request):
 def sitemap(request):
     context_dict = {'boldmessage' : "find your way around"}
     return render(request, 'destination_dog/sitemap.html', context=context_dict)
+
 
 
