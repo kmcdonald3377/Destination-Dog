@@ -7,11 +7,36 @@
 
 {% block header_block %}
 <h1>DestinationDog</h1>
+
 {% endblock %}
 
 {% block body_block %}
+    <p><h2><strong>Add An Event</strong></h2></p>
 
-    <strong>{{ boldmessage }}</strong><br/>
+		<form action="/my-handling-form-page" method="post">
+			<div>
+                <label for="name">Event Name:</label>
+				<input type="text" id="name" name="event_name" required>
+			</div>
+			<div>
+				<label for="msg">Event Description:</label>
+				<textarea id="msg" name="user_message"></textarea>
+			</div>
+			<div>
+				<label for="name">Location:</label>
+				<input type="text" id="locationname" name="location" required>
+			</div>
+			<div>
+				<label for="datetime">Date and Time:</label>
+				<input type="datetime-local" name="datetime" id="datetime" required>
 
+			</div>
+
+
+			<div class="button">
+				<button type="submit">Create an Event</button>
+			</div>
+
+		</form>
 
 {% endblock %}
