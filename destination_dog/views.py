@@ -8,3 +8,7 @@ def home(request):
 def about(request):
     context_dict = {'boldmessage' : "enjoy yourself!"}
     return render(request, 'destination_dog/about.html', context=context_dict)
+
+def article_list(request):
+    return render(request, 'destination_dog/article_list.html')
+
