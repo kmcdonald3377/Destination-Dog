@@ -24,6 +24,10 @@ def events(request):
     context_dict = {'boldmessage': "find a dog event"}
     return render(request, 'destination_dog/events.html', context=context_dict)
 
+def add_events(request):
+    context_dict = {'boldmessage': "add an event"}
+    return render(request, 'destination_dog/add_events.html', context=context_dict)
+
 def forum(request):
     context_dict = {'boldmessage' : "chat to people"}
     return render(request, 'destination_dog/forum.html', context=context_dict)
