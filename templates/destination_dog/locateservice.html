@@ -1,6 +1,33 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
+{% block style_block%}
+<style>
+.floating-box{
+    float: left;
+    width: 250px;
+    height: 300px;
+    margin: 100px;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td{
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+</style>
+
+{% endblock %}
+
 {% block title_block %}
     Locate A Service
 {% endblock %}
@@ -11,12 +38,12 @@
 
 {% block body_block %}
 <div>
-        <strong>{{ boldmessage }}</strong><br/>
+    <strong>{{ boldmessage }}</strong><br/>
 </div><br />
 
-<form action="/action_page.php">
+<div id="details">
     Postcode:<br>
-    <input type="text" name="firstname" value="Mickey">
+    <input type="text" name="postcode" value="Please enter postcode">
     <br>
     Distance:<br>
     <select name="cars">
@@ -34,11 +61,29 @@
         <option value="Kennels">Kennels</option>
     </select>
     <br>
-    <br><br>
-    <input type="submit" value="Submit">
-  </form> 
+    <button id="submitBtn" type="button" onclick="submit()">Search</button>
+</div>
 
-<div id="map" style="width:400px;height:400px;background:yellow"></div>
+<div id="results" style="display:none;overflow:auto;width:400px;height:400px">
+    <table>
+        <tr>
+            <th>First Name</th>
+        </tr>
+        <tr>
+            <td>Jill</td>
+        </tr>
+        <tr>
+            <td>Eve</td>    
+        </tr>
+        <tr>
+            <td>Adam</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <div id="map" style="width:400px;height:400px;background:yellow"></div>
+</div>
 
 
 
@@ -55,7 +100,8 @@
 
     function submit()
     {
-        
+        document.getElementById("details").style.display = "none";
+        document.getElementById("results").style.display = "block";
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&callback=myMap"></script>
