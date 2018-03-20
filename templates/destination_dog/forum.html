@@ -1,0 +1,24 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Forum
+{% endblock %}
+
+{% block header_block %}
+<h1>DestinationDog</h1>
+{% endblock %}
+
+{% block body_block %}
+<div>
+        <strong>{{ boldmessage }}</strong><br/>
+</div><br />
+
+<div id="wtEmbedCode"><script type="text/javascript" id="embedded_forum" src="https://destinationdog.discussion.community/js/mb/embed.js"></script>
+<noscript><a href="https://destinationdog.discussion.community/">Forum</a></noscript></div>
+
+    
+
+
+
+{% endblock %}
