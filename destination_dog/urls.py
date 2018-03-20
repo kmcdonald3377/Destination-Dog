@@ -8,6 +8,10 @@ urlpatterns = [
     url(r'locateservice', views.locateServices, name='locateservice'),
     url(r'events', views.events, name='events'),
     url(r'forum', views.forum, name='forum'),
+
+    url(r'^events/$', views.events, name='events'),
+    url(r'^events/add_events/$', views.add_events, name='add_events'),
+
     url(r'about', views.about, name='about'),
     url(r'contactus', views.contactus, name='contactus'),
     url(r'sitemap', views.sitemap, name='sitemap'),
