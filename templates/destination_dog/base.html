@@ -130,6 +130,7 @@
         {% block style_block %}
         {% endblock %}
         <meta charset="UTF-8" />
+        <meta name="google-signin-client_id" content="1018670492225-ln78iuke55dahg8ehtf3khp481gn4bb0.apps.googleusercontent.com">
         <title>
             DestinationDog - 
             {% block title_block %}
@@ -140,6 +141,77 @@
     </head>
 
     <body>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 621707921505287,
+                cookie     : true,
+                xfbml      : true,
+                version    : v3738502
+            });
+        
+            FB.AppEvents.logPageView();   
+        
+        };
+  
+        (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+
+        
+        {
+            status: 'connected',
+            authResponse: {
+                accessToken: '...',
+                expiresIn:'...',
+                signedRequest:'...',
+                userID:'...'
+            }
+        }
+
+        
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+    </script>
+
+    <a href="#" onclick="signOut();">Sign out</a>
+
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+            });
+        }
+
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); 
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+</script>
+    
     <h1>DestinationDog </h1><h3>it's all about the destination...</h3>
         <div>
             <ul>
@@ -169,6 +241,15 @@
                 </li>
 
                 <li><a href="/destinationdog/forum/">Forum</a></li>
+
+                {%if user.is_authenticated %}
+                    <li><a href="/destinationdog/logout/">Logout</a></li>
+                {% else %}
+                    <li><a href="/destinationdog/register/">Register</a></li>
+                    <li><a href="/destinationdog/login/">Login</a></li>
+                {% endif %}
+
+                
 
                 <div class="search-container">
                     <form action="">
