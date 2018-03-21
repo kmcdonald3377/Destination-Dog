@@ -25,7 +25,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'g_&q4e7rf8@427q@y9fug272l$$302gqwix7nepeyko=x=wovg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'destinationdog.pythonanywhere.com',
@@ -106,8 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 PASSWORD_HASHERS = [
-'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-'django.contrib.auth.hashers.BCryptPasswordHasher',
 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 ]
