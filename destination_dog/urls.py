@@ -3,7 +3,8 @@ from destination_dog import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'articles', views.article_list, name='article'),
+    url(r'article', views.article_list, name='article_list'),
+    url(r'^article/(?P<article_title_slug>[\w\-]+)/$', views.article, name='article'),
     url(r'dogoftheweek', views.dogofweek, name='dogoftheweek'),   
     url(r'locateservice', views.locateServices, name='locateservice'),
     url(r'events', views.events, name='events'),

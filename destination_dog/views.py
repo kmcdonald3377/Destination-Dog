@@ -1,20 +1,27 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from.models import Article
+
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
     return render(request, 'destination_dog/home.html', context=context_dict)
-    
-def articles(request):
-    context_dict = {'boldmessage': "learn about dogs"}
+
+def article_list(request):
+    context_dict = {}
+
+    article = Article.objects.order_by('-date')
+    context_dict['article'] = article
+
     return render(request, 'destination_dog/article_list.html', context=context_dict)
+
+def article(request):
+    context_dict = {'boldmessage': "article list"}
+    return render(request, 'destination_dog/article.html', context=context_dict)
 
 def dogofweek(request):
     context_dict = {'boldmessage': "pretty dogs"}
     return render(request, 'destination_dog/dow.html', context=context_dict)
-
-def article_list(request):
-    return render(request, 'destination_dog/article_list.html')
 
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}

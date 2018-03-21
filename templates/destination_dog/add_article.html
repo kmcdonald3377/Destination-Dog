@@ -2,18 +2,17 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Articles
+    {{ article.title }}
 {% endblock %}
 
 
 {% block header_block %}
-<h1>DestinationDog Articles<br/>
+<h1>DestinationDog Articles - {{ article.title }}<br/>
 </h1>
 {% endblock %}
 
 {% block body_block %}
 <div>
-an article
-</ul>
+Add an article
 </div>
 {% endblock %}

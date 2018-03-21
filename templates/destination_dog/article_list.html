@@ -13,7 +13,14 @@
 
 {% block body_block %}
 <div>
-    list of articles
-
+        {% if article %}
+            <ul>
+                {% for article in article %}
+                    <li><a href="{% url 'article' article.slug %}">{{ article.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No articles found.
+        {% endif %}
 </div>
 {% endblock %}
