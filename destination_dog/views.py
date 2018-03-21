@@ -61,7 +61,7 @@ def add_article(request):
 
 def dogofweek(request):
     context_dict = {'boldmessage': "pretty dogs"}
-    return render(request, 'destination_dog/dow.html', context=context_dict)
+    return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
 
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}
