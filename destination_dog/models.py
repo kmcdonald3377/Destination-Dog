@@ -18,6 +18,17 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+class DogOfTheWeek(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    owner = models.CharField(max_length=128, unique=True)
+    image = models.ImageField(upload_to='dotw', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural= 'Dog of the Week Entries'
+
+    def __str__(self):
+        return self.name
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)

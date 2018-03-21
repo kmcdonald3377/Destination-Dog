@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
 from.models import Article
-from.forms import AddArticleForm
+from.forms import AddArticleForm, DogOfTheWeekForm
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -68,16 +68,29 @@ def dotw_vote(request):
     return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
 
 def dotw_enter(request):
-    context_dict = {'boldmessage': "enter your dog"}
+    form = DogOfTheWeekForm()
+
+    if request.method == 'POST':
+        form = DogOfTheWeekForm(request.POST)
+        if form.is_valid():
+
+                enter = form.save(commit=False)
+
+                if 'image' in request.FILES:
+                    dotw.image = request.FILES['image']
+
+                enter.save()
+                return dotw_vote(request)
+
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form}
     return render(request, 'destination_dog/dotw_enter.html', context=context_dict)
 
 def dotw_hall_of_fame(request):
     context_dict = {'boldmessage': "hall of fame"}
     return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
-
-
-
-
 
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}
