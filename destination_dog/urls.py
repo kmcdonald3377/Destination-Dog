@@ -3,8 +3,9 @@ from destination_dog import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'article', views.article_list, name='article_list'),
-    url(r'^article/(?P<article_title_slug>[\w\-]+)/$', views.article, name='article'),
+    url(r'articles/$', views.article_list, name='article_list'),
+    url(r'^articles/add_article/$', views.add_article, name='add_article'),
+    url(r'^articles/(?P<article_title_slug>[\w\-]+)/$', views.show_article, name='show_article'),
     url(r'dogoftheweek', views.dogofweek, name='dogoftheweek'),   
     url(r'locateservice', views.locateServices, name='locateservice'),
     url(r'forum', views.forum, name='forum'),
