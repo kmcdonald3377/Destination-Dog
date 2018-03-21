@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from destination_dog.forms import UserForm, UserProfileForm
+from destination_dog.forms import UserForm, UserProfileForm, AddEventForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
