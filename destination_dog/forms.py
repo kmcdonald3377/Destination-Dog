@@ -35,7 +35,7 @@ class AddArticleForm(forms.ModelForm):
 
 class AddEventForm(forms.ModelForm):
     name = forms.CharField(label="Event Name:", max_length=128,)
-    description = forms.charField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea)
     location = forms.CharField(label="Event Location:",)
     date = forms.DateField(widget=forms.DateInput(format='%d-%m-%Y'))
     time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
