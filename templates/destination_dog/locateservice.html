@@ -3,27 +3,27 @@
 
 {% block style_block%}
 <style>
-.floating-box{
+    .floating-box{
     float: left;
     width: 250px;
     height: 300px;
     margin: 100px;
-}
-table{
+    }
+    table{
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
-}
+    }
 
-th, td{
+    th, td{
     text-align: left;
     padding: 8px;
-}
+    }
 
-tr:nth-child(even){
+    tr:nth-child(even){
     background-color: #f2f2f2;
-}
+    }
 </style>
 
 {% endblock %}
@@ -31,7 +31,119 @@ tr:nth-child(even){
 {% block title_block %}
     Locate A Service
 {% endblock %}
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      /*#map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+     /* html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }*/
+      
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
 
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+    </style>
+    </style>
+</head>
 
 
 {% block body_block %}
@@ -39,71 +151,99 @@ tr:nth-child(even){
     <strong>{{ boldmessage }}</strong><br/>
 </div><br />
 
-<div id="details">
-    Postcode:<br>
-    <input type="text" name="postcode" value="Please enter postcode">
-    <br>
-    Distance:<br>
-    <select name="cars">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-    </select>
-    <br>
-    Service:<br>
-    <select name="cars">
-        <option value="Vets">Vets</option>
-        <option value="Groomers">Groomers</option>
-        <option value="Pet Store">Pet Store</option>
-        <option value="Kennels">Kennels</option>
-    </select>
-    <br>
-    <button id="submitBtn" type="button" onclick="submit()">Search</button>
-</div>
 
-<div id="results" style="display:none;overflow:auto;width:400px;height:400px">
-    <table>
-        <tr>
-            <th>First Name</th>
-        </tr>
-        <tr>
-            <td>Jill</td>
-        </tr>
-        <tr>
-            <td>Eve</td>    
-        </tr>
-        <tr>
-            <td>Adam</td>
-        </tr>
-    </table>
-</div>
 
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+    
 <div>
-    <div id="map" style="width:400px;height:400px;background:yellow"></div>
+    <div id="map" style="width:600px;height:600px;background:yellow"></div>
 </div>
+<p id="results">
+    Results
 
+</p>
 
 
 {% block script_block %}
 <script>
-    function myMap() {
-        var mapOptions = {
-            center: new google.maps.LatLng(51.5, -0.12),
-            zoom: 4,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    }
+    function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 55.85924, lng: -4.26095},
+          zoom: 5,
+          mapTypeId: 'roadmap'
+        });
 
-    function submit()
-    {
-        document.getElementById("details").style.display = "none";
-        document.getElementById("results").style.display = "block";
-        document
-    }
+        
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        
+        map.addListener('bounds_changed', function() {
+         searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            var output;
+
+            places.forEach(function(place) {
+                output += place.name + place.vicinity + "--------";
+            });
+            document.getElementById('results').innerHTML = output;
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }    
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&callback=myMap"></script>
+
+<script 
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initAutocomplete" async defer></script>
+</script>
 {% endblock %}
 
 {% endblock %}
