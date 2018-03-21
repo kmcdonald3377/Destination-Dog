@@ -5,13 +5,20 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
+from destination_dog.models import Article, UserProfile
 
 def home(request):
-    context_dict = {'boldmessage': "Dogs everywhere"}
+    article_list = Article.objects.order_by('-date')[:3]
+    context_dict = {'articles': article_list}
     return render(request, 'destination_dog/home.html', context=context_dict)
 
 def article_list(request):
-    return render(request, 'destination_dog/article_list.html')    
+    article_list = Article.objects.order_by('-date')[:10]
+    context_dict = {'articles': article_list}
+    return render(request, 'destination_dog/article_list.html', context=context_dict)    
+
+def article(request):
+    return render(request, 'destination_dog/article.html')
 
 def dogofweek(request):
     context_dict = {'boldmessage': "pretty dogs"}

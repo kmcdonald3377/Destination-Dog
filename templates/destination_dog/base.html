@@ -179,20 +179,18 @@
         }
 
         
-<fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
+        <fb:login-button 
+        scope="public_profile,email"
+        onlogin="checkLoginState();">
+        </fb:login-button>
 
 
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
     </script>
-
-    <a href="#" onclick="signOut();">Sign out</a>
 
     <script>
         function signOut() {
@@ -213,6 +211,9 @@ function checkLoginState() {
 </script>
     
     <h1>DestinationDog </h1><h3>it's all about the destination...</h3>
+    {%if user.is_authenticated %}
+        <a href="/destinationdog/userprofile/">User Profile</a>
+    {% endif %}
         <div>
             <ul>
                 <li><a href="/destinationdog/">Home</a></li>

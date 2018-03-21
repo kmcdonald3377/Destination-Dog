@@ -13,7 +13,12 @@
 
 {% block body_block %}
 <div>
-    list of articles
+    {% if articles %}
+        {% for article in articles}
+            <li><a href="{{ article.slug }}">{{ article.title }}</a></li>
+    {% else %}
+        <strong>There are currently no articles. Why not add one?</strong>
+    {% endif %}
 
 </div>
 {% endblock %}

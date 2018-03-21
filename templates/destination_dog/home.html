@@ -120,7 +120,16 @@
 {% block body_block %}
 <div>
         where all things dog are celebrated <br/>
-        <strong>{{ boldmessage }}</strong><br/>
+        {% if articles %}
+        <ul>
+          {% for article in articles %}
+            <li>{{article.title}}</li>>
+            <li>{{article.slug}}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+          <strong>There are no articles yet.</strong>
+        {% endif %}
 </div>
 
 <div class="slideshow-container">
