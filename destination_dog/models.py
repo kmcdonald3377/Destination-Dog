@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
-    image = models.ImageField(upload_to='articles', blank=True) #For the top of the article page
+    image = models.ImageField(upload_to='articles', blank=True, null=True) #For the top of the article page
     article = models.TextField()
     date = models.DateField()
     #author = models.ForeignKey('UserProfile', related_name='article')
