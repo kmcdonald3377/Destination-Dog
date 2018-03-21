@@ -36,20 +36,27 @@ def show_article(request, article_title_slug):
 
     return render(request, 'destination_dog/article.html', context_dict)
 
-
 def add_article(request):
+
     form = AddArticleForm()
 
-    form = AddArticleForm(request.POST)
-
     if request.method == 'POST':
+        form = AddArticleForm(request.POST)
         if form.is_valid():
-            form.save(commit=True)
-            return home(request)
+
+                article = form.save(commit=False)
+
+                if 'image' in request.FILES:
+                    article.image = request.FILES['image']
+
+                article.save()
+                return article_list(request)
+
         else:
             print(form.errors)
 
-    return render(request, 'destination_dog/add_article.html', {'form': form})
+    context_dict = {'form': form}
+    return render(request, 'destination_dog/add_article.html', context=context_dict)
 
 
 def dogofweek(request):
