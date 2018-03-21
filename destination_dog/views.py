@@ -59,9 +59,25 @@ def add_article(request):
     return render(request, 'destination_dog/add_article.html', context=context_dict)
 
 
-def dogofweek(request):
-    context_dict = {'boldmessage': "pretty dogs"}
+def dotw(request):
+    context_dict = {'boldmessage': "dog of the week article"}
+    return render(request, 'destination_dog/dotw.html', context=context_dict)
+
+def dotw_vote(request):
+    context_dict = {'boldmessage': "picture of dogs"}
     return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
+
+def dotw_enter(request):
+    context_dict = {'boldmessage': "enter your dog"}
+    return render(request, 'destination_dog/dotw_enter.html', context=context_dict)
+
+def dotw_hall_of_fame(request):
+    context_dict = {'boldmessage': "hall of fame"}
+    return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
+
+
+
+
 
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}
