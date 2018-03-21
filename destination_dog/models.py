@@ -7,7 +7,8 @@ class Article(models.Model):
     image = models.ImageField(upload_to='articles', blank=True, null=True) #For the top of the article page
     article = models.TextField()
     date = models.DateField()
-    author = models.ForeignKey('UserProfile', related_name='article')
+    #author = models.ForeignKey('UserProfile', related_name='article')
+    author = models.CharField(max_length=128)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):

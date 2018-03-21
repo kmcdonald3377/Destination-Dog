@@ -2,17 +2,29 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {{ article.title }}
+    Add Article
 {% endblock %}
 
 
 {% block header_block %}
-<h1>DestinationDog Articles - {{ article.title }}<br/>
+<h1>DestinationDog Articles - Add Article<br/>
 </h1>
 {% endblock %}
 
 {% block body_block %}
-<div>
-Add an article
-</div>
+    <div>
+        <form id="add_article" method="post" action="{% url 'add_article' %}">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.help_text }}
+                {{ field }}<br><br>
+            {% endfor %}
+
+            <input type="submit" name="submit" value="Add Article" />
+        </form>
+    </div>
 {% endblock %}

@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
 from.models import Article
+from.forms import AddArticleForm
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -15,14 +16,48 @@ def home(request):
 def article_list(request):
     context_dict = {}
 
-    article = Article.objects.order_by('-date')
+    article = Article.objects.order_by('-date') [:10]
     context_dict['article'] = article
 
     return render(request, 'destination_dog/article_list.html', context=context_dict)
 
-def article(request):
-    context_dict = {'boldmessage': "article list"}
-    return render(request, 'destination_dog/article.html', context=context_dict)
+
+def show_article(request, article_title_slug):
+
+    context_dict = {}
+
+    try:
+        article = Article.objects.get(slug=article_title_slug)
+
+        context_dict['article'] = article
+
+    except Article.DoesNotExist:
+        context_dict['article'] = None
+
+    return render(request, 'destination_dog/article.html', context_dict)
+
+def add_article(request):
+
+    form = AddArticleForm()
+
+    if request.method == 'POST':
+        form = AddArticleForm(request.POST)
+        if form.is_valid():
+
+                article = form.save(commit=False)
+
+                if 'image' in request.FILES:
+                    article.image = request.FILES['image']
+
+                article.save()
+                return article_list(request)
+
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form}
+    return render(request, 'destination_dog/add_article.html', context=context_dict)
+
 
 def dogofweek(request):
     context_dict = {'boldmessage': "pretty dogs"}
