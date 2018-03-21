@@ -12,9 +12,9 @@
 
 {% block body_block %}
     {% if article %}
-        <h1> {{ article.title }} </h1>
-        Written by  {{article.author}}<br>
-        {{ article.content }}
+        <h3> {{ article.title }} </h3>
+        Written by  {{article.author}}<br><br>
+        <pr>{{ article.article }}</pr>
     {% else %}
         Article does not exist
     {% endif %}

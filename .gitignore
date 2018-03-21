@@ -102,6 +102,7 @@ ENV/
 
 db.sqlite3
 __pycache__/
+__pycache__/settings.cpython-36.pyc
 *.pyc
 .idea/
 migrations/
