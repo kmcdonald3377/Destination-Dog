@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
 from.models import Article, Event
-from.forms import AddArticleForm
+from.forms import AddArticleForm, AddEventForm
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
