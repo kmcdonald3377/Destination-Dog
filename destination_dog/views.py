@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
-from.models import Article
+from.models import Article, Event
 from.forms import AddArticleForm
 
 def home(request):
@@ -68,12 +68,23 @@ def locateServices(request):
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
 def events(request):
-    context_dict = {'boldmessage': "find a dog event"}
+    events_list = Event.objects.all()
+    context_dict = {'events': events_list}
     return render(request, 'destination_dog/events.html', context=context_dict)
 
+
 def add_events(request):
-    context_dict = {'boldmessage': "add an event"}
-    return render(request, 'destination_dog/add_events.html', context=context_dict)
+    form = AddEventForm()
+    if request.method == 'POST':
+        form = AddEventForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return events(request)
+        else:
+            print(form.errors)
+    return render(request, 'destination_dog/add_events.html', {'form': form})
+
 
 def forum(request):
     context_dict = {'boldmessage' : "chat to people"}
