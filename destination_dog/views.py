@@ -1,13 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from destination_dog.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
 from.models import Article
-from.forms import AddArticleForm, DogOfTheWeekForm
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -59,7 +58,7 @@ def add_article(request):
     return render(request, 'destination_dog/add_article.html', context=context_dict)
 
 
-def dotw(request):
+def dotw_main(request):
     context_dict = {'boldmessage': "dog of the week article"}
     return render(request, 'destination_dog/dotw.html', context=context_dict)
 
@@ -68,19 +67,14 @@ def dotw_vote(request):
     return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
 
 def dotw_enter(request):
-    form = DogOfTheWeekForm()
+
+    form = DotwForm()
 
     if request.method == 'POST':
-        form = DogOfTheWeekForm(request.POST)
+        form = DotwForm(request.POST)
         if form.is_valid():
-
-                enter = form.save(commit=False)
-
-                if 'image' in request.FILES:
-                    dotw.image = request.FILES['image']
-
-                enter.save()
-                return dotw_vote(request)
+            form.save()
+            return dotw_vote(request)
 
         else:
             print(form.errors)

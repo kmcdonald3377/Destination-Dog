@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from destination_dog.models import UserProfile, Article, DogOfTheWeek
+from destination_dog.models import UserProfile, Article, Dotw
 from datetime import date
 
 class UserForm(forms.ModelForm):
@@ -33,16 +33,18 @@ class AddArticleForm(forms.ModelForm):
             'date',
         )
 
-class DogOfTheWeekForm(forms.ModelForm):
+class DotwForm(forms.ModelForm):
 
-    name = forms.CharField(max_length=128, help_text="Dog Name:")
+    dog = forms.CharField(max_length=128, help_text="Dog Name:")
     owner = forms.CharField(max_length=128, help_text="Owner:")
-    image = forms.ImageField(help_text='Image')
+    #image = forms.ImageField(help_text="Photo")
 
     class Meta:
-        model = DogOfTheWeek
+        model = Dotw
         fields = (
-            'name',
+            'dog',
             'owner',
-            'image',
+        #    'image',
         )
+
+
