@@ -8,9 +8,22 @@
 
 
 {% block body_block %}
-<div>
-        add an event or search for one
+    <div>
+   <strong><u>List of Events</u></strong>
 
-        <strong>{{ boldmessage }}</strong><br/>
-</div>
+        {% if events %}
+        <ul>
+            <li>Name</li><li>Description</li></br>
+            {% for event in events %}
+            <li>{{ event.name }}  {{ event.name}}</li></br>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no events present.</strong><br/>
+        {% endif %}
+    </div>
+
+    <div>
+        <a href="/destinationdog/events/add_event/" class="button">Add an Event</a>
+    </div>
 {% endblock %}

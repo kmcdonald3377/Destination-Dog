@@ -11,32 +11,21 @@
 {% endblock %}
 
 {% block body_block %}
+    <div>
     <p><h2><strong>Add An Event</strong></h2></p>
+        <div>
+		<form id="add_event_form" method="post" action="/events/add_event/">
+		    {% csrf_token %}
+            <table>
+                {{ form }}
 
-		<form action="/my-handling-form-page" method="post">
-			<div>
-                <label for="name">Event Name:</label>
-				<input type="text" id="name" name="event_name" required>
-			</div>
-			<div>
-				<label for="msg">Event Description:</label>
-				<textarea id="msg" name="user_message"></textarea>
-			</div>
-			<div>
-				<label for="name">Location:</label>
-				<input type="text" id="locationname" name="location" required>
-			</div>
-			<div>
-				<label for="datetime">Date and Time:</label>
-				<input type="datetime-local" name="datetime" id="datetime" required>
+            </table>
 
-			</div>
-
-
-			<div class="button">
-				<button type="submit">Create an Event</button>
-			</div>
-
+        	<div>
+            	<button input type="submit">Create Event</button>
+        	</div>
 		</form>
+        </div>
+    </div>
 
 {% endblock %}

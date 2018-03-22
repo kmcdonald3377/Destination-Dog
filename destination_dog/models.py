@@ -40,3 +40,15 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.TextField(max_length=200)
+    location = models.CharField(max_length=250)
+    date = models.DateField()
+    time = models.TimeField()
+
+    def __str__(self):
+        return self.name
+
