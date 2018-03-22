@@ -42,6 +42,6 @@ class AddEventForm(forms.ModelForm):
 
 class Meta:
         model = Event
-        fields = ('name','description', 'location', 'date', 'time')
+        fields = ('name', 'description', 'location', 'date', 'time')
         widgets = {'description': forms.Textarea,
         }
