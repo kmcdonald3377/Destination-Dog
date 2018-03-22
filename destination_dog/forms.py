@@ -33,15 +33,16 @@ class AddArticleForm(forms.ModelForm):
             'date',
         )
 
-class AddEventForm(forms.ModelForm):
-    name = forms.CharField(label="Event Name:", max_length=128,)
-    description = forms.CharField(widget=forms.Textarea)
-    location = forms.CharField(label="Event Location:",)
-    date = forms.DateField(widget=forms.DateInput(format='%d-%m-%Y'))
-    time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
 
-class Meta:
+class AddEventForm(forms.ModelForm):
+
+    name = forms.CharField(label="Event Name:", max_length=128,)
+    description = forms.CharField(widget=forms.Textarea,label="Description:")
+    location = forms.CharField(label="Event Location:")
+    date = forms.DateField(widget=forms.DateInput(format="%d-%m-%Y"))
+    time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"))
+
+    class Meta:
         model = Event
         fields = ('name', 'description', 'location', 'date', 'time')
-        widgets = {'description': forms.Textarea,
-        }
+
