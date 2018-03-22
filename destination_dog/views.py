@@ -1,13 +1,12 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from destination_dog.forms import UserForm, UserProfileForm, AddEventForm
+
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
 from.models import Article, Event
-from.forms import AddArticleForm, AddEventForm
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -59,9 +58,39 @@ def add_article(request):
     return render(request, 'destination_dog/add_article.html', context=context_dict)
 
 
-def dogofweek(request):
-    context_dict = {'boldmessage': "pretty dogs"}
-    return render(request, 'destination_dog/dow.html', context=context_dict)
+def dotw(request):
+    context_dict = {'boldmessage': "dog of the week article"}
+    return render(request, 'destination_dog/dotw.html', context=context_dict)
+
+def dotw_vote(request):
+    context_dict = {'boldmessage': "picture of dogs"}
+    return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
+
+def dotw_enter(request):
+
+    form = DotwForm()
+
+    if request.method == 'POST':
+        form = DotwForm(request.POST)
+        if form.is_valid():
+
+                entry = form.save(commit=False)
+
+                if 'image' in request.FILES:
+                    entry.image = request.FILES['image']
+
+                entry.save()
+                return dotw_vote(request)
+
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form}
+    return render(request, 'destination_dog/dotw_enter.html', context=context_dict)
+
+def dotw_hall_of_fame(request):
+    context_dict = {'boldmessage': "hall of fame"}
+    return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
 
 def locateServices(request):
     context_dict = {'boldmessage' : "find a service"}

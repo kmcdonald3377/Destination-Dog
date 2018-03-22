@@ -2,29 +2,24 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Add Article
+    Dog Of The Week Enter
 {% endblock %}
 
 
 {% block header_block %}
-<h1>DestinationDog Articles - Add Article<br/>
+<h1>DestinationDog - Dog of the Week <br/>
 </h1>
 {% endblock %}
 
 {% block body_block %}
     <div>
-        <form method="post" action="{% url 'add_article' %}" enctype="multipart/form-data">
+        <form method="post" action="{% url 'dotw_enter' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-
             {% for field in form.visible_fields %}
                 {{ field.help_text }}
                 {{ field }}<br><br>
             {% endfor %}
-
-            <input type="submit" name="submit" value="Add Article" />
+            <input type="submit" name="submit" value="Enter" />
         </form>
     </div>
 {% endblock %}
