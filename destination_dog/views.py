@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
@@ -58,7 +57,7 @@ def add_article(request):
     return render(request, 'destination_dog/add_article.html', context=context_dict)
 
 
-def dotw_main(request):
+def dotw(request):
     context_dict = {'boldmessage': "dog of the week article"}
     return render(request, 'destination_dog/dotw.html', context=context_dict)
 
@@ -73,8 +72,14 @@ def dotw_enter(request):
     if request.method == 'POST':
         form = DotwForm(request.POST)
         if form.is_valid():
-            form.save()
-            return dotw_vote(request)
+
+                entry = form.save(commit=False)
+
+                if 'image' in request.FILES:
+                    entry.image = request.FILES['image']
+
+                entry.save()
+                return dotw_vote(request)
 
         else:
             print(form.errors)
