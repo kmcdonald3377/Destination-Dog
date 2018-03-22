@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
-from.models import Article, Event
+from.models import Article, Event, Dotw
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -63,8 +63,11 @@ def dotw(request):
     return render(request, 'destination_dog/dotw.html', context=context_dict)
 
 def dotw_vote(request):
-    context_dict = {'boldmessage': "picture of dogs"}
-    return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
+    context_dict = {}
+
+    dotw = Dotw.objects.order_by('dog')
+    context_dict['dotw'] = dotw
+    return render(request, 'destination_dog/dotw_vote.html', context_dict)
 
 def dotw_enter(request):
 
@@ -74,12 +77,12 @@ def dotw_enter(request):
         form = DotwForm(request.POST)
         if form.is_valid():
 
-                entry = form.save(commit=False)
+                dotw = form.save(commit=False)
 
                 if 'image' in request.FILES:
-                    entry.image = request.FILES['image']
+                    dotw.image = request.FILES['image']
 
-                entry.save()
+                dotw.save()
                 return dotw_vote(request)
 
         else:
