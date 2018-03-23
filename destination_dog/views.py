@@ -93,8 +93,10 @@ def dotw_hall_of_fame(request):
     return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
 
 def locateServices(request):
-    context_dict = {'boldmessage' : "find a service"}
-    return render(request, 'destination_dog/locateservice.html', context=context_dict)
+    return render(request, 'destination_dog/locateservice.html')
+
+def add_service(request):
+    return render(request, 'destination_dog/add_service.html')
 
 def events(request):
     events_list = Event.objects.all()

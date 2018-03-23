@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^dogoftheweek/enter/', views.dotw_enter, name='dotw_enter'),
     url(r'^dogoftheweek/hall_of_fame/', views.dotw_hall_of_fame, name='dotw_hall_of_fame'),
     url(r'locateservice', views.locateServices, name='locateservice'),
+    url(r'add_service/', views.add_service, name='add_service'),
     url(r'forum', views.forum, name='forum'),
     url(r'events/$', views.events, name='events'),
     url(r'events/add_event/$', views.add_events, name='add_events'),

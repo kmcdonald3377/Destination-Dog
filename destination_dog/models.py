@@ -29,6 +29,30 @@ class Dotw(models.Model):
     def __str__(self):
         return self.dog
 
+class Service(models.Model):
+    serType = models.CharField(max_length=128)
+    name = models.CharField(max_length=128)
+    location = models.CharField(max_length=128)
+    daysOpen = models.CharField(max_length=128)
+    timesOpen = models.CharField(max_length=128)
+    description = models.CharField(max_length=128)
+    ratings = models.IntegerField(default=0)
+
+
+
+    def __str__(self):
+        return self.name
+
+class Event(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.TextField(max_length=200)
+    location = models.CharField(max_length=250)
+    date = models.DateField()
+    time = models.TimeField()
+
+    def __str__(self):
+        return self.name
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
@@ -42,13 +66,5 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class Event(models.Model):
-    name = models.CharField(max_length=128)
-    description = models.TextField(max_length=200)
-    location = models.CharField(max_length=250)
-    date = models.DateField()
-    time = models.TimeField()
 
-    def __str__(self):
-        return self.name
 

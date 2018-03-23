@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from destination_dog.models import UserProfile, Article, Event, Dotw
+from destination_dog.models import UserProfile, Article, Event, Dotw, Service
 from datetime import date
 
 class UserForm(forms.ModelForm):
@@ -59,3 +59,16 @@ class AddEventForm(forms.ModelForm):
         model = Event
         fields = ('name', 'description', 'location', 'date', 'time')
 
+class ServiceForm(forms.ModelForm):
+
+    serType = forms.CharField(label="Service Type", max_length=128)
+    name = forms.CharField(label="Business Name", max_length=128)
+    location = forms.CharField(label="Location", max_length=128)
+    daysOpen = forms.CharField(label="Days Open", max_length=128)
+    timesOpen = forms.CharField(label="Times Open", max_length=128)
+    description = forms.CharField(label="Description", max_length=128)
+    ratings = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+
+    class Meta:
+        model = Service
+        fields = ('serType', 'name', 'location', 'daysOpen', 'timesOpen', 'description', 'ratings',)

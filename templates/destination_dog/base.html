@@ -192,8 +192,6 @@ function checkLoginState() {
 }
     </script>
 
-    <a href="#" onclick="signOut();">Sign out</a>
-
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
@@ -219,7 +217,6 @@ function checkLoginState() {
 
 
                 <li class="dropdown"><a href="/destinationdog/articles/" class="dropbtn">Articles</a>
-
                 <div class="dropdown-content">
                     <a href="/destinationdog/articles/add_article/">Add Article</a>
                 </div>
@@ -233,7 +230,11 @@ function checkLoginState() {
                     </div>
                 </li>
 
-                <li><a href="/destinationdog/locateservice/">Locate Services</a></li>
+                <li class ="dropdown"><a href="/destinationdog/locateservice/" class="dropbtn">Locate Services</a>
+                    <div class="dropdown-content">
+                    <a href="/destinationdog/events/add_service/">Add a Service</a>
+                </div>
+                </li>
 
                 <li class ="dropdown"><a href="/destinationdog/events/" class="dropbtn">Events</a>
                     <div class="dropdown-content">
