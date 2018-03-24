@@ -16,7 +16,7 @@
         {% if article.image %}
          <img src="{{ MEDIA_URL }}{{ article.image }}"/><br>
         {% endif %}
-        Written by  {{article.author}}<br><br>
+        Written by  <a href="{% url 'user_profile' article.author.user.username %}">{{article.author.user.first_name}} {{ article.author.user.last_name }}<br><br>
         <pr>{{ article.article }}</pr>
     {% else %}
         Article does not exist
