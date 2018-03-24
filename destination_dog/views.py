@@ -101,7 +101,7 @@ def locateServices(request):
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
 def events(request):
-    events_list = Event.objects.all()
+    events_list = Event.objects.order_by('date')
     context_dict = {'events': events_list}
     return render(request, 'destination_dog/events.html', context=context_dict)
 
