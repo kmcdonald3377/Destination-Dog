@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
 from.models import Article, Event, Dotw, User, UserProfile
@@ -35,7 +36,11 @@ def show_article(request, article_title_slug):
 
     return render(request, 'destination_dog/article.html', context_dict)
 
+@login_required
 def add_article(request):
+
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
 
     form = AddArticleForm()
 
@@ -44,6 +49,7 @@ def add_article(request):
         if form.is_valid():
 
                 article = form.save(commit=False)
+                article.author = profile
 
                 if 'image' in request.FILES:
                     article.image = request.FILES['image']

@@ -13,7 +13,7 @@
 
 {% block body_block %}
     <div>
-        <form method="post" action="{% url 'add_article' %}" enctype="multipart/form-data">
+        <form method="post" id="add_article_form" action="{% url 'add_article' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
