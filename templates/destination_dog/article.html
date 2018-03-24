@@ -13,11 +13,11 @@
 {% block body_block %}
     {% if article %}
         <h3> {{ article.title }} </h3>
-        {% if article.image %}
-         <img src="{{ MEDIA_URL }}{{ article.image }}"/><br>
+        {% if article.image %}<img src="{{ MEDIA_URL }}{{ article.image }}"/><br><br>
         {% endif %}
-        Written by  <a href="{% url 'user_profile' article.author.user.username %}">{{article.author.user.first_name}} {{ article.author.user.last_name }}<br><br>
-        <pr>{{ article.article }}</pr>
+        Written by  <a href="{% url 'user_profile' article.author.user.username %}">{{article.author.user.first_name}} {{ article.author.user.last_name }}</a>
+        ({{ article.date }})<br><br>
+        <pr>{{ article.article }}</pr><br><br>
     {% else %}
         Article does not exist
     {% endif %}
