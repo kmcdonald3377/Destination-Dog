@@ -31,20 +31,18 @@ class AddArticleForm(forms.ModelForm):
             'title',
             'image',
             'article',
-            'date',
         )
 
 class DotwForm(forms.ModelForm):
 
     dog = forms.CharField(max_length=128, help_text="Dog Name:")
-    owner = forms.CharField(max_length=128, help_text="Owner:")
     image = forms.ImageField(help_text="Photo", required=False)
+
 
     class Meta:
         model = Dotw
         fields = (
             'dog',
-            'owner',
             'image',
         )
 

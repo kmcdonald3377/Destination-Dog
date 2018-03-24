@@ -7,7 +7,10 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
-from.models import Article, Event, Dotw, User, UserProfile
+from.models import Article, Event, Dotw, User
+
+from datetime import datetime
+
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -16,7 +19,7 @@ def home(request):
 def article_list(request):
     context_dict = {}
 
-    article = Article.objects.order_by('-date') [:10]
+    article = Article.objects.order_by('-date')
     context_dict['article'] = article
 
     return render(request, 'destination_dog/article_list.html', context=context_dict)
@@ -51,11 +54,12 @@ def add_article(request):
                 article = form.save(commit=False)
                 article.author = profile
 
+
                 if 'image' in request.FILES:
                     article.image = request.FILES['image']
 
                 article.save()
-                return article_list(request)
+                return HttpResponseRedirect(reverse('article_list'))
 
         else:
             print(form.errors)
@@ -70,13 +74,19 @@ def dotw(request):
 
 def dotw_vote(request):
 
+    month = datetime.now().month
+
     context_dict = {}
-    dotw = Dotw.objects.order_by('dog')
+    dotw = Dotw.objects.filter(created_at__month=month)
     context_dict['dotw'] = dotw
 
     return render(request, 'destination_dog/dotw_vote.html', context_dict)
 
+@login_required()
 def dotw_enter(request):
+
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
 
     form = DotwForm()
 
@@ -85,12 +95,13 @@ def dotw_enter(request):
         if form.is_valid():
 
                 dotw = form.save(commit=False)
+                dotw.owner = profile
 
                 if 'image' in request.FILES:
                     dotw.image = request.FILES['image']
 
                 dotw.save()
-                return dotw_vote(request)
+                return HttpResponseRedirect(reverse('dotw_vote'))
 
         else:
             print(form.errors)
@@ -193,6 +204,7 @@ def register(request):
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
 def userprofile(request, username):
+
     context_dict = {}
 
     try:
