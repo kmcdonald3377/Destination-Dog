@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
-from.models import Article, Event
+from.models import Article, Event, Dotw, User, UserProfile
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -63,8 +63,12 @@ def dotw(request):
     return render(request, 'destination_dog/dotw.html', context=context_dict)
 
 def dotw_vote(request):
-    context_dict = {'boldmessage': "picture of dogs"}
-    return render(request, 'destination_dog/dotw_vote.html', context=context_dict)
+
+    context_dict = {}
+    dotw = Dotw.objects.order_by('dog')
+    context_dict['dotw'] = dotw
+
+    return render(request, 'destination_dog/dotw_vote.html', context_dict)
 
 def dotw_enter(request):
 
@@ -74,12 +78,12 @@ def dotw_enter(request):
         form = DotwForm(request.POST)
         if form.is_valid():
 
-                entry = form.save(commit=False)
+                dotw = form.save(commit=False)
 
                 if 'image' in request.FILES:
-                    entry.image = request.FILES['image']
+                    dotw.image = request.FILES['image']
 
-                entry.save()
+                dotw.save()
                 return dotw_vote(request)
 
         else:
@@ -182,8 +186,18 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
-def userprofile(request):
-    return render(request, 'destination_dog/userprofile.html') 
+def userprofile(request, username):
+    context_dict = {}
+
+    try:
+        user = User.objects.get(username=username)
+
+        context_dict['user'] = user
+
+    except Article.DoesNotExist:
+        context_dict['user'] = None
+
+    return render(request, 'destination_dog/userprofile.html', context_dict)
 
 def dogprofile(request):
     return render(request, 'destination_dog/dogprofile.html') 
