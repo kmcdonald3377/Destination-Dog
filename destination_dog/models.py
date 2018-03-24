@@ -7,8 +7,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='articles', blank=True) #For the top of the article page
     article = models.TextField()
     date = models.DateField()
-    #author = models.ForeignKey('UserProfile', related_name='article')
-    author = models.CharField(max_length=128)
+    author = models.ForeignKey('UserProfile', related_name='article')
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
@@ -29,6 +28,7 @@ class Dotw(models.Model):
     def __str__(self):
         return self.dog
 
+
 class Service(models.Model):
     serType = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
@@ -37,8 +37,6 @@ class Service(models.Model):
     timesOpen = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     ratings = models.IntegerField(default=0)
-
-
 
     def __str__(self):
         return self.name
@@ -57,9 +55,7 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
 
-
-    website = models.URLField(blank=True)
-    picture = models.ImageField(upload_to='profile_images')
+    picture = models.ImageField(upload_to='profile_images', blank=True)
 
 
     def __str__(self):

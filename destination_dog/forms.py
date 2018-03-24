@@ -8,17 +8,19 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('first_name', 'last_name', 'username', 'password')
 
 class UserProfileForm(forms.ModelForm):
+
+    picture = forms.ImageField(required=False)
+
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('picture',)
 
 class AddArticleForm(forms.ModelForm):
 
     title = forms.CharField(max_length=128, help_text="Title:")
-    author = forms.CharField(max_length=128, help_text="Author:")
     image = forms.ImageField(help_text="Header Image", required=False)
     article = forms.CharField(widget=forms.Textarea, help_text="Article Content")
     date = forms.DateField(widget=forms.HiddenInput(), initial=date.today())
@@ -27,7 +29,6 @@ class AddArticleForm(forms.ModelForm):
         model = Article
         fields = (
             'title',
-            'author',
             'image',
             'article',
             'date',
@@ -49,11 +50,12 @@ class DotwForm(forms.ModelForm):
 
 class AddEventForm(forms.ModelForm):
 
-    name = forms.CharField(label="Event Name:", max_length=128,)
-    description = forms.CharField(widget=forms.Textarea,label="Description:")
-    location = forms.CharField(label="Event Location:")
-    date = forms.DateField(widget=forms.DateInput(format="%d-%m-%Y"))
-    time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"))
+    name = forms.CharField(label="Event Name:", max_length=128,help_text="Event Name:")
+    description = forms.CharField(widget=forms.Textarea, help_text="Event Description:")
+    location = forms.CharField(help_text="Event Location:")
+    date = forms.DateField(widget=forms.DateInput(format="%"), help_text="Date:(format yyyy-mm-dd)")
+
+    time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"), help_text="Time:(format hh:mm)")
 
     class Meta:
         model = Event
