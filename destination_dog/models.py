@@ -7,7 +7,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='articles', blank=True) #For the top of the article page
     article = models.TextField()
     date = models.DateField()
-    author = models.ForeignKey('UserProfile', related_name='article')
+    author = models.ForeignKey('UserProfile', related_name='article', on_delete=models.CASCADE) # May want to change?
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
@@ -29,8 +29,9 @@ class Dotw(models.Model):
         return self.dog
 
 class UserProfile(models.Model):
-
-    user = models.OneToOneField(User)
+    # If we delete user, we will probably want to keep any articles the user
+    # has written or any forum comments (so SET.NULL).  If not, on_delete should be changed to something else.
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     def __str__(self):

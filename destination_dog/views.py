@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth import logout
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
