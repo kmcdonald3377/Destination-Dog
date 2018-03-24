@@ -2,13 +2,20 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Dog of the Week
+    {{ article.title }}
 {% endblock %}
 
-
+{% block header_block %}
+<h1>DestinationDog Articles<br/>
+</h1>
+{% endblock %}
 
 {% block body_block %}
-<div>
-        <strong>{{ boldmessage }}</strong><br/>
-</div>
+    {% for dotw in dotw %}
+        {%  if dotw.image %}
+            <img src="{{ MEDIA_URL }}{{ dotw.image }}"/><br>
+        {% else %}
+            No images
+        {% endif %}
+    {%  endfor %}
 {% endblock %}

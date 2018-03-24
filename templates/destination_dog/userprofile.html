@@ -2,13 +2,21 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    User Profile
+    {{ article.title }}
 {% endblock %}
 
-
+{% block header_block %}
+<h1>DestinationDog Articles<br/>
+</h1>
+{% endblock %}
 
 {% block body_block %}
-<div>
-       
-</div>
+    {% if user %}
+        <h3> {{ user.first_name }} {{ user.last_name }} </h3>
+        {% if user.userprofile.picture %}
+         <img src="{{ MEDIA_URL }}{{ user.userprofile.picture }}"/><br>
+        {% endif %}
+    {% else %}
+        No user found
+    {% endif %}
 {% endblock %}
