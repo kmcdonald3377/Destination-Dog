@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from destination_dog.models import UserProfile, Article, Event, Dotw, Service
+from destination_dog.models import UserProfile, Article, Event, Dotw, Service, Dog
 from datetime import date
 
 class UserForm(forms.ModelForm):
