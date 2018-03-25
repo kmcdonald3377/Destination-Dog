@@ -274,5 +274,5 @@ def addDog(request):
             return dogprofile(request)
     else:
         print(form.errors)
-    return render(request, 'destination_dog/addDog.html', {'dog_form': form }}
+    return render(request, 'destination_dog/addDog.html', {'dog_form': form })
 
