@@ -9,6 +9,14 @@
 
 {% block body_block %}
 <div>
-        
+    {% if dog %}
+        <h3>{{ dog.name }}</h3>
+        <h2>{{ dog.breed }}</h2>
+        <h2>{[ dog.gender }}</h2>
+            {% if picture %}
+            <img src="{{ MEDIA_URL }}{{ dog.picture }}"/><br>
+            {% endif %}
+    {% endif %}
+     
 </div>
 {% endblock %}
