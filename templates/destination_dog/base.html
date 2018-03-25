@@ -83,14 +83,14 @@
             }
 
             @media screen and (max-width: 600px) {
-                ul.topnav li.right, 
+                ul.topnav li.right,
                 ul.topnav li {float: none;
             }
 
             .topnav .search-container {
                 float: right;
             }
-            
+
             .topnav input[type=text] {
                 padding: 6px;
                 margin-top: 8px;
@@ -128,7 +128,7 @@
             }
 
             .topnav input[type=text] {
-                border: 1px solid #ccc;  
+                border: 1px solid #ccc;
             }
 
             .bottomnav {
@@ -149,12 +149,12 @@
         <meta charset="UTF-8" />
         <meta name="google-signin-client_id" content="1018670492225-ln78iuke55dahg8ehtf3khp481gn4bb0.apps.googleusercontent.com">
         <title>
-            DestinationDog - 
+            DestinationDog -
             {% block title_block %}
             It's about the destination....
             {% endblock %}
         </title>
-        
+
     </head>
 
     <body>
@@ -166,11 +166,11 @@
                 xfbml      : true,
                 version    : v3738502
             });
-        
-            FB.AppEvents.logPageView();   
-        
+
+            FB.AppEvents.logPageView();
+
         };
-  
+
         (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
@@ -179,12 +179,12 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        
+
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
 
-        
+
         {
             status: 'connected',
             authResponse: {
@@ -195,8 +195,8 @@
             }
         }
 
-        
-<fb:login-button 
+
+<fb:login-button
   scope="public_profile,email"
   onlogin="checkLoginState();">
 </fb:login-button>
@@ -220,13 +220,13 @@ function checkLoginState() {
 
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); 
+            console.log('ID: ' + profile.getId());
             console.log('Name: ' + profile.getName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         }
 </script>
-    
+
     <h1>DestinationDog </h1><h3>it's all about the destination...</h3>
         <div class="topnav">
             <ul>
@@ -252,6 +252,7 @@ function checkLoginState() {
                 <li class ="dropdown"><a href="/destinationdog/locateservice/" class="dropbtn">Locate Services</a>
                     <div class="dropdown-content">
                     <a href="/destinationdog/locateservice/add_service/">Add a Service</a>
+
                 </div>
                 </li>
 
