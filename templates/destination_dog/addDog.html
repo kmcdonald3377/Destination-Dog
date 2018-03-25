@@ -1,0 +1,29 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Add Dog
+{% endblock %}
+
+
+{% block header_block %}
+<h1><strong>DestinationDog - Add Dog</strong><br/></h1>
+{% endblock %}
+
+{% block body_block %}
+    <div class="addDog">
+    <form method="post" action="{% url 'add_dog' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.help_text }}
+                {{ field }}<br>
+            {% endfor %}
+           <input type="submit" name="submit" value="Add Dog" />
+    </form>
+    </div>
+
+{% endblock %}
