@@ -27,7 +27,9 @@
                         {{ profile.user.dog.name }} {{ profile.user.dog.picture }}<br/>
                     </div>
                 </li>
-                <% endfor %}
+                {% endfor %}
+            </ul>
+            {% endif %}
     {% else %}
         No user found
     {% endif %}
