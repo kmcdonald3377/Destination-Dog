@@ -139,7 +139,7 @@ def events(request):
     context_dict = {'events': events_list}
     return render(request, 'destination_dog/events.html', context=context_dict)
 
-
+@login_required
 def add_events(request):
     form = AddEventForm()
     if request.method == 'POST':
@@ -220,6 +220,7 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
+
 def userprofile(request, username):
 
     context_dict = {}
@@ -235,9 +236,22 @@ def userprofile(request, username):
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
 
-def dogprofile(request):
-    return render(request, 'destination_dog/dogprofile.html')
+def dogprofile(request, dog, username):
+    
+    context_dict = {}
+       
+    try: 
+        user = User.objects.get(username=username)
+        dog = user.userprofile.dogs
 
+        context_dict['dog'] = dogprofile
+        
+    except Dog.DoesNotExist:
+        context_dict['dog'] = None
+        
+    return render(request, 'destination_dog/dogprofile.html', context_dict)
+
+@login_required
 def addDog(request):
     form = AddDogForm()
     
