@@ -1,5 +1,5 @@
 import os, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','destinationdog.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','destination_dog_project.settings')
 
 django.setup()
 
@@ -59,19 +59,19 @@ def populate_users():
             "username": "kayleighchisholm",
             "first_name": "Kayleigh ",
             "last_name": "Chisholm",
-            "password": make_password("destinationdog"),
+            "password": make_password("destination_dog_project"),
         },
         {
             "username": "kellymcdonald",
             "first_name": "Kelly",
             "last_name": "McDonald",
-            "password": make_password("destinationdog"),
+            "password": make_password("destination_dog_project"),
         },
         {
             "username": "stephanieman",
             "first_name": "Stephanie",
             "last_name": "Man",
-            "password": make_password("destinationdog"),
+            "password": make_password("destination_dog_project"),
         },
     ]
 

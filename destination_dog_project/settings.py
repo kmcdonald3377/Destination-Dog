@@ -29,7 +29,7 @@ SECRET_KEY = 'g_&q4e7rf8@427q@y9fug272l$$302gqwix7nepeyko=x=wovg'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'destinationdog.pythonanywhere.com',
+    'destination_dog_project.pythonanywhere.com',
     '127.0.0.1'
 ]
 
@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'destinationdog.urls'
+ROOT_URLCONF = 'DestinationDog.urls'
 
 TEMPLATES = [
     {
@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'destinationdog.wsgi.application'
+WSGI_APPLICATION = 'destination_dog_project.wsgi.application'
 
 
 # Database
