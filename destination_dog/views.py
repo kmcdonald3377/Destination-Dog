@@ -236,13 +236,12 @@ def userprofile(request, username):
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
 
-def dogprofile(request, dog, username):
+def dogprofile(request, dog):
     
     context_dict = {}
        
     try: 
-        user = User.objects.get(username=username)
-        dog = user.userprofile.dogs
+        dogprofile = User.objects.get(username=dog)
 
         context_dict['dog'] = dogprofile
         
