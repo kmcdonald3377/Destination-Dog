@@ -61,6 +61,7 @@ class Event(models.Model):
     location = models.CharField(max_length=250)
     date = models.DateField()
     time = models.TimeField()
+    user = models.ForeignKey('Userprofile', related_name="event", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
