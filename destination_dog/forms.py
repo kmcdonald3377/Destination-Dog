@@ -31,6 +31,7 @@ class AddArticleForm(forms.ModelForm):
             'title',
             'image',
             'article',
+            'date',
         )
 
 class DotwForm(forms.ModelForm):
