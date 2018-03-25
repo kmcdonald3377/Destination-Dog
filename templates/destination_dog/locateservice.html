@@ -147,10 +147,6 @@
 
 
 {% block body_block %}
-<div>
-    <strong>{{ boldmessage }}</strong><br/>
-</div><br />
-
 
 
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
@@ -159,10 +155,32 @@
 <div>
     <div id="map" style="width:600px;height:600px;background:yellow"></div>
 </div>
-<p id="results">
-    Results
-
+<p>
+  Feel free to use the above map to search for local services in your area!
+  Or!
+  If you feel like your pooch needs that extra tlc that comes from a smaller business 
+  then please feel free to use the below form to browse our members' businesses!
 </p>
+
+{% if service %}
+  {% for service in service %}
+    {{ service.name }}
+  {% endfor %}
+{% else %}
+  No services found.
+{% endif %}
+
+
+<form>
+  Service Type: <input>DropDown</input><br>
+  Location<br>
+  Postcode: <input></input><br>
+  If you do not have or know your postcode please click here for alternative location. <br>
+  Distance: <input>Dropdown</input><br>
+
+</form>
+
+
 
 
 {% block script_block %}

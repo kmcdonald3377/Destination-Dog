@@ -6,8 +6,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
-from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm
-from.models import Article, Event, Dotw, User, UserProfile
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm, ServiceForm
+from.models import Article, Event, Dotw, User, UserProfile, Service
 
 def home(request):
     context_dict = {'boldmessage': "Dogs everywhere"}
@@ -103,10 +103,25 @@ def dotw_hall_of_fame(request):
     return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
 
 def locateServices(request):
-    return render(request, 'destination_dog/locateservice.html')
+    context_dict = {}
+    service = Service.objects
+    return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
 def add_service(request):
-    return render(request, 'destination_dog/add_service.html')
+    form = ServiceForm()
+
+    if request.method == 'POST':
+        form = ServiceForm(request.POST)
+
+        if form.is_valid():
+            service = form.save(commit=True)
+            service.save()
+            return locateServices(request)
+        else:
+            print(form.errors)
+    
+    context_dict = {'form':form}
+    return render(request, 'destination_dog/add_service.html', context=context_dict)
 
 def events(request):
     events_list = Event.objects.order_by('date')

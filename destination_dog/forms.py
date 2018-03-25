@@ -62,13 +62,32 @@ class AddEventForm(forms.ModelForm):
         fields = ('name', 'description', 'location', 'date', 'time')
 
 class ServiceForm(forms.ModelForm):
+    SERVICE_CHOICES=[
+        ('1', 'Vets'),
+        ('2', 'Groomers'),
+        ('3', 'Pet Shop'),
+        ('4', 'Dog Walker'),
+        ('5', 'Dog Sitter'),
+        ('6', 'Other'),
+    ]
+    DAY_CHOICES=[
+        ('monday', 'Monday'),
+        ('tuesday', 'Tuesday'),
+        ('wednesday', 'Wednesday'),
+        ('thursday', 'Thursday'),
+        ('friday', 'Friday'),
+        ('saturday', 'Saturday'),
+        ('sunday', 'Sunday'),
+    ]
 
-    serType = forms.CharField(label="Service Type", max_length=128)
-    name = forms.CharField(label="Business Name", max_length=128)
-    location = forms.CharField(label="Location", max_length=128)
-    daysOpen = forms.CharField(label="Days Open", max_length=128)
-    timesOpen = forms.CharField(label="Times Open", max_length=128)
-    description = forms.CharField(label="Description", max_length=128)
+    serType = forms.CharField(label="Service Type", widget = forms.Select(choices=SERVICE_CHOICES),  help_text="Service Type: *")
+    name = forms.CharField(label="Business Name", max_length=128, help_text="Business Name: *")
+    location = forms.CharField(label="Location", max_length=128, help_text="Location:")
+    daysOpen = forms.CharField(label="Days Open", widget=forms.CheckboxSelectMultiple(choices=DAY_CHOICES), help_text="Days Open:")
+    timesOpen = forms.CharField(label="Times Open", max_length=128, help_text="Times Open:")
+    contact = forms.CharField()
+    email = forms.EmailField()
+    description = forms.CharField(label="Description", widget=forms.Textarea, help_text="Description:")
     ratings = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:

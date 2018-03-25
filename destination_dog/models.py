@@ -31,10 +31,12 @@ class Dotw(models.Model):
 
 class Service(models.Model):
     serType = models.CharField(max_length=128)
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
     location = models.CharField(max_length=128)
     daysOpen = models.CharField(max_length=128)
     timesOpen = models.CharField(max_length=128)
+    contact = models.CharField(max_length=128)
+    email = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     ratings = models.IntegerField(default=0)
 
