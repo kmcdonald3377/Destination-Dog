@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from destination_dog.models import UserProfile, Article, Event, Dotw, Service, Dog
-from datetime import date
+from destination_dog.models import UserProfile, Article, Event, Dotm, Service, Dog
+
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -23,7 +23,6 @@ class AddArticleForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Title:")
     image = forms.ImageField(help_text="Header Image", required=False)
     article = forms.CharField(widget=forms.Textarea, help_text="Article Content")
-    date = forms.DateField(widget=forms.HiddenInput(), initial=date.today())
 
     class Meta:
         model = Article
@@ -31,17 +30,16 @@ class AddArticleForm(forms.ModelForm):
             'title',
             'image',
             'article',
-            'date',
         )
 
-class DotwForm(forms.ModelForm):
+class DotmForm(forms.ModelForm):
 
     dog = forms.CharField(max_length=128, help_text="Dog Name:")
     image = forms.ImageField(help_text="Photo", required=False)
 
 
     class Meta:
-        model = Dotw
+        model = Dotm
         fields = (
             'dog',
             'image',

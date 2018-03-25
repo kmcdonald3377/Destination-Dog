@@ -2,11 +2,13 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
+from datetime import datetime, date
+
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
     image = models.ImageField(upload_to='articles') #For the top of the article page
     article = models.TextField()
-    date = models.DateField()
+    date = models.DateField(default=date.today)
     author = models.ForeignKey('UserProfile', related_name='article')
     slug = models.SlugField(unique=True)
 
@@ -17,15 +19,16 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-class Dotw(models.Model):
+class Dotm(models.Model):
     dog = models.CharField(max_length=128)
-    owner = models.ForeignKey('UserProfile', related_name='dotw')
-    image = models.ImageField(upload_to='dotw')
-    created_at = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey('UserProfile', related_name='dotm')
+    image = models.ImageField(upload_to='dotm')
+    created_at = models.DateTimeField(default=datetime.now())
+    winner = models.BooleanField(default=False)
 
 
     class Meta:
-        verbose_name_plural = 'Dog of The Week Entries'
+        verbose_name_plural = 'Dog of The Month Entries'
 
     def __str__(self):
         return self.dog
