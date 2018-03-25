@@ -36,7 +36,9 @@ class Dog(models.Model):
     picture = models.CharField(upload_to="dogs")
     breed = models.CharField(max_length=128)
     gender = models.CharField(max_length=1, choices=gender_choices)
+    about_me = models.textField()  
     owner = models.ForeignKey('UserProfile', related_name="dog", on_delete=models.CASCADE)
+    
     
     def __str__(self):
         return self.name
