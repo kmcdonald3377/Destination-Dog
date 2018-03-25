@@ -4,12 +4,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','destination_dog_project.settings
 django.setup()
 
 from django.contrib.auth.models import User
-from destination_dog.models import Article, UserProfile
+from destination_dog.models import Article, UserProfile, Service
 from django.contrib.auth.hashers import make_password
 
 
 def populate_article():
-
     print("Populating articles...")
     user = User.objects.get(username="kayleighchisholm")
     profile = user.userprofile
@@ -91,6 +90,29 @@ def populate_users():
             picture="profile_images/profile.png"
         )
         profile.save()
+
+def populate_services():
+    print("Populating services...")
+
+    services = [
+        {
+            "serType": "Vet",
+            "name" : "Vets'R'Us",
+            "location" : "Glasgow University",
+            "daysOpen" : "Monday, Tuesday, Wednesday",
+            "timesOpen" : "9am - 5pm",
+            "contact" : "0141 123 4567",
+            "email" : "vetsrus@test.com",
+            "description" : "Dogs dogs dogs dogs dogs",
+            "slug" : "vets'r'us",
+        }
+    ]
+
+    for service in services:
+        s = Service.objects.get_or_create(username = service["serType"], name = service["name"], location = service["location"], 
+        daysOpen = service["daysOpen"], timesOpen = service["timesOpen"], contact = service["contact"], 
+        email = service["email"], description = service["description"], slug = service["slug"])
+        s.save()
 
 
     # Start execution here!
