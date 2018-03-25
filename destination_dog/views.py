@@ -7,8 +7,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 
-from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm
-from.models import Article, Event, Dotm, User, Service
+
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm
+from.models import Article, Event, Dotm, User, Service, Dog
 
 from datetime import datetime
 
@@ -147,7 +148,7 @@ def events(request):
     context_dict = {'events': events_list}
     return render(request, 'destination_dog/events.html', context=context_dict)
 
-
+@login_required
 def add_events(request):
     form = AddEventForm()
     if request.method == 'POST':
@@ -228,6 +229,7 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
+
 def userprofile(request, username):
 
     context_dict = {}
@@ -243,7 +245,34 @@ def userprofile(request, username):
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
 
-def dogprofile(request):
-    return render(request, 'destination_dog/dogprofile.html')
+def dogprofile(request, dog):
+    
+    context_dict = {}
+       
+    try: 
+        dogprofile = User.objects.get(username=dog)
 
+        context_dict['dog'] = dogprofile
+        
+    except Dog.DoesNotExist:
+        context_dict['dog'] = None
+        
+    return render(request, 'destination_dog/dogprofile.html', context_dict)
+
+@login_required
+def addDog(request):
+    form = AddDogForm()
+    
+    if request.method == 'POST':
+        form = AddDogForm(request.POST)
+        if form.is_valid():
+            dog = form.save(commit=False)
+            if 'picture' in request.FILES:
+                dog.picture = request.FILES['picture']
+               
+            dog.save()
+            return dogprofile(request)
+    else:
+        print(form.errors)
+    return render:(request, 'destination_dog/addDog.html', {'dog_form': form }}
 

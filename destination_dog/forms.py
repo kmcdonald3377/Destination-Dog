@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from destination_dog.models import UserProfile, Article, Event, Dotm, Service
-from datetime import date
+from destination_dog.models import UserProfile, Article, Event, Dotm, Service, Dog
+
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -44,6 +44,17 @@ class DotmForm(forms.ModelForm):
             'dog',
             'image',
         )
+        
+class AddDogForm(forms.ModelForm):
+    name = forms.CharField(max_length=128, help_text="Name:")
+    breed = forms.CharField(max_length=128, help_text="Breed:")
+    gender = forms.ChoiceField(widget=forms.RadioSelect(choices=Dog.gender_choices), help_text="Gender (M/F):")
+    picture = forms.ImageField(required=False)
+    about_me = forms.CharField(widget=forms.Textarea, help_text="About me:")
+    
+    class Meta:
+        model = Dog
+        fields = ('name', 'breed', 'gender', 'picture', 'about_me')
 
 class AddEventForm(forms.ModelForm):
 
