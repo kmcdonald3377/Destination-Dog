@@ -7,8 +7,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 
-from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm, ServiceForm
-from.models import Article, Event, Dotw, User, UserProfile, Service
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm
+from.models import Article, Event, Dotm, User, Service
 
 from datetime import datetime
 
@@ -54,7 +54,6 @@ def add_article(request):
                 article = form.save(commit=False)
                 article.author = profile
 
-
                 if 'image' in request.FILES:
                     article.image = request.FILES['image']
 
@@ -68,59 +67,59 @@ def add_article(request):
     return render(request, 'destination_dog/add_article.html', context=context_dict)
 
 
-def dotw(request):
-    context_dict = {'boldmessage': "dog of the week article"}
-    return render(request, 'destination_dog/dotw.html', context=context_dict)
+def dotm(request):
+    context_dict = {'boldmessage': "dog of the month article"}
+    return render(request, 'destination_dog/dotm.html', context=context_dict)
 
 @login_required()
-def dotw_vote(request):
+def dotm_vote(request):
 
     month = datetime.now().month
     year = datetime.now().year
 
     context_dict = {}
-    dotw = Dotw.objects.filter(created_at__month=month, created_at__year=year)
-    context_dict['dotw'] = dotw
+    dotm = Dotm.objects.filter(created_at__month=month, created_at__year=year)
+    context_dict['dotm'] = dotm
 
-    return render(request, 'destination_dog/dotw_vote.html', context_dict)
+    return render(request, 'destination_dog/dotm_vote.html', context_dict)
 
 @login_required()
-def dotw_enter(request):
+def dotm_enter(request):
 
     user = User.objects.get(username=request.user)
     profile = user.userprofile
 
-    form = DotwForm()
+    form = DotmForm()
 
     if request.method == 'POST':
-        form = DotwForm(request.POST)
+        form = DotmForm(request.POST)
         if form.is_valid():
 
-                dotw = form.save(commit=False)
-                dotw.owner = profile
+                dotm = form.save(commit=False)
+                dotm.owner = profile
 
                 if 'image' in request.FILES:
-                    dotw.image = request.FILES['image']
+                    dotm.image = request.FILES['image']
 
-                dotw.save()
-                return HttpResponseRedirect(reverse('dotw_vote'))
+                dotm.save()
+                return HttpResponseRedirect(reverse('dotm_vote'))
 
         else:
             print(form.errors)
 
     context_dict = {'form': form}
-    return render(request, 'destination_dog/dotw_enter.html', context=context_dict)
+    return render(request, 'destination_dog/dotm_enter.html', context=context_dict)
 
-def dotw_hall_of_fame(request):
+def dotm_hall_of_fame(request):
 
     context_dict = {}
-    thisyear = Dotw.objects.filter(winner=True, created_at__year=2018)
-    lastyear = Dotw.objects.filter(winner=True, created_at__year=2017)
+    thisyear = Dotm.objects.filter(winner=True, created_at__year=2018)
+    lastyear = Dotm.objects.filter(winner=True, created_at__year=2017)
 
     context_dict['thisyear'] = thisyear
     context_dict['lastyear'] = lastyear
 
-    return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
+    return render(request, 'destination_dog/dotm_hall_of_fame.html', context=context_dict)
 
 def locateServices(request):
     context_dict = {}

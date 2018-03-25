@@ -2,18 +2,18 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Dog Of The Week Enter
+    Dog Of The Month Enter
 {% endblock %}
 
 
 {% block header_block %}
-<h1>DestinationDog - Dog of the Week <br/>
+<h1>DestinationDog - Dog of the Month <br/>
 </h1>
 {% endblock %}
 
 {% block body_block %}
     <div>
-        <form method="post" action="{% url 'dotw_enter' %}" enctype="multipart/form-data">
+        <form method="post" action="{% url 'dotm_enter' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form.visible_fields %}
                 {{ field.help_text }}

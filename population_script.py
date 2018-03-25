@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','destinationdog.settings')
 django.setup()
 
 from django.contrib.auth.models import User
-from destination_dog.models import Article, UserProfile, Dotw
+from destination_dog.models import Article, UserProfile, Dotm
 from django.contrib.auth.hashers import make_password
 from datetime import datetime, timedelta, timezone
 
@@ -90,9 +90,9 @@ def populate_users():
         )
         profile.save()
 
-def populate_dotw():
+def populate_dotm():
 
-    print("Populating Dog of the Week Entries...")
+    print("Populating Dog of the Month Entries...")
     user = User.objects.get(username="kayleighchisholm")
     profile = user.userprofile
 
@@ -229,7 +229,7 @@ def populate_dotw():
     ]
 
     for data in dotm:
-        d = Dotw()
+        d = Dotm()
         d.dog = data['dog']
         d.image = data['image']
         d.owner = data['owner']
@@ -247,4 +247,4 @@ if __name__ == '__main__':
     print("Starting Rango population script...")
     populate_users()
     populate_articles()
-    populate_dotw()
+    populate_dotm()
