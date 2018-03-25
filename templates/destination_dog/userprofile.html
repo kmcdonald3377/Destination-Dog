@@ -16,6 +16,18 @@
         {% if profile.picture %}
          <img src="{{ MEDIA_URL }}{{ profile.picture }}"/><br><br>
         {% endif %}
+
+         <div class = "view_dogs">
+            <h3>{{ profile.user.first_name }}'s Dogs</h3><br/>
+            {% if dogs %}
+            <ul>
+                {% for dog in dogs %}
+                <li>
+                    <div>
+                        {{ profile.user.dog.name }} {{ profile.user.dog.picture }}<br/>
+                    </div>
+                </li>
+                <% endfor %}
     {% else %}
         No user found
     {% endif %}
