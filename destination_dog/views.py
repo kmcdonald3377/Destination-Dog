@@ -238,4 +238,19 @@ def userprofile(request, username):
 def dogprofile(request):
     return render(request, 'destination_dog/dogprofile.html')
 
+def addDog(request):
+    form = AddDogForm()
+    
+    if request.method == 'POST':
+        form = AddDogForm(request.POST)
+        if form.is_valid():
+            dog = form.save(commit=False)
+            if 'picture' in request.FILES:
+                dog.picture = request.FILES['picture']
+               
+            dog.save()
+            return dogprofile(request)
+    else:
+        print(form.errors)
+    return render:(request, 'destination_dog/addDog.html', {'dog_form': form }}
 
