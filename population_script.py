@@ -7,10 +7,6 @@ from django.contrib.auth.models import User
 from destination_dog.models import Article, UserProfile
 from django.contrib.auth.hashers import make_password
 
-from datetime import date
-
-
-
 def populate_article():
 
     print("Populating articles...")
@@ -22,6 +18,7 @@ def populate_article():
             "title": "Dog Stuff",
             "image": "articles/dog.jpg",
             "article":"Article Content",
+            "date":'2018-03-25',
             "author": profile,
             "slug": "dog-stuff",
         },
@@ -29,6 +26,7 @@ def populate_article():
             "title": "More Dog Stuff",
             "image": "articles/dog.jpg",
             "article": "Article Content",
+            "date": '2017-03-25',
             "author": profile,
             "slug": "more-dog-stuff",
         },
@@ -36,6 +34,7 @@ def populate_article():
             "title": "Even More Dog Stuff",
             "image": "articles/dog.jpg",
             "article": "Article Content",
+            "date": '2018-01-25',
             "author": profile,
             "slug": "even-more-dog-stuff",
         }
@@ -47,7 +46,7 @@ def populate_article():
             a.title = data['title']
             a.image = data['image']
             a.article = data['article']
-            a.date = date.today()
+            a.date = data['date']
             a.author = data['author']
             a.slug = data['slug']
             a.save()
@@ -82,7 +81,6 @@ def populate_users():
         u.first_name = data['first_name']
         u.last_name = data['last_name']
         u.password = data['password']
-        u.is_superuser = True
         u.save()
 
         profile = UserProfile(
