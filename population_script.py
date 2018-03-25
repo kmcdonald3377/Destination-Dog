@@ -59,19 +59,19 @@ def populate_users():
             "username": "kayleighchisholm",
             "first_name": "Kayleigh ",
             "last_name": "Chisholm",
-            "password": make_password("destination_dog_project"),
+            "password": make_password("desinationdog"),
         },
         {
             "username": "kellymcdonald",
             "first_name": "Kelly",
             "last_name": "McDonald",
-            "password": make_password("destination_dog_project"),
+            "password": make_password("destinationdog"),
         },
         {
             "username": "stephanieman",
             "first_name": "Stephanie",
             "last_name": "Man",
-            "password": make_password("destination_dog_project"),
+            "password": make_password("destinationdog"),
         },
     ]
 
