@@ -39,7 +39,7 @@ class Dog(models.Model):
     picture = models.ImageField(upload_to="dogs")
     breed = models.CharField(max_length=128)
     gender = models.CharField(max_length=1, choices=gender_choices)
-    about_me = models.textField()  
+    about_me = models.TextField()
     owner = models.ForeignKey('UserProfile', related_name="dog", on_delete=models.CASCADE)
     
     
@@ -77,7 +77,6 @@ class UserProfile(models.Model):
 
     picture = models.ImageField(upload_to='profile_images', blank=True)
     
-    dogs = models.ForeignKey('Dog', on_delete=models.CASCADE)
 
 
     def __str__(self):
