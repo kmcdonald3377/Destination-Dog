@@ -24,6 +24,7 @@ class Dotw(models.Model):
     owner = models.ForeignKey('UserProfile', related_name='dotw')
     image = models.ImageField(upload_to='dotw')
     created_at = models.DateTimeField(default=datetime.now())
+    winner = models.BooleanField(default=False)
 
 
     class Meta:
