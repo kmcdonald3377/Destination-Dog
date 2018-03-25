@@ -1,5 +1,5 @@
 import os, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','destination_dog_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','destinationdog.settings')
 
 django.setup()
 
