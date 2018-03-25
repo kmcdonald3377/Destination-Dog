@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 
-from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm, ServiceForm
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotwForm, AddEventForm, ServiceForm, AddDogForm
 from.models import Article, Event, Dotw, User, UserProfile, Service
 
 from datetime import datetime
