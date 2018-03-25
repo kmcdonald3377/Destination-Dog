@@ -1,0 +1,18 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ article.title }}
+{% endblock %}
+
+{% block header_block %}
+<h1>DestinationDog Articles<br/>
+</h1>
+{% endblock %}
+
+{% block body_block %}
+
+    Private page for users to update details shown on their public profile
+<a href="{% url 'user_profile' user.username %}">My Profile</a>
+
+{% endblock %}

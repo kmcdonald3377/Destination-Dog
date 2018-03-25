@@ -209,15 +209,22 @@ def userprofile(request, username):
 
     try:
         user = User.objects.get(username=username)
+        profile = user.userprofile
 
-        context_dict['user'] = user
+        context_dict['profile'] = profile
 
     except Article.DoesNotExist:
-        context_dict['user'] = None
+        context_dict['profile'] = None
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
 
 def dogprofile(request):
-    return render(request, 'destination_dog/dogprofile.html') 
+    return render(request, 'destination_dog/dogprofile.html')
+
+@login_required()
+def my_account(request):
+
+
+    return render(request, 'destination_dog/my_account.html')
 
 
