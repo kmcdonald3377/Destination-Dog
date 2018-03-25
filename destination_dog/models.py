@@ -36,7 +36,7 @@ class Dotm(models.Model):
 class Dog(models.Model):
     gender_choices = (('M','Male'),('F','Female'))
     name = models.CharField(max_length=128)
-    picture = models.CharField(upload_to="dogs")
+    picture = models.ImageField(upload_to="dogs")
     breed = models.CharField(max_length=128)
     gender = models.CharField(max_length=1, choices=gender_choices)
     about_me = models.textField()  
