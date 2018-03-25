@@ -22,6 +22,6 @@ from destination_dog import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^destination_dog_project/', include('destination_dog.urls')),
+    url(r'^destinationdog/', include('destination_dog.urls')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
