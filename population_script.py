@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from destination_dog.models import Article, UserProfile
 from django.contrib.auth.hashers import make_password
 
+from datetime import date
+
+
 
 def populate_article():
 
@@ -19,7 +22,6 @@ def populate_article():
             "title": "Dog Stuff",
             "image": "articles/dog.jpg",
             "article":"Article Content",
-            "date": '2018-03-24',
             "author": profile,
             "slug": "dog-stuff",
         },
@@ -27,7 +29,6 @@ def populate_article():
             "title": "More Dog Stuff",
             "image": "articles/dog.jpg",
             "article": "Article Content",
-            "date": '2018-03-24',
             "author": profile,
             "slug": "more-dog-stuff",
         },
@@ -35,7 +36,6 @@ def populate_article():
             "title": "Even More Dog Stuff",
             "image": "articles/dog.jpg",
             "article": "Article Content",
-            "date": '2018-03-24',
             "author": profile,
             "slug": "even-more-dog-stuff",
         }
@@ -43,14 +43,14 @@ def populate_article():
 
     for data in articles:
 
-            article = Article()
-            article.title = data['title']
-            article.image = data['image']
-            article.article = data['article']
-            article.date = data['date']
-            article.author = data['author']
-            article.slug = data['slug']
-            article.save()
+            a = Article()
+            a.title = data['title']
+            a.image = data['image']
+            a.article = data['article']
+            a.date = date.today()
+            a.author = data['author']
+            a.slug = data['slug']
+            a.save()
 
 def populate_users():
     print("Populating users...")
@@ -78,13 +78,12 @@ def populate_users():
 
     for data in users:
 
-        user = User()
-        user.username = data['username']
-        user.first_name = data['first_name']
-        user.last_name = data['last_name']
-        user.password = data['password']
-        user.is_superuser = True
-        user.save()
+        u = User.objects.get_or_create(username=data['username'])[0]
+        u.first_name = data['first_name']
+        u.last_name = data['last_name']
+        u.password = data['password']
+        u.is_superuser = True
+        u.save()
 
         profile = UserProfile(
             user=User.objects.get(username=data['username']),
