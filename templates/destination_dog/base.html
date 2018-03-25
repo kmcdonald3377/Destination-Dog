@@ -264,7 +264,7 @@ function checkLoginState() {
                 <li><a href="/destinationdog/forum/">Forum</a></li>
 
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'my_account' %}">My Account</a></li>
+                    <li><a href="{% url 'user_profile' user.username %}">Profile</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'register' %}">Register</a></li>

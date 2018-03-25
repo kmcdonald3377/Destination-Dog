@@ -221,10 +221,4 @@ def userprofile(request, username):
 def dogprofile(request):
     return render(request, 'destination_dog/dogprofile.html')
 
-@login_required()
-def my_account(request):
-
-
-    return render(request, 'destination_dog/my_account.html')
-
 
