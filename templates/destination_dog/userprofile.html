@@ -12,10 +12,31 @@
 
 {% block body_block %}
     {% if user %}
-        <h3> {{ user.first_name }} {{ user.last_name }} </h3>
-        {% if user.userprofile.picture %}
-         <img src="{{ MEDIA_URL }}{{ user.userprofile.picture }}"/><br>
-        {% endif %}
+        <h3> {{ profile.user.first_name }} {{ profile.user.last_name }} </h3>
+        {% if profile.picture %}
+        <img src="{{ MEDIA_URL }}{{ profile.picture }}"/><br><br/>
+        {% end if %}
+
+            <div class = "view_dogs">
+            <h3>{{ profile.user.first_name }}'s Dogs</h3><br/>
+            {% if dogs %}
+            <ul>
+                {% for dog in dogs %}
+                <li>
+                    <div>
+                        {{ profile.user.dog.name }} {{ profile.user.dog.picture }}<br/>
+                    </div>
+                </li>
+                <% endfor %}
+            </ul>
+            {% else %}
+                <h4>No dogs listed</h4>
+            {% endif %}
+            </div>
+
+            <div class = "add_dog">
+                <a href="/destinationdog/profile/add_dog/" class="button">Add a Dog</a><br/>
+            </div>
     {% else %}
         No user found
     {% endif %}
