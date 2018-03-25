@@ -46,6 +46,16 @@ class DotwForm(forms.ModelForm):
             'dog',
             'image',
         )
+        
+class AddDogForm(forms.ModelForm):
+    name = forms.CharField(max_length=128, help_text="Name:")
+    breed = forms.CharField(max_length=128, help_text="Breed:")
+    gender = forms.ChoiceField(widget=forms.RadioSelect(choices=Dog.gender_choices), help_text="Gender (M/F):")
+    picture = forms.ImageField(required=False)
+    
+    class Meta:
+        model = Dog
+        fields = ('name', 'breed', 'gender', 'picture')
 
 class AddEventForm(forms.ModelForm):
 
