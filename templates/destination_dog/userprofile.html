@@ -12,9 +12,9 @@
 
 {% block body_block %}
     {% if user %}
-        <h3> {{ user.first_name }} {{ user.last_name }} </h3>
-        {% if user.userprofile.picture %}
-         <img src="{{ MEDIA_URL }}{{ user.userprofile.picture }}"/><br>
+        <h3> {{ profile.user.first_name }} {{ profile.user.last_name }} </h3>
+        {% if profile.picture %}
+         <img src="{{ MEDIA_URL }}{{ profile.picture }}"/><br><br>
         {% endif %}
     {% else %}
         No user found

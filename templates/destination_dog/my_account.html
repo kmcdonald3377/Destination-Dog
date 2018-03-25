@@ -11,13 +11,8 @@
 {% endblock %}
 
 {% block body_block %}
-    {% for dotw in dotw %}
-        {{ dotw.dog}}
-        {{ dotw.owner }}
-        {%  if dotw.image %}
-            <img src="{{ MEDIA_URL }}{{ dotw.image }}"/><br>
-        {% else %}
-            No images
-        {% endif %}
-    {%  endfor %}
+
+    Private page for users to update details shown on their public profile
+<a href="{% url 'user_profile' user.username %}">My Profile</a>
+
 {% endblock %}
