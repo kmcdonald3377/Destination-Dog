@@ -4,10 +4,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','destinationdog.settings')
 django.setup()
 
 from django.contrib.auth.models import User
-from destination_dog.models import Article, UserProfile
+from destination_dog.models import Article, UserProfile, Dotw
 from django.contrib.auth.hashers import make_password
+from datetime import datetime, timedelta, timezone
 
-def populate_article():
+def populate_articles():
 
     print("Populating articles...")
     user = User.objects.get(username="kayleighchisholm")
@@ -89,10 +90,52 @@ def populate_users():
         )
         profile.save()
 
+def populate_dotw():
+
+    print("Populating Dog of the Week Entries...")
+    user = User.objects.get(username="kayleighchisholm")
+    profile = user.userprofile
+
+    user2 = User.objects.get(username="kellymcdonald")
+    profile2 = user2.userprofile
+
+    user3 = User.objects.get(username="stephanieman")
+    profile3 = user3.userprofile
+
+
+    dotm = [
+        {
+            "dog": "Alfie",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc),
+        },
+        {
+            "dog": "Gizmo",
+            "image": "articles/dog.jpg",
+            "owner": profile2,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=5),
+        },
+        {
+            "dog": "Alfie",
+            "image": "articles/dog.jpg",
+            "owner": profile3,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=50),
+        }
+    ]
+
+    for data in dotm:
+        d = Dotw()
+        d.dog = data['dog']
+        d.image = data['image']
+        d.owner = data['owner']
+        d.created_at = data["created_at"]
+        d.save()
 
     # Start execution here!
 if __name__ == '__main__':
 
     print("Starting Rango population script...")
     populate_users()
-    populate_article()
+    populate_articles()
+    populate_dotw()

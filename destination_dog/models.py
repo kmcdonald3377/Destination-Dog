@@ -2,6 +2,8 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
+from datetime import datetime
+
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
     image = models.ImageField(upload_to='articles') #For the top of the article page
@@ -21,7 +23,7 @@ class Dotw(models.Model):
     dog = models.CharField(max_length=128)
     owner = models.ForeignKey('UserProfile', related_name='dotw')
     image = models.ImageField(upload_to='dotw')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=datetime.now())
 
 
     class Meta:
