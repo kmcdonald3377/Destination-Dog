@@ -30,14 +30,20 @@ class Dotw(models.Model):
     def __str__(self):
         return self.dog
 
-class UserProfile(models.Model):
 
-    user = models.OneToOneField(User)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+class Service(models.Model):
+    serType = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
+    location = models.CharField(max_length=128)
+    daysOpen = models.CharField(max_length=128)
+    timesOpen = models.CharField(max_length=128)
+    contact = models.CharField(max_length=128)
+    email = models.CharField(max_length=128)
+    description = models.CharField(max_length=128)
+    ratings = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.username
-
+        return self.name
 
 class Event(models.Model):
     name = models.CharField(max_length=128)
@@ -48,4 +54,17 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+class UserProfile(models.Model):
+
+    user = models.OneToOneField(User)
+
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+
+    def __str__(self):
+        return self.user.username
+
+
+
 
