@@ -52,10 +52,11 @@ class AddDogForm(forms.ModelForm):
     breed = forms.CharField(max_length=128, help_text="Breed:")
     gender = forms.ChoiceField(widget=forms.RadioSelect(choices=Dog.gender_choices), help_text="Gender (M/F):")
     picture = forms.ImageField(required=False)
+    about_me = forms.CharField(widget=forms.Textarea, help_text="About me:")
     
     class Meta:
         model = Dog
-        fields = ('name', 'breed', 'gender', 'picture')
+        fields = ('name', 'breed', 'gender', 'picture', 'about_me')
 
 class AddEventForm(forms.ModelForm):
 
