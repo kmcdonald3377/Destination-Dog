@@ -2,7 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)

@@ -60,7 +60,7 @@ def populate_users():
             "username": "kayleighchisholm",
             "first_name": "Kayleigh ",
             "last_name": "Chisholm",
-            "password": make_password("desinationdog"),
+            "password": make_password("destinationdog"),
         },
         {
             "username": "kellymcdonald",
@@ -104,24 +104,128 @@ def populate_dotw():
 
 
     dotm = [
+
         {
             "dog": "Alfie",
             "image": "articles/dog.jpg",
             "owner": profile,
             "created_at": datetime.now(tz=timezone.utc),
+            "winner": False
+
         },
         {
             "dog": "Gizmo",
             "image": "articles/dog.jpg",
             "owner": profile2,
             "created_at": datetime.now(tz=timezone.utc) - timedelta(days=5),
+            "winner": False
+
         },
         {
-            "dog": "Alfie",
+            "dog": "Pablo",
             "image": "articles/dog.jpg",
             "owner": profile3,
             "created_at": datetime.now(tz=timezone.utc) - timedelta(days=50),
-        }
+            "winner": False
+        },
+        {
+            "dog": "January",
+            "image": "articles/dog.jpg",
+            "owner": profile2,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=434),
+            "winner": True
+        },
+        {
+            "dog": "February",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=403),
+            "winner": True
+        },
+        {
+            "dog": "March",
+            "image": "articles/dog.jpg",
+            "owner": profile3,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=372),
+            "winner": True
+        },
+        {
+            "dog": "April",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=341),
+            "winner": True
+        },
+        {
+            "dog": "May",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=310),
+            "winner": True
+        },
+        {
+            "dog": "June",
+            "image": "articles/dog.jpg",
+            "owner": profile2,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=279),
+            "winner": True
+        },
+        {
+            "dog": "July",
+            "image": "articles/dog.jpg",
+            "owner": profile3,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=248),
+            "winner": True
+        },
+        {
+            "dog": "August",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=217),
+            "winner": True
+        },
+        {
+            "dog": "September",
+            "image": "articles/dog.jpg",
+            "owner": profile3,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=186),
+            "winner": True
+        },
+        {
+            "dog": "October",
+            "image": "articles/dog.jpg",
+            "owner": profile2,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=155),
+            "winner": True
+        },
+        {
+            "dog": "November",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=124),
+            "winner": True
+        },
+        {
+            "dog": "December",
+            "image": "articles/dog.jpg",
+            "owner": profile3,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=93),
+            "winner": True
+        },
+        {
+            "dog": "January",
+            "image": "articles/dog.jpg",
+            "owner": profile2,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=62),
+            "winner": True
+        },
+        {
+            "dog": "February",
+            "image": "articles/dog.jpg",
+            "owner": profile,
+            "created_at": datetime.now(tz=timezone.utc) - timedelta(days=31),
+            "winner": True
+        },
     ]
 
     for data in dotm:
@@ -130,7 +234,12 @@ def populate_dotw():
         d.image = data['image']
         d.owner = data['owner']
         d.created_at = data["created_at"]
+        d.winner = data['winner']
         d.save()
+
+
+
+
 
     # Start execution here!
 if __name__ == '__main__':

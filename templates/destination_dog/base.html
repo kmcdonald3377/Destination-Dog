@@ -241,11 +241,13 @@ function checkLoginState() {
                     {%  endif %}
                 </li>
 
-                <li class ="dropdown"><a href="/destinationdog/dogoftheweek/" class="dropbtn">Dog of the Week</a>
+                <li class ="dropdown"><a href="{% url 'dotw' %}" class="dropbtn">Dog of the Week</a>
                     <div class="dropdown-content">
-                    <a href= "/destinationdog/dogoftheweek/vote">Vote</a>
-                    <a href="/destinationdog/dogoftheweek/enter">Enter</a>
-                    <a href="/destinationdog/dogoftheweek/hall_of_fame">Hall of Fame</a>
+                        {% if user.is_authenticated %}
+                            <a href= {% url 'dotw_vote' %}>Vote</a>
+                            <a href="{% url 'dotw_enter' %}">Enter</a>
+                        {% endif %}
+                    <a href="{% url 'dotw_hall_of_fame' %}">Hall of Fame</a>
                     </div>
                 </li>
 

@@ -72,12 +72,14 @@ def dotw(request):
     context_dict = {'boldmessage': "dog of the week article"}
     return render(request, 'destination_dog/dotw.html', context=context_dict)
 
+@login_required()
 def dotw_vote(request):
 
     month = datetime.now().month
+    year = datetime.now().year
 
     context_dict = {}
-    dotw = Dotw.objects.filter(created_at__month=month)
+    dotw = Dotw.objects.filter(created_at__month=month, created_at__year=year)
     context_dict['dotw'] = dotw
 
     return render(request, 'destination_dog/dotw_vote.html', context_dict)
@@ -110,7 +112,14 @@ def dotw_enter(request):
     return render(request, 'destination_dog/dotw_enter.html', context=context_dict)
 
 def dotw_hall_of_fame(request):
-    context_dict = {'boldmessage': "hall of fame"}
+
+    context_dict = {}
+    thisyear = Dotw.objects.filter(winner=True, created_at__year=2018)
+    lastyear = Dotw.objects.filter(winner=True, created_at__year=2017)
+
+    context_dict['thisyear'] = thisyear
+    context_dict['lastyear'] = lastyear
+
     return render(request, 'destination_dog/dotw_hall_of_fame.html', context=context_dict)
 
 def locateServices(request):
