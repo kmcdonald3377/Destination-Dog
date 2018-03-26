@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm
-from.models import Article, Event, Dotm, User, Service, Dog
+from.models import Article, Event, Dotm, User, Service, Dog, UserProfile
 
 from datetime import datetime
 
@@ -24,7 +24,6 @@ def article_list(request):
     context_dict['article'] = article
 
     return render(request, 'destination_dog/article_list.html', context=context_dict)
-
 
 def show_article(request, article_title_slug):
 
@@ -66,7 +65,6 @@ def add_article(request):
 
     context_dict = {'form': form}
     return render(request, 'destination_dog/add_article.html', context=context_dict)
-
 
 def dotm(request):
 
@@ -291,7 +289,6 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
-
 def userprofile(request, username):
 
     context_dict = {}
@@ -306,7 +303,6 @@ def userprofile(request, username):
         context_dict['profile'] = None
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
-
 
 def dogprofile(request, dog):
     
@@ -323,9 +319,8 @@ def dogprofile(request, dog):
     return render(request, 'destination_dog/dogprofile.html', context_dict)
 
 @login_required
-def addDog(request):
-
-    user = User.objects.get(username=request.user)
+def add_dog(request, username_slug):
+    user = User.objects.get(slug=username_slug)
     profile = user.userprofile
 
     form = AddDogForm()
@@ -341,11 +336,11 @@ def addDog(request):
                 dog.picture = request.FILES['picture']
 
             dog.save()
-            return dogprofile(request)
+            return HttpResponseRedirect(reverse('userprofile'))
 
         else:
             print(form.errors)
 
     context_dict = {'form': form}
-    return render(request, 'destination_dog/addDog.html', context=context_dict)
+    return render(request, 'destination_dog/add_dog.html', context=context_dict)
 

@@ -16,9 +16,8 @@
         {% if profile.picture %}
          <img src="{{ MEDIA_URL }}{{ profile.picture }}"/><br><br>
         {% endif %}
-
-             <h3><u>{{ profile.user.first_name }}'s Dogs</u></h3><br/>
-            {% if dogs %}
+        <h3><u>{{ profile.user.first_name }}'s Dogs</u></h3><br/>
+        {% if dogs %}
             <ul>
                 {% for dog in dogs %}
                 <li>
@@ -28,15 +27,13 @@
                 </li>
                 {% endfor %}
             </ul>
-            {% else %}
-                <p>You don't have any dogs</p>
-            {% endif %}
-            <p><a href="/destinationdog/profile/{{ profile.user.first_name }}/add_dog/" class="button">Add a Dog</a></p>
+        {% else %}
+            <p>You don't have any dogs</p>
+        {% endif %}
+            
+        <p><a href="{% url 'add_dog' %}" class="button">Add a Dog</a></p>
 
     {% else %}
         No user found
-
-
-
     {% endif %}
 {% endblock %}
