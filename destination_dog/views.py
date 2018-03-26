@@ -25,7 +25,6 @@ def article_list(request):
 
     return render(request, 'destination_dog/article_list.html', context=context_dict)
 
-
 def show_article(request, article_title_slug):
 
     context_dict = {}
@@ -66,7 +65,6 @@ def add_article(request):
 
     context_dict = {'form': form}
     return render(request, 'destination_dog/add_article.html', context=context_dict)
-
 
 def dotm(request):
 
@@ -168,13 +166,18 @@ def show_service(request, service_name_slug):
 
 @login_required()
 def add_service(request):
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
+
     form = ServiceForm()
 
     if request.method == 'POST':
         form = ServiceForm(request.POST)
 
         if form.is_valid():
-            service = form.save(commit=True)
+            service = form.save(commit=False)
+            service.provider = profile
+            
             service.save()
             return locateServices(request)
         else:
@@ -190,15 +193,26 @@ def events(request):
 
 @login_required
 def add_events(request):
+
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
+
     form = AddEventForm()
+
     if request.method == 'POST':
         form = AddEventForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+
+            event = form.save(commit=False)
+            event.user = profile
+
+            event.save()
             return events(request)
+
         else:
             print(form.errors)
+
     return render(request, 'destination_dog/add_events.html', {'form': form})
 
 def show_event(request, event_name_slug):
@@ -281,7 +295,6 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
-
 def userprofile(request, username):
 
     context_dict = {}
@@ -296,7 +309,6 @@ def userprofile(request, username):
         context_dict['profile'] = None
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
-
 
 def dogprofile(request, dog):
     
@@ -313,9 +325,8 @@ def dogprofile(request, dog):
     return render(request, 'destination_dog/dogprofile.html', context_dict)
 
 @login_required
-def addDog(request):
-
-    user = User.objects.get(username=request.user)
+def add_dog(request, username_slug):
+    user = User.objects.get(slug=username_slug)
     profile = user.userprofile
 
     form = AddDogForm()
@@ -331,11 +342,11 @@ def addDog(request):
                 dog.picture = request.FILES['picture']
 
             dog.save()
-            return dogprofile(request)
+            return HttpResponseRedirect(reverse('userprofile'))
 
         else:
             print(form.errors)
 
     context_dict = {'form': form}
-    return render(request, 'destination_dog/addDog.html', context=context_dict)
+    return render(request, 'destination_dog/add_dog.html', context=context_dict)
 

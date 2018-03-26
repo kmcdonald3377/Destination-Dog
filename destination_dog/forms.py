@@ -59,8 +59,8 @@ class AddDogForm(forms.ModelForm):
 class AddEventForm(forms.ModelForm):
 
     name = forms.CharField(label="Event Name:", max_length=128,help_text="Event Name:")
-    description = forms.CharField(widget=forms.Textarea, help_text="Event Description:")
-    location = forms.CharField(help_text="Event Location:")
+    description = forms.CharField(widget=forms.Textarea, help_text="Event Description:", required=False)
+    location = forms.CharField(help_text="Event Location:", required=False)
     date = forms.DateField(widget=forms.DateInput(format="%"), help_text="Date:(format yyyy-mm-dd)")
 
     time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"), help_text="Time:(format hh:mm)")
@@ -71,12 +71,12 @@ class AddEventForm(forms.ModelForm):
 
 class ServiceForm(forms.ModelForm):
     SERVICE_CHOICES=[
-        ('1', 'Vets'),
-        ('2', 'Groomers'),
-        ('3', 'Pet Shop'),
-        ('4', 'Dog Walker'),
-        ('5', 'Dog Sitter'),
-        ('6', 'Other'),
+        ('Vets', 'Vets'),
+        ('Groomers', 'Groomers'),
+        ('Pet Shop', 'Pet Shop'),
+        ('Dog Walker', 'Dog Walker'),
+        ('Dog Sitter', 'Dog Sitter'),
+        ('Other', 'Other'),
     ]
     DAY_CHOICES=[
         ('monday', 'Monday'),
@@ -90,14 +90,19 @@ class ServiceForm(forms.ModelForm):
 
     serType = forms.CharField(label="Service Type", widget = forms.Select(choices=SERVICE_CHOICES),  help_text="Service Type: *")
     name = forms.CharField(label="Business Name", max_length=128, help_text="Business Name: *")
-    location = forms.CharField(label="Location", max_length=128, help_text="Location:")
-    daysOpen = forms.CharField(label="Days Open", widget=forms.CheckboxSelectMultiple(choices=DAY_CHOICES), help_text="Days Open:")
-    timesOpen = forms.CharField(label="Times Open", max_length=128, help_text="Times Open:")
-    contact = forms.CharField()
-    email = forms.EmailField()
-    description = forms.CharField(label="Description", widget=forms.Textarea, help_text="Description:")
+    location = forms.CharField(label="Location", max_length=128, help_text="Location:", required=False)
+    mondayTimes = forms.CharField(label="Monday Times", max_length=128, help_text="Monday Times:", required=False)
+    tuesdayTimes = forms.CharField(label="Tuesday Times", max_length=128, help_text="Tuesday Times:", required=False)
+    wednesdayTimes = forms.CharField(label="Wednesday Times", max_length=128, help_text="Wednesday Times:", required=False)
+    thursdayTimes = forms.CharField(label="Thursday Times", max_length=128, help_text="Thursday Times:", required=False)
+    fridayTimes = forms.CharField(label="Friday Times", max_length=128, help_text="Friday Times:", required=False)
+    saturdayTimes = forms.CharField(label="Saturday Times", max_length=128, help_text="Saturday Times:", required=False)
+    sundayTimes = forms.CharField(label="Sunday Times", max_length=128, help_text="Sunday Times:", required=False)
+    contact = forms.CharField(label="Contact", max_length=128, help_text="Contact Information:", required=False)
+    email = forms.EmailField(label="Email", max_length=128, help_text="Email Address:", required=False)
+    description = forms.CharField(label="Description", widget=forms.Textarea, help_text="Description:", required=False)
     ratings = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = Service
-        fields = ('serType', 'name', 'location', 'daysOpen', 'timesOpen', 'description', 'ratings',)
+        fields = ('serType', 'name', 'location', 'mondayTimes', 'tuesdayTimes', 'wednesdayTimes', 'thursdayTimes', 'fridayTimes', 'saturdayTimes', 'sundayTimes', 'description', 'ratings',)

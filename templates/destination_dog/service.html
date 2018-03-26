@@ -37,19 +37,24 @@
         {
             var address = document.getElementById('address').innerHTML;
             
-
+            if(address == '')
+            {
+                document.getElementById("map").style.display="none"
+                document.getElementById("address").innerHTML = "No location provided";
+            }
+            else
+            {
+                var geocoder = new google.maps.Geocoder();
             
-            var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({'address': address}, function(results, status) {
+                if (status === 'OK') 
+                {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: results[0].geometry.location
+                    });
 
-            
-            geocoder.geocode({'address': address}, function(results, status) {
-              if (status === 'OK') 
-              {
-                var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: results[0].geometry.location
-                });
-                var marker = new google.maps.Marker({
+                    var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
@@ -59,6 +64,11 @@
                 alert('Geocode was not successful for the following reason: ' + status);
               }
             });
-          }
+            }
+        }
+        
+        function ajaxshit(){
+
+        }
     </script>
 {% endblock %}
