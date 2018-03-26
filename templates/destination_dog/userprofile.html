@@ -17,7 +17,6 @@
          <img src="{{ MEDIA_URL }}{{ profile.picture }}"/><br><br>
         {% endif %}
 
-         <div class = "view_dogs">
              <h3><u>{{ profile.user.first_name }}'s Dogs</u></h3><br/>
             {% if dogs %}
             <ul>
@@ -33,7 +32,11 @@
                 <p>You don't have any dogs</p>
             {% endif %}
             <p><a href="/destinationdog/profile/add_dog/" class="button">Add a Dog</a></p>
+
     {% else %}
         No user found
+
+
+
     {% endif %}
 {% endblock %}
