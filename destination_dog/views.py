@@ -94,6 +94,20 @@ def dotm_vote(request):
 
     return render(request, 'destination_dog/dotm_vote.html', context_dict)
 
+@login_required
+def vote_dotm(request):
+    dotm_id = None
+    if request.method == 'GET':
+        dotm_id = request.GET['dotmid']
+        likes = 0
+        if dotm_id:
+            dotm = Dotm.objects.get(id=int(dotm_id))
+            if dotm:
+                likes = dotm.likes + 1
+                dotm.likes = likes
+                dotm.save()
+            return HttpResponse(likes)
+
 @login_required()
 def dotm_enter(request):
 

@@ -26,6 +26,7 @@ class Dotm(models.Model):
     image = models.ImageField(upload_to='dotm')
     created_at = models.DateTimeField(default=datetime.now())
     winner = models.BooleanField(default=False)
+    likes = models.IntegerField(default=0)
 
 
     class Meta:
