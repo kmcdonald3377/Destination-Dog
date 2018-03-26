@@ -5,6 +5,7 @@
     <head lang="en">
             {% block script1_block %}
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+                <script src="/static/js/destinationdog-ajax.js"></script>
             {% endblock %}
         <style>
 
@@ -160,33 +161,37 @@
 
     <body>
     <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : 621707921505287,
-                cookie     : true,
-                xfbml      : true,
-                version    : v3738502
-            });
-
-            FB.AppEvents.logPageView();
-
-        };
-
-        (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
 
 
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
 
 
-        {
+        {#window.fbAsyncInit = function() {#}
+        {#    FB.init({#}
+        {#        appId      : 621707921505287,#}
+        {#        cookie     : true,#}
+        {#        xfbml      : true,#}
+        {#        version    : v3738502#}
+        {#    });#}
+        {##}
+        {#    FB.AppEvents.logPageView();#}
+        {##}
+        {#};#}
+        {##}
+        {#(function(d, s, id){#}
+        {#var js, fjs = d.getElementsByTagName(s)[0];#}
+        {#if (d.getElementById(id)) {return;}#}
+        {#js = d.createElement(s); js.id = id;#}
+        {#js.src = "https://connect.facebook.net/en_US/sdk.js";#}
+        {#fjs.parentNode.insertBefore(js, fjs);#}
+        {#}(document, 'script', 'facebook-jssdk'));#}
+
+
+        {#FB.getLoginStatus(function(response) {#}
+        {#    statusChangeCallback(response);#}
+        {#});#}
+
+
+      var auth =  {
             status: 'connected',
             authResponse: {
                 accessToken: '...',
@@ -194,13 +199,14 @@
                 signedRequest:'...',
                 userID:'...'
             }
-        }
+        };
 
 
-<fb:login-button
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
+
+{#<fb:login-button#}
+{#  scope="public_profile,email"#}
+{#  onlogin="checkLoginState();">#}
+{#</fb:login-button>#}
 
 
 function checkLoginState() {
