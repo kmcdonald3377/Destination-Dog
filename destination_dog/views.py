@@ -69,8 +69,18 @@ def add_article(request):
 
 
 def dotm(request):
-    context_dict = {'boldmessage': "dog of the month article"}
-    return render(request, 'destination_dog/dotm.html', context=context_dict)
+
+    context_dict = {}
+
+    try:
+        article = Article.objects.get(is_dotm=True)
+
+        context_dict['article'] = article
+
+    except Article.DoesNotExist:
+        context_dict['article'] = None
+
+    return render(request, 'destination_dog/dotm.html', context_dict)
 
 @login_required()
 def dotm_vote(request):

@@ -11,6 +11,7 @@ class Article(models.Model):
     date = models.DateField(default=date.today)
     author = models.ForeignKey('UserProfile', related_name='article')
     slug = models.SlugField(unique=True)
+    is_dotm = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
