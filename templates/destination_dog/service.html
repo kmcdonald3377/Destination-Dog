@@ -1,0 +1,64 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ service.name }}
+{% endblock %}
+
+{% block header_block %}
+{% endblock %}
+
+{% block body_block %}
+    {% if service %}
+        <h3> {{ service.name }} </h3>
+        <p id="address">{{ service.location }}</p>
+        <div>
+            <div id="map" style="width:350px;height:350px;background:yellow"></div>
+        </div>
+        <p>
+            {{ service.serType }}<br>
+            {{ service.daysOpen }}<br>
+            {{ service.timesOpen }}<br>
+            {{ service.contact }}<br>
+            {{ service.email }}<br>
+            {{ service.description }}<br>
+            {{ service.ratings }}<br>
+        </p>
+    {% else %}
+        Service does not exist
+    {% endif %}
+
+    <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap" async defer></script>
+    </script>
+    
+    <script>
+        function initMap() 
+        {
+            var address = document.getElementById('address').innerHTML;
+            
+
+            
+            var geocoder = new google.maps.Geocoder();
+
+            
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') 
+              {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: results[0].geometry.location
+                });
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+              } 
+              else 
+              {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          }
+    </script>
+{% endblock %}

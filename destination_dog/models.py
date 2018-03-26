@@ -69,6 +69,7 @@ class Event(models.Model):
     time = models.TimeField()
     user = models.ForeignKey('UserProfile', related_name="event", on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
+    attendees = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
