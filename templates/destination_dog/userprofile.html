@@ -31,7 +31,7 @@
             {% else %}
                 <p>You don't have any dogs</p>
             {% endif %}
-            <p><a href="/destinationdog/profile/add_dog/" class="button">Add a Dog</a></p>
+            <p><a href="/destinationdog/profile/{{ profile.user.first_name }}/add_dog/" class="button">Add a Dog</a></p>
 
     {% else %}
         No user found
