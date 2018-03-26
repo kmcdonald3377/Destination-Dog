@@ -148,9 +148,24 @@ def dotm_hall_of_fame(request):
 
 def locateServices(request):
     context_dict = {}
-    service = Service.objects
+    service = Service.objects.order_by('name')
+    context_dict['service'] = service
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
+def show_service(request, service_name_slug):
+    context_dict = {}
+
+    try:
+        service = Service.objects.get(slug=service_name_slug)
+
+        context_dict['service'] = service
+    
+    except Service.DoesNotExist:
+        context_dict['service'] = None
+    
+    return render(request, 'destination_dog/service.html', context_dict)
+
+@login_required()
 def add_service(request):
     form = ServiceForm()
 
@@ -185,6 +200,18 @@ def add_events(request):
             print(form.errors)
     return render(request, 'destination_dog/add_events.html', {'form': form})
 
+def show_event(request, event_name_slug):
+    context_dict = {}
+
+    try:
+        event = Event.objects.get(slug=event_name_slug)
+
+        context_dict['event'] = event
+
+    except Event.DoesNotExist:
+        context_dict['event'] = None
+
+    return render(request, 'destination_dog/event.html', context_dict)
 
 def forum(request):
     context_dict = {'boldmessage' : "chat to people"}
@@ -264,17 +291,18 @@ def userprofile(request, username):
 
         context_dict['profile'] = profile
 
-    except Article.DoesNotExist:
+    except User.DoesNotExist:
         context_dict['profile'] = None
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
+
 
 def dogprofile(request, dog):
     
     context_dict = {}
        
     try: 
-        dogprofile = User.objects.get(username=dog)
+        dogprofile = User.objects.get(dog=dog)
 
         context_dict['dog'] = dogprofile
         
@@ -290,7 +318,7 @@ def addDog(request):
     profile = user.userprofile
 
     form = AddDogForm()
-    
+
     if request.method == 'POST':
         form = AddDogForm(request.POST)
         if form.is_valid():
@@ -300,7 +328,7 @@ def addDog(request):
 
             if 'picture' in request.FILES:
                 dog.picture = request.FILES['picture']
-               
+
             dog.save()
             return dogprofile(request)
 

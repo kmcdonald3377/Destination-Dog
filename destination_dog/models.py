@@ -58,6 +58,11 @@ class Service(models.Model):
     email = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     ratings = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Service, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -69,6 +74,12 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField()
     user = models.ForeignKey('UserProfile', related_name="event", on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
+    attendees = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
