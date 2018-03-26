@@ -150,15 +150,23 @@ def events(request):
 
 @login_required
 def add_events(request):
+
+    user = User.objects.get(username=username)
+    profile = user.userprofile
+
     form = AddEventForm()
+
     if request.method == 'POST':
         form = AddEventForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            event = form.save(commit=True)
+            event.user = profile
+
             return events(request)
         else:
             print(form.errors)
+
     return render(request, 'destination_dog/add_events.html', {'form': form})
 
 
@@ -272,7 +280,7 @@ def addDog(request):
         form = AddDogForm(request.POST)
         if form.is_valid():
 
-            dog = form.save(commit=False)
+            dog = form.save(commit=True)
             dog.owner = profile
 
             if 'picture' in request.FILES:

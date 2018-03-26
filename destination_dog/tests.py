@@ -134,10 +134,12 @@ class ModelTests(TestCase):
             dog = None
         return dog
 
-    def test_adopt_dog_article
+    def test_adopt_dog_article(self):
+        article = self.get_article('Adopt A Dog')
+        self.assertIsNotNone(article)
 
 
-    #def test_slug_line_creation(self):
+    # # def test_slug_line_creation(self):
     #"""
    #slug_line_creation checks to make sure that when we add an article
    #an appropriate slug line is created
