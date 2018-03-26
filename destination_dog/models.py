@@ -57,6 +57,11 @@ class Service(models.Model):
     email = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     ratings = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Service, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

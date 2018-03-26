@@ -138,6 +138,19 @@ def locateServices(request):
     context_dict['service'] = service
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
+def show_service(request, service_name_slug):
+    context_dict = {}
+
+    try:
+        service = Service.objects.get(slug=service_name_slug)
+
+        context_dict['service'] = service
+    
+    except Service.DoesNotExist:
+        context_dict['service'] = None
+    
+    return render(request, 'destination_dog/service.html', context_dict)
+
 @login_required()
 def add_service(request):
     form = ServiceForm()
