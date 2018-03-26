@@ -134,7 +134,8 @@ def dotm_hall_of_fame(request):
 
 def locateServices(request):
     context_dict = {}
-    service = Service.objects
+    service = Service.objects.order_by('name')
+    context_dict['service'] = service
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
 @login_required()
