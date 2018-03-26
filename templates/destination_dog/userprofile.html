@@ -18,7 +18,7 @@
         {% endif %}
 
          <div class = "view_dogs">
-            <h3>{{ profile.user.first_name }}'s Dogs</h3><br/>
+             <h3><u>{{ profile.user.first_name }}'s Dogs</u></h3><br/>
             {% if dogs %}
             <ul>
                 {% for dog in dogs %}
@@ -29,7 +29,10 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% else %}
+                <p>You don't have any dogs</p>
             {% endif %}
+            <p><a href="/destinationdog/profile/add_dog/" class="button">Add a Dog</a></p>
     {% else %}
         No user found
     {% endif %}
