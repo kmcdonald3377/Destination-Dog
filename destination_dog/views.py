@@ -167,13 +167,18 @@ def show_service(request, service_name_slug):
 
 @login_required()
 def add_service(request):
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
+
     form = ServiceForm()
 
     if request.method == 'POST':
         form = ServiceForm(request.POST)
 
         if form.is_valid():
-            service = form.save(commit=True)
+            service = form.save(commit=False)
+            service.provider = profile
+            
             service.save()
             return locateServices(request)
         else:
