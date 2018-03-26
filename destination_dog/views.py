@@ -261,18 +261,28 @@ def dogprofile(request, dog):
 
 @login_required
 def addDog(request):
+
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
+
     form = AddDogForm()
     
     if request.method == 'POST':
         form = AddDogForm(request.POST)
         if form.is_valid():
+
             dog = form.save(commit=False)
+            dog.owner = profile
+
             if 'picture' in request.FILES:
                 dog.picture = request.FILES['picture']
                
             dog.save()
             return dogprofile(request)
-    else:
-        print(form.errors)
-    return render(request, 'destination_dog/addDog.html', {'dog_form': form })
+
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form}
+    return render(request, 'destination_dog/addDog.html', context=context_dict)
 
