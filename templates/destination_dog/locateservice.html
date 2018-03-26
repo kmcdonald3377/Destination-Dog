@@ -162,24 +162,29 @@
   then please feel free to use the below form to browse our members' businesses!
 </p>
 
-{% if service %}
-  {% for service in service %}
-    <a href="{% url 'show_service' service.slug %}">{{ service.name }}</a><br>
-  {% endfor %}
-{% else %}
-  No services found.
-{% endif %}
+
 
 <br><br><br><br>
+<b>Filter Services from Members</b>
 <form>
   Service Type: <input>DropDown</input><br>
   Location<br>
   Postcode: <input></input><br>
-  If you do not have or know your postcode please click here for alternative location. <br>
-  Distance: <input>Dropdown</input><br>
-
+  <input>
 </form>
 
+{% if service %}
+  <table style="width:100%">
+    {% for service in service %}
+      <tr>
+        <a href="{% url 'show_service' service.slug %}">{{ service.name }}</a><br>
+        {{ service.location }}
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  No services found.
+{% endif %}
 
 
 
