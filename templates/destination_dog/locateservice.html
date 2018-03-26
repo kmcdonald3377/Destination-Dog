@@ -165,27 +165,37 @@
 
 
 <br><br><br><br>
-<b>Filter Services from Members</b>
+<b>Filter Services for those closest</b>
 <form>
-  Service Type: <input>DropDown</input><br>
-  Location<br>
-  Postcode: <input></input><br>
-  <input>
+  Service Type: 
+  <select name="serviceType">
+    <option value="Vets">Vets</option>
+    <option value="Groomers">Groomers</option>
+    <option value="Pet Shop">Pet Shop</option>
+    <option value="Dog Walker">Dog Walker</option>
+    <option value="Dog Sitter">Dog Sitter</option>
+    <option value="Other">Other</option>
+  </select>
+  <br>Postcode: <input></input><br>
 </form>
 
+<br>
+<table style="width:100%">
 {% if service %}
-  <table style="width:100%">
+  
     {% for service in service %}
       <tr>
-        <a href="{% url 'show_service' service.slug %}">{{ service.name }}</a><br>
-        {{ service.location }}
+        <td><a href="{% url 'show_service' service.slug %}">{{ service.name }}</a>
+        <br>{{ service.serType }}
+        <br>{{ service.location }}</td>
       </tr>
     {% endfor %}
-  </table>
 {% else %}
-  No services found.
+  <tr>
+    <td>No services found.</td>
+  </tr>
 {% endif %}
-
+</table>
 
 
 {% block script_block %}

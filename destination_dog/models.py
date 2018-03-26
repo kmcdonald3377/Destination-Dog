@@ -6,7 +6,7 @@ from datetime import datetime, date
 
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
-    image = models.ImageField(upload_to='articles') #For the top of the article page
+    image = models.ImageField(upload_to='articles', default='') #For the top of the article page
     article = models.TextField()
     date = models.DateField(default=date.today)
     author = models.ForeignKey('UserProfile', related_name='article')
@@ -58,8 +58,8 @@ class Service(models.Model):
     email = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     ratings = models.IntegerField(default=0)
-    provider = models.ForeignKey('UserProfile', related_name='service', on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True)
+    provider = models.ForeignKey('UserProfile', related_name='service', on_delete=models.CASCADE, default='')
+    slug = models.SlugField(unique=True, default='')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -75,7 +75,7 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField()
     user = models.ForeignKey('UserProfile', related_name="event", on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, default='')
     attendees = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):

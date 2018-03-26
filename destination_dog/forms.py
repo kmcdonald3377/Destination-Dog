@@ -71,12 +71,12 @@ class AddEventForm(forms.ModelForm):
 
 class ServiceForm(forms.ModelForm):
     SERVICE_CHOICES=[
-        ('1', 'Vets'),
-        ('2', 'Groomers'),
-        ('3', 'Pet Shop'),
-        ('4', 'Dog Walker'),
-        ('5', 'Dog Sitter'),
-        ('6', 'Other'),
+        ('Vets', 'Vets'),
+        ('Groomers', 'Groomers'),
+        ('Pet Shop', 'Pet Shop'),
+        ('Dog Walker', 'Dog Walker'),
+        ('Dog Sitter', 'Dog Sitter'),
+        ('Other', 'Other'),
     ]
     DAY_CHOICES=[
         ('monday', 'Monday'),
