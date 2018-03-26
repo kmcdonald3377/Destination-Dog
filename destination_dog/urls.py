@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^dogofthemonth/hall_of_fame/', views.dotm_hall_of_fame, name='dotm_hall_of_fame'),
     url(r'^locateservice/$', views.locateServices, name='locateservice'),
     url(r'^locateservice/add_service/$', views.add_service, name='add_service'),
+    url(r'^locateservice/(?P<service_name_slug>[\w\-]+)/', views.show_service, name='show_service'),
     url(r'forum', views.forum, name='forum'),
     url(r'^events/$', views.events, name='events'),
     url(r'^events/add_event/$', views.add_events, name='add_events'),

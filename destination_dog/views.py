@@ -134,8 +134,22 @@ def dotm_hall_of_fame(request):
 
 def locateServices(request):
     context_dict = {}
-    service = Service.objects
+    service = Service.objects.order_by('name')
+    context_dict['service'] = service
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
+
+def show_service(request, service_name_slug):
+    context_dict = {}
+
+    try:
+        service = Service.objects.get(slug=service_name_slug)
+
+        context_dict['service'] = service
+    
+    except Service.DoesNotExist:
+        context_dict['service'] = None
+    
+    return render(request, 'destination_dog/service.html', context_dict)
 
 @login_required()
 def add_service(request):

@@ -164,13 +164,13 @@
 
 {% if service %}
   {% for service in service %}
-    {{ service.name }}
+    <a href="{% url 'show_service' service.slug %}">{{ service.name }}</a><br>
   {% endfor %}
 {% else %}
   No services found.
 {% endif %}
 
-
+<br><br><br><br>
 <form>
   Service Type: <input>DropDown</input><br>
   Location<br>
