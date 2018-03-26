@@ -58,7 +58,7 @@ class Service(models.Model):
     email = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     ratings = models.IntegerField(default=0)
-    provider = models.ForeignKey('UserProfile', related_name='service')
+    provider = models.ForeignKey('UserProfile', related_name='service', on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
