@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm
-from.models import Article, Event, Dotm, User, Service, Dog
+from.models import Article, Event, Dotm, User, Service, Dog, UserProfile
 
 from datetime import datetime
 
@@ -294,9 +294,8 @@ def dogprofile(request, dog):
     return render(request, 'destination_dog/dogprofile.html', context_dict)
 
 @login_required
-def addDog(request):
-
-    user = User.objects.get(username=request.user)
+def addDog(request, username_slug):
+    user = User.objects.get(slug=username_slug)
     profile = user.userprofile
 
     form = AddDogForm()
