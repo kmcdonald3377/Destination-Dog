@@ -2,45 +2,45 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {{ service.name }}
+    {{ event.name }}
 {% endblock %}
 
 {% block header_block %}
 {% endblock %}
 
 {% block body_block %}
-    {% if service %}
-        <h3> {{ service.name }} </h3>
-        <p id="address">{{ service.location }}</p>
+    {% if event %}
+        <h3> {{ event.name }} </h3>
+        <p id="address">{{ event.location }}</p>
         <div>
             <div id="map" style="width:350px;height:350px;background:yellow"></div>
         </div>
         <p>
-            {{ service.serType }}<br>
-            {{ service.daysOpen }}<br>
-            {{ service.timesOpen }}<br>
-            {{ service.contact }}<br>
-            {{ service.email }}<br>
-            {{ service.description }}<br>
-            {{ service.ratings }}<br>
+            {{ event.description }}<br>
+            {{ event.date }}<br>
+            {{ event.time }}<br>
         </p>
+        <p id="going">
+            {{ event.attendees }} are attending.
+        </p>
+        <button id="goingBtn" onclick="attendance()">Attend</button>
+        <button id="notGoingBtn" onclick="dropOut()" display="none">Can't Make It</button>
     {% else %}
-        Service does not exist
+        Event does not exist
     {% endif %}
+
+    <p>Comments section where people can ask questions about the event etc</p>
+
 
     <script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap" async defer></script>
     </script>
     
     <script>
-        function initMap() 
-        {
+        function initMap() {
             var address = document.getElementById('address').innerHTML;
-            
-
-            
+                        
             var geocoder = new google.maps.Geocoder();
-
             
             geocoder.geocode({'address': address}, function(results, status) {
               if (status === 'OK') 
@@ -59,6 +59,16 @@
                 alert('Geocode was not successful for the following reason: ' + status);
               }
             });
-          }
+        }
+        
+        function attendance() {
+            if(event.attendees == 0) {
+                document.getElementById("going").innerHTML = "You are attending.";
+            }
+            else {
+                document.getElementById("going").innerHTML = "You and " + event.attendees + " are attending.";
+            }
+        }
+    
     </script>
 {% endblock %}

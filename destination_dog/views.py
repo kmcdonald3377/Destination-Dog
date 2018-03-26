@@ -137,6 +137,7 @@ def locateServices(request):
     service = Service.objects
     return render(request, 'destination_dog/locateservice.html', context=context_dict)
 
+@login_required()
 def add_service(request):
     form = ServiceForm()
 
@@ -171,6 +172,18 @@ def add_events(request):
             print(form.errors)
     return render(request, 'destination_dog/add_events.html', {'form': form})
 
+def show_event(request, event_name_slug):
+    context_dict = {}
+
+    try:
+        event = Event.objects.get(slug=event_name_slug)
+
+        context_dict['event'] = event
+
+    except Event.DoesNotExist:
+        context_dict['event'] = None
+
+    return render(request, 'destination_dog/event.html', context_dict)
 
 def forum(request):
     context_dict = {'boldmessage' : "chat to people"}
