@@ -1,0 +1,50 @@
+body {
+    font-family: Verdana, sans-serif; 
+    margin:0;
+    background-color: rgb(216, 216, 216);
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(195, 240, 255);
+}
+
+ul.topnav li {
+    float: left;
+    border-right: 1px solid black;
+}
+
+ul.topnav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active){
+    background-color: rgb(94, 94, 255);
+    color: white;
+}
+
+ul.topnav li a.active {
+    background-color: #4CAF50;
+}
+
+ul.topnav li.right {
+    float: right;
+}
+
+ul.topnav li:last-child{
+    border-right: none;
+}
+
+
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right,
+    ul.topnav li {float:none;}
+}
