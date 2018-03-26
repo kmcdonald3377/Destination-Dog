@@ -92,6 +92,20 @@ def dotm_vote(request):
 
     return render(request, 'destination_dog/dotm_vote.html', context_dict)
 
+@login_required
+def vote_dotm(request):
+    dotm_id = None
+    if request.method == 'GET':
+        dotm_id = request.GET['dotmid']
+        likes = 0
+        if dotm_id:
+            dotm = Dotm.objects.get(id=int(dotm_id))
+            if dotm:
+                likes = dotm.likes + 1
+                dotm.likes = likes
+                dotm.save()
+            return HttpResponse(likes)
+
 @login_required()
 def dotm_enter(request):
 
@@ -173,15 +187,26 @@ def events(request):
 
 @login_required
 def add_events(request):
+
+    user = User.objects.get(username=request.user)
+    profile = user.userprofile
+
     form = AddEventForm()
+
     if request.method == 'POST':
         form = AddEventForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+
+            event = form.save(commit=False)
+            event.user = profile
+
+            event.save()
             return events(request)
+
         else:
             print(form.errors)
+
     return render(request, 'destination_dog/add_events.html', {'form': form})
 
 def show_event(request, event_name_slug):
