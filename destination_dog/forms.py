@@ -91,8 +91,13 @@ class ServiceForm(forms.ModelForm):
     serType = forms.CharField(label="Service Type", widget = forms.Select(choices=SERVICE_CHOICES),  help_text="Service Type: *")
     name = forms.CharField(label="Business Name", max_length=128, help_text="Business Name: *")
     location = forms.CharField(label="Location", max_length=128, help_text="Location:", required=False)
-    daysOpen = forms.CharField(label="Days Open", widget=forms.CheckboxSelectMultiple(choices=DAY_CHOICES), help_text="Days Open:", required=False)
-    timesOpen = forms.CharField(label="Times Open", max_length=128, help_text="Times Open:", required=False)
+    mondayTimes = forms.CharField(label="Monday Times", max_length=128, help_text="Monday Times:", required=False)
+    tuesdayTimes = forms.CharField(label="Tuesday Times", max_length=128, help_text="Tuesday Times:", required=False)
+    wednesdayTimes = forms.CharField(label="Wednesday Times", max_length=128, help_text="Wednesday Times:", required=False)
+    thursdayTimes = forms.CharField(label="Thursday Times", max_length=128, help_text="Thursday Times:", required=False)
+    fridayTimes = forms.CharField(label="Friday Times", max_length=128, help_text="Friday Times:", required=False)
+    saturdayTimes = forms.CharField(label="Saturday Times", max_length=128, help_text="Saturday Times:", required=False)
+    sundayTimes = forms.CharField(label="Sunday Times", max_length=128, help_text="Sunday Times:", required=False)
     contact = forms.CharField(label="Contact", max_length=128, help_text="Contact Information:", required=False)
     email = forms.EmailField(label="Email", max_length=128, help_text="Email Address:", required=False)
     description = forms.CharField(label="Description", widget=forms.Textarea, help_text="Description:", required=False)
@@ -100,4 +105,4 @@ class ServiceForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ('serType', 'name', 'location', 'daysOpen', 'timesOpen', 'description', 'ratings',)
+        fields = ('serType', 'name', 'location', 'mondayTimes', 'tuesdayTimes', 'wednesdayTimes', 'thursdayTimes', 'fridayTimes', 'saturdayTimes', 'sundayTimes', 'description', 'ratings',)

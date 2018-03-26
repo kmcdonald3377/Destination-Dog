@@ -177,6 +177,7 @@
     <option value="Other">Other</option>
   </select>
   <br>Postcode: <input></input><br>
+  <input type="submit" name="submit" value="Filter" onclick="ajaxstuff()"/>
 </form>
 
 <br>
@@ -200,7 +201,7 @@
 
 {% block script_block %}
 <script>
-    function initAutocomplete() {
+  function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 55.85924, lng: -4.26095},
           zoom: 5,
@@ -271,7 +272,20 @@
           });
           map.fitBounds(bounds);
         });
-      }    
+      }
+
+  
+  function ajaxstuff() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "gethint.asp?q=" + str, true);
+    xmlhttp.send();
+
+  }
 </script>
 
 <script 
