@@ -25,7 +25,6 @@ def article_list(request):
 
     return render(request, 'destination_dog/article_list.html', context=context_dict)
 
-
 def show_article(request, article_title_slug):
 
     context_dict = {}
@@ -66,7 +65,6 @@ def add_article(request):
 
     context_dict = {'form': form}
     return render(request, 'destination_dog/add_article.html', context=context_dict)
-
 
 def dotm(request):
 
@@ -266,7 +264,6 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form' : user_form, 'profile_form' : profile_form, 'registered': registered})
 
-
 def userprofile(request, username):
 
     context_dict = {}
@@ -281,7 +278,6 @@ def userprofile(request, username):
         context_dict['profile'] = None
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
-
 
 def dogprofile(request, dog):
     
@@ -316,7 +312,7 @@ def addDog(request):
                 dog.picture = request.FILES['picture']
 
             dog.save()
-            return dogprofile(request)
+            return HttpResponseRedirect(reverse('userprofile'))
 
         else:
             print(form.errors)
