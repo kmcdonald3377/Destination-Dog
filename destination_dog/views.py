@@ -250,7 +250,7 @@ def userprofile(request, username):
 
         context_dict['profile'] = profile
 
-    except Article.DoesNotExist:
+    except User.DoesNotExist:
         context_dict['profile'] = None
 
     return render(request, 'destination_dog/userprofile.html', context_dict)
@@ -277,7 +277,7 @@ def addDog(request):
     profile = user.userprofile
 
     form = AddDogForm()
-    
+
     if request.method == 'POST':
         form = AddDogForm(request.POST)
         if form.is_valid():
@@ -287,7 +287,7 @@ def addDog(request):
 
             if 'picture' in request.FILES:
                 dog.picture = request.FILES['picture']
-               
+
             dog.save()
             return dogprofile(request)
 
