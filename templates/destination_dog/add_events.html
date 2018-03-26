@@ -23,47 +23,5 @@
             <input type="submit" name="submit" value="Add Event"/>
         </div>
     </form>
-
-    <div id="floating-panel">
-        <input id="address" type="textbox" value="Glasgow, Scotland">
-        <input id="submit" type="button" value="Locate">
-    </div>
-
-    <div>
-        <div id="map" style="width:350px;height:350px;background:yellow"></div>
-    </div>
 </div>
-
-<script 
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap" async defer></script>
-</script>
-
-<script>
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
-          center: {lat: 55.85924, lng: -4.26095}
-        });
-        var geocoder = new google.maps.Geocoder();
-
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeAddress(geocoder, map);
-        });
-      }
-
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-</script>
 {% endblock %}

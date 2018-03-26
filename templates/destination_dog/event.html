@@ -20,9 +20,10 @@
             {{ event.date }}<br>
             {{ event.time }}<br>
         </p>
-        <p id="going">
+        <div id="attendance_count">
             {{ event.attendees }} are attending.
-        </p>
+        </div>
+        
         <button id="goingBtn" onclick="attendance()">Attend</button>
         <button id="notGoingBtn" onclick="dropOut()" display="none">Can't Make It</button>
     {% else %}

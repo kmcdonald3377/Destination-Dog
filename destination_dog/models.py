@@ -6,7 +6,7 @@ from datetime import datetime, date
 
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
-    image = models.ImageField(upload_to='articles') #For the top of the article page
+    image = models.ImageField(upload_to='articles', default='') #For the top of the article page
     article = models.TextField()
     date = models.DateField(default=date.today)
     author = models.ForeignKey('UserProfile', related_name='article')
@@ -51,14 +51,20 @@ class Dog(models.Model):
 class Service(models.Model):
     serType = models.CharField(max_length=128)
     name = models.CharField(max_length=128, unique=True)
-    location = models.CharField(max_length=128)
-    daysOpen = models.CharField(max_length=128)
-    timesOpen = models.CharField(max_length=128)
-    contact = models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
-    description = models.CharField(max_length=128)
+    location = models.CharField(max_length=128, default='')
+    mondayTimes = models.CharField(max_length=128, default='')
+    tuesdayTimes = models.CharField(max_length=128, default='')
+    wednesdayTimes = models.CharField(max_length=128, default='')
+    thursdayTimes = models.CharField(max_length=128, default='')
+    fridayTimes = models.CharField(max_length=128, default='')
+    saturdayTimes = models.CharField(max_length=128, default='')
+    sundayTimes = models.CharField(max_length=128, default='')
+    contact = models.CharField(max_length=128, default='')
+    email = models.CharField(max_length=128, default='')
+    description = models.CharField(max_length=128, default='')
     ratings = models.IntegerField(default=0)
-    slug = models.SlugField(unique=True)
+    provider = models.ForeignKey('UserProfile', related_name='service', on_delete=models.CASCADE, default='')
+    slug = models.SlugField(unique=True, default='')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -74,7 +80,7 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField()
     user = models.ForeignKey('UserProfile', related_name="event", on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, default='')
     attendees = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
