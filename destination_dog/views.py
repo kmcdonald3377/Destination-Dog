@@ -294,7 +294,7 @@ def dogprofile(request, dog):
     return render(request, 'destination_dog/dogprofile.html', context_dict)
 
 @login_required
-def addDog(request, username_slug):
+def add_dog(request, username_slug):
     user = User.objects.get(slug=username_slug)
     profile = user.userprofile
 
@@ -317,5 +317,5 @@ def addDog(request, username_slug):
             print(form.errors)
 
     context_dict = {'form': form}
-    return render(request, 'destination_dog/addDog.html', context=context_dict)
+    return render(request, 'destination_dog/add_dog.html', context=context_dict)
 
