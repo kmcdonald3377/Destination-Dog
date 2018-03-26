@@ -28,7 +28,6 @@ class Dotm(models.Model):
     winner = models.BooleanField(default=False)
     likes = models.IntegerField(default=0)
 
-
     class Meta:
         verbose_name_plural = 'Dog of The Month Entries'
 

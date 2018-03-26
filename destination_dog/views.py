@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm
-from.models import Article, Event, Dotm, User, Service, Dog
+from.models import Article, Event, Dotm, User, Service, Dog, UserProfile
 
 from datetime import datetime
 
@@ -90,14 +90,15 @@ def dotm_vote(request):
 
     context_dict = {}
     dotm = Dotm.objects.filter(created_at__month=month, created_at__year=year)
+
     context_dict['dotm'] = dotm
 
     return render(request, 'destination_dog/dotm_vote.html', context_dict)
 
 @login_required
 def vote_dotm(request):
-    dotm_id = None
     if request.method == 'GET':
+
         dotm_id = request.GET['dotmid']
         likes = 0
         if dotm_id:
