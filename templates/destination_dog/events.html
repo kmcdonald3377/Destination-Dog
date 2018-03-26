@@ -36,7 +36,7 @@
 
             <li class="event">
                 <div>
-                    <font size="10">{{ event.name }}</font><br/>
+                        <a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br>
                     <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
                     Event Location: {{ event.location }}<br/>
                     Event Description: {{ event.description }}<br/>

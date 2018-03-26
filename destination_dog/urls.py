@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'forum', views.forum, name='forum'),
     url(r'^events/$', views.events, name='events'),
     url(r'^events/add_event/$', views.add_events, name='add_events'),
+    url(r'^events/(?P<event_name_slug>[\w\-]+)/', views.show_event, name='show_event'),
     url(r'about', views.about, name='about'),
     url(r'contactus', views.contactus, name='contactus'),
     url(r'sitemap', views.sitemap, name='sitemap'),

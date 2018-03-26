@@ -1,0 +1,42 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ event.title }}
+{% endblock %}
+
+{% block header_block %}
+{% endblock %}
+
+{% block body_block %}
+    {% if event %}
+        <h3> {{ event.title }} </h3>
+        {% if event.location %}
+        <div>
+            <div id="map" style="width:350px;height:350px;background:yellow"></div>
+        </div>
+        {% endif %}
+        <p>
+            {{ event.description }}<br>
+            {{ event.date }}<br>
+            {{event.time }}<br>
+        </p>
+    {% else %}
+        Event does not exist
+    {% endif %}
+
+
+<script 
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initAutocomplete" async defer></script>
+</script>
+
+<script>
+    function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 55.85924, lng: -4.26095},
+          zoom: 5,
+          mapTypeId: 'roadmap'
+        });
+    }
+</script>
+{% endblock %}

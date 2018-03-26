@@ -23,5 +23,23 @@
             <input type="submit" name="submit" value="Add Event"/>
         </div>
     </form>
+
+    <div>
+        <div id="map" style="width:350px;height:350px;background:yellow"></div>
+    </div>
 </div>
+
+<script 
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initAutocomplete" async defer></script>
+</script>
+
+<script>
+    function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 55.85924, lng: -4.26095},
+          zoom: 5,
+          mapTypeId: 'roadmap'
+        });
+    }
+</script>
 {% endblock %}
