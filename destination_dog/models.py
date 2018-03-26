@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 from datetime import datetime, date
+import uuid
 
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
@@ -98,6 +99,10 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class ServiceComments(models.Model):
+    commentref = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
+    serviceRef = models.ForeignKey('Service', related_name="servicecomments", default='')
 
 
 
