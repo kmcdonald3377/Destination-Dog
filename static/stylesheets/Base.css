@@ -3,7 +3,6 @@ ul.topnav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: rgb(195, 240, 255);
 }
 
@@ -13,10 +12,11 @@ ul.topnav li {
 }
 
 ul.topnav li a, .dropbtn {
-    display: inline-block;
+    display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;
+    min-width: 160px;
     text-decoration: none;
 }
 
@@ -45,7 +45,7 @@ ul.topnav li.dropdown {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -90,6 +90,7 @@ body {
 
 .column.side {
     width:12.5%;
+    background-color: black;
 }
 
 .column.middle {
@@ -105,7 +106,7 @@ body {
 
 /* Styling Forms */
 
-input[type=text], textarea, select {
+input[type=text], input[type=email], input[type=password], textarea, select {
     width:100%;
     padding: 12px 20px;
     border: 1px solid #ccc;
@@ -160,8 +161,6 @@ input[type=submit]:hover {
     display: table;
     clear: both;
 }
-
-/* Gallery css */
 
 
 

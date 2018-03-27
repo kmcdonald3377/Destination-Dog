@@ -35,10 +35,6 @@
                 });
             }
         }
-
-        function ajaxshit() {
-
-        }
     </script>
 {% endblock %}
 
@@ -48,19 +44,23 @@
 
 {% block body_block %}
     {% if service %}
-        <p id="address">{{ service.location }}</p>
+        <strong>Service: <i>{{ service.serType }}</i></strong><br>
+        <strong>Location: <i id="address">{{ service.location }}</i></strong><br>
+        <strong>Monday Times: </strong><i>{{service.mondayTimes}}</i></strong><br>
+        <strong>Tuesday Times: </strong><i>{{service.tuesdayTimes}}</i></strong><br>
+        <strong>Wednesday Times: </strong><i>{{service.wednesdayTimes}}</i></strong><br>
+        <strong>Thursday Times: </strong><i>{{service.thursdayTimes}}</i></strong><br>
+        <strong>Friday Times: </strong><i>{{service.fridayTimes}}</i></strong><br>
+        <strong>Saturday Times: </strong><i>{{service.saturdayTimes}}</i></strong><br>
+        <strong>Sunday Times: </strong><i>{{service.sundayTimes}}</i></strong><br>
+        <strong>Contact: <i>{{ service.contact }}</i></strong><br>
+        <strong>Email: <i>{{ service.email }}</i></strong><br>
+        <strong>Description: <i>{{ service.description }}</i></strong><br>
+        <strong>Ratings: <i>{{ service.ratings }}</i></strong><br>
         <div>
-            <div id="map" style="width:350px;height:350px;background:yellow"></div>
+            <div id="map" style="width:100%;height:600px;background:yellow"></div>
         </div>
-        <p>
-            {{ service.serType }}<br>
-            {{ service.daysOpen }}<br>
-            {{ service.timesOpen }}<br>
-            {{ service.contact }}<br>
-            {{ service.email }}<br>
-            {{ service.description }}<br>
-            {{ service.ratings }}<br>
-        </p>
+        
     {% else %}
         Service does not exist
     {% endif %}

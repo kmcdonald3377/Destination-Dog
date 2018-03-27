@@ -48,8 +48,8 @@ class Dog(models.Model):
         return self.name
     
 class Service(models.Model):
-    serType = models.CharField(max_length=128)
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=128, unique=True, primary_key=True)
+    serType = models.CharField(max_length=128, default='')
     location = models.CharField(max_length=128, default='')
     mondayTimes = models.CharField(max_length=128, default='')
     tuesdayTimes = models.CharField(max_length=128, default='')

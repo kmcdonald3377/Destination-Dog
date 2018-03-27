@@ -16,8 +16,13 @@
             {% endfor %}
 
             {% for field in form.visible_fields %}
-                {{ field.help_text }}
-                {{ field }}<br><br>
+            <div class="col-25">
+                    {{ field.help_text }}
+                </div>
+                <div class="col-75">
+                    {{ field }}
+                </div>
+
             {% endfor %}
             <input type="submit" name="submit" value="Add Service"/>
         </form>
