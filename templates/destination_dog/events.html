@@ -2,51 +2,25 @@
 {% load staticfiles %}
 
 {% block header_block %}
-    <span class="article-title">Events</span>
+    <span class="title">Events</span>
 {% endblock %}
 
 
 {% block body_block %}
-    <div class="eventTitle">
-        <br/>
-        <strong><font size="12" color="lightslategrey">Dog Happy Events</font></strong><br/><br/>
-        <p>
-            Here at DestinationDog we are passionate about creating dog happy moments. It can be so much fun
-            to meet other dogs and their wonderful owners so please browse our dog friendly events below.
-
-        </p>
+    <div>
         {% if events %}
-            <ul>
                 {% for event in events %}
-
-                    <li class="event">
-                        <div>
-                            <h3><a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br></h3>
-                            <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
-                            Event Location: {{ event.location }}<br/>
-                            Event Description: {{ event.description }}<br/>
-
-                        </div>
-                        <br/>
-                    </li>
-
-
+                    <a class="event-list-link" href="{% url 'show_event' event.slug %}">
+                    <div class="event-list-item">
+                        <div class="event-name">{{ event.name }}</div>
+                        <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
+                        Event Location: {{ event.location }}<br/>
+                        Event Description: {{ event.description }}<br/>
+                    </div>
+                    </a>
                 {% endfor %}
-            </ul>
         {% else %}
-            <strong>There are no events present.</strong><br/>
+            <strong>There are no events present.</strong>
         {% endif %}
-
-        <div class="addEventButton">
-            <p><font size="5">
-                DestinationDog allows you to create and post events online. It's a great way to
-                get together with fellow dog lovers and share memorable experiences.<br>
-                {% if user.is_authenticated %}
-                If you would like to add an event to our page, please click the link.
-                <a href="/destinationdog/events/add_event/" class="button">Add an Event</a><br/>
-                {% endif %}
-            </font>
-            </p>
-        </div>
     </div>
 {% endblock %}

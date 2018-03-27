@@ -9,7 +9,6 @@
     {% if registered %}
         <h2>You're registered! Welcome to DestinationDog!</h2>
     {% else %}
-        <h2>Register here:</h2><br>
         <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in user_form %}
