@@ -18,6 +18,7 @@
         {% if article%}
             {% for article in article %}
                 <a href="{% url 'show_article' article.slug %}">{{ article.title }}</a><br>
+                written by {{ article.author }} on {{ article.date }}
             {% endfor %}
         {% else %}
             No articles found.

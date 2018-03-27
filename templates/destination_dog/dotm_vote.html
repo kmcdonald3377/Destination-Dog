@@ -11,21 +11,27 @@
 {% endblock %}
 
 {% block body_block %}
-    {% for dotm in dotm %}
-        {%  if dotm.image %}
-            <img src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
-        {% else %}
-            No images
-        {% endif %}
-
-        {{ dotm.dog}}<br>
-        Owned by <a href=" {% url 'user_profile' dotm.owner.user.username %}"> {{dotm.owner.user.first_name}} {{dotm.owner.user.last_name}} </a>
-
-        <div>
-            <button id="likes" data-dotmid="{{dotm.id}}" class="btn btn-primary btn-sm" type="button">
-                    Vote
-            </button>
-        <strong id="like_count">{{ dotm.likes }}</strong>
-        </div>
-    {%  endfor %}
+<div class="col-container">
+    <div class="column side"></div>
+    <div class="column middle">
+            {% for dotm in dotm %}
+            {%  if dotm.image %}
+                <img src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
+            {% else %}
+                No images
+            {% endif %}
+    
+            {{ dotm.dog}}<br>
+            Owned by <a href=" {% url 'user_profile' dotm.owner.user.username %}"> {{dotm.owner.user.first_name}} {{dotm.owner.user.last_name}} </a>
+    
+            <div>
+                <button id="likes" data-dotmid="{{dotm.id}}" class="btn btn-primary btn-sm" type="button">
+                        Vote
+                </button>
+            <strong id="like_count">{{ dotm.likes }}</strong>
+            </div>
+        {%  endfor %}  
+    </div>
+    <div class="column side"></div>
+</div>
 {% endblock %}

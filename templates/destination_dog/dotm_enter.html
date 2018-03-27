@@ -12,14 +12,24 @@
 {% endblock %}
 
 {% block body_block %}
-    <div>
+<div class="col-container">
+    <div class="column side"></div>
+    <div class="column middle">
         <form method="post" action="{% url 'dotm_enter' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form.visible_fields %}
-                {{ field.help_text }}
-                {{ field }}<br><br>
+                <div class="row">
+                    <div class="col-25">
+                        {{ field.help_text }}
+                    </div>
+                    <div class="col-75">
+                        {{ field }}
+                    </div>
+                </div>
             {% endfor %}
             <input type="submit" name="submit" value="Enter" />
         </form>
     </div>
+    <div class="column side"></div>
+</div>
 {% endblock %}

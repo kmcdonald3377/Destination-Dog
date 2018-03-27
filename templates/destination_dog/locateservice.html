@@ -147,58 +147,62 @@
 
 
 {% block body_block %}
-
-
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-
-    
-<div>
-    <div id="map" style="width:600px;height:600px;background:yellow"></div>
-</div>
-<p>
-  Feel free to use the above map to search for local services in your area!
-  Or!
-  If you feel like your pooch needs that extra tlc that comes from a smaller business 
-  then please feel free to use the below form to browse our members' businesses!
-</p>
-
-
-
-<br><br><br><br>
-<b>Filter Services for those closest</b>
-<form>
-  Service Type: 
-  <select name="serviceType">
-    <option value="Vets">Vets</option>
-    <option value="Groomers">Groomers</option>
-    <option value="Pet Shop">Pet Shop</option>
-    <option value="Dog Walker">Dog Walker</option>
-    <option value="Dog Sitter">Dog Sitter</option>
-    <option value="Other">Other</option>
-  </select>
-  <br>Postcode: <input></input><br>
-  <input type="submit" name="submit" value="Filter" onclick="ajaxstuff()"/>
-</form>
-
-<button name="Function" id="Function">Hello</button>
-
-<br>
-<table style="width:100%">
-{% if service %}
-  
-    {% for service in service %}
+<div class="col-container">
+  <div class="column side"></div>
+  <div class="column middle">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div>
+        <div id="map" style="width:600px;height:600px;background:yellow"></div>
+    </div>
+    <br><br><br><br>
+    <b>Filter Services for those closest</b>
+    <form>
+      <div class="row">
+        <div class="col-25">
+          Service Type:
+        </div>
+        <div class="col-75">
+          <select name="serviceType">
+            <option value="Vets">Vets</option>
+            <option value="Groomers">Groomers</option>
+            <option value="Pet Shop">Pet Shop</option>
+            <option value="Dog Walker">Dog Walker</option>
+            <option value="Dog Sitter">Dog Sitter</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          Postcode:
+        </div>
+        <div class="col-75">
+          <input/>
+        </div>
+      </div>
+      <input type="submit" name="submit" value="Filter" onclick="ajaxstuff()"/>      
+    </form>
+    <br>
+    <table style="width:100%">
+    {% if service %}
+        {% for service in service %}
+          <tr>
+            <td><a href="{% url 'show_service' service.slug %}">{{ service.name }}</a>
+            <br>{{ service.serType }}
+            <br>{{ service.location }}</td>
+          </tr>
+        {% endfor %}
+    {% else %}
       <tr>
-        <td><a href="{% url 'show_service' service.slug %}">{{ service.name }}</a>
-        <br>{{ service.serType }}
-        <br>{{ service.location }}</td>
+        <td>No services found.</td>
       </tr>
-    {% endfor %}
-{% else %}
-  <tr>
-    <td>No services found.</td>
-  </tr>
-{% endif %}
-</table>
+    {% endif %}
+    </table>
+    </div>
+    <div class="column side"></div>
+</div>
+
+
 
 
 {% block script_block %}

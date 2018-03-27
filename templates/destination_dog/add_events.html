@@ -7,21 +7,37 @@
 
 
 {% block body_block %}
-<p><h1><strong>Add An Event</strong></h1></p>
-<div>
-    <form id="add_event_form" method="post" action="{% url 'add_events' %}">
-        {% csrf_token %}
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}<br/>
-        {% endfor %}
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}<br/>
-        {% endfor %}
-        <div>
-            <input type="submit" name="submit" value="Add Event"/>
+
+<div class="col-container">
+        <div class="column side"></div>
+        <div class="column middle">
+            <p><h1><strong>Add An Event</strong></h1></p>
+            <div>
+                <form id="add_event_form" method="post" action="{% url 'add_events' %}">
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}<br/>
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                    <div class="row">
+                        <div class="col-25">
+                            {{ field.help_text }}
+                        </div>
+                        <div class="col-75">
+                            {{ field }}
+                        </div>
+                    </div>
+                        {{ field.errors }}
+                        
+                    {% endfor %}
+                    <div>
+                        <input type="submit" name="submit" value="Add Event"/>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-</div>
+        <div class="column side"></div>
+    </div>
+
+
 {% endblock %}

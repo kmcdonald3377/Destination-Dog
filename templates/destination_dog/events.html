@@ -22,45 +22,52 @@
 
 
 {% block body_block %}
-    <div class="eventTitle">
-        <br/>
-        <strong><font size="12" color ="lightslategrey">Dog Happy Events</font></strong><br/><br/>
-        <p>
-            Here at DestinationDog we are passionate about creating dog happy moments.  It can be so much fun
-            to meet other dogs and their wonderful owners so please browse our dog friendly events below.
-
-        </p>
-        {% if events %}
-        <ul>
-            {% for event in events %}
-
-            <li class="event">
-                <div>
-                    <a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br>
-                    <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
-                    Event Location: {{ event.location }}<br/>
-                    Event Description: {{ event.description }}<br/>
-
-                </div><br/>
-            </li>
-
-
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no events present.</strong><br/>
-        {% endif %}
-
-        <div class="addEventButton">
-            <p><font size="5">
-                DestinationDog allows you to create and post events online.  It's a great way to
-                get together with fellow dog lovers and share memorable experiences. If you would
-                like to add an event to our page, please click the link.
-                <a href="/destinationdog/events/add_event/" class="button">Add an Event</a><br/>
-                </font>
-        </p>
+<div class="col-container">
+        <div class="column side"></div>
+        <div class="column middle">
+                <div class="eventTitle">
+                        <br/>
+                        <strong><font size="12" color ="lightslategrey">Dog Happy Events</font></strong><br/><br/>
+                        <p>
+                            Here at DestinationDog we are passionate about creating dog happy moments.  It can be so much fun
+                            to meet other dogs and their wonderful owners so please browse our dog friendly events below.
+                
+                        </p>
+                        {% if events %}
+                        <ul>
+                            {% for event in events %}
+                
+                            <li class="event">
+                                <div>
+                                    <a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br>
+                                    <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
+                                    Event Location: {{ event.location }}<br/>
+                                    Event Description: {{ event.description }}<br/>
+                
+                                </div><br/>
+                            </li>
+                
+                
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                            <strong>There are no events present.</strong><br/>
+                        {% endif %}
+                
+                        <div class="addEventButton">
+                            <p><font size="5">
+                                DestinationDog allows you to create and post events online.  It's a great way to
+                                get together with fellow dog lovers and share memorable experiences. If you would
+                                like to add an event to our page, please click the link.
+                                <a href="/destinationdog/events/add_event/" class="button">Add an Event</a><br/>
+                                </font>
+                        </p>
+                        </div>
+                    </div>
         </div>
+        <div class="column side"></div>
     </div>
+    
 
 
 {% endblock %}
