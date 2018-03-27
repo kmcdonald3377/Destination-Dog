@@ -226,3 +226,33 @@ input[type=submit]:hover {
     }
 }
 
+/* header and centre column */
+
+.article-container {
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 900px;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.article-header {
+    margin: 0 auto 0 auto;
+    width: 850px;
+    padding: 60px;
+    border: 4px solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+}
+
+.title {
+    font-size: 88px;
+    color: #ffb8b8;
+    font-family: 'Pacifico', Helvetica, sans-serif;
+}
+
+.fa-paw {
+    font-size: 15px;
+    color: #ffb8b8;
+}
+

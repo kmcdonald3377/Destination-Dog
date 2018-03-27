@@ -2,11 +2,10 @@
 {% load staticfiles %}
 
 {% block header_block %}
-    <span class="article-title">Login</span>
+    <span class="title">Login</span>
 {% endblock %}
 
 {% block body_block %}
-    <div id="fb-root"></div>
     <form id="login_form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="col-25">

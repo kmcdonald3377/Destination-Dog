@@ -1,32 +1,3 @@
-.article-container {
-    margin: 0 auto;
-    padding-top: 20px;
-    padding-bottom: 40px;
-    width: 100%;
-    background-color: whitesmoke;
-    text-align: center;
-}
-
-.article-header {
-    margin: 0 auto 40px auto;
-    width: 90%;
-    padding: 60px;
-    border: 4px solid white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
-}
-
-.article-title {
-    font-size: 88px;
-    color: #ffb8b8;
-    font-family: 'Pacifico', Helvetica, sans-serif;
-}
-
-.fa-paw {
-    font-size: 15px;
-    color: #ffb8b8;
-}
-
-
 .article-image {
     border-radius: 500px;
 }
