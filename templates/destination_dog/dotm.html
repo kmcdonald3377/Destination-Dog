@@ -1,24 +1,21 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    {{ article.title }}
-{% endblock %}
-
-{% block header_block %}
-<h1>DestinationDog Articles<br/>
-</h1>
-{% endblock %}
-
 {% block body_block %}
-    {% if article %}
-        <h3> {{ article.title }} </h3>
-        {% if article.image %}<img src="{{ MEDIA_URL }}{{ article.image }}"/><br><br>
-        {% endif %}
-        Written by  <a href="{% url 'user_profile' article.author.user.username %}">{{article.author.user.first_name}} {{ article.author.user.last_name }}</a>
-        ({{ article.date }})<br><br>
-        <pr>{{ article.article }}</pr><br><br>
-    {% else %}
-        Article does not exist
-    {% endif %}
+    <div class="article-container">
+        <div class="article-header">
+            <span class="article-title">Dog of the Month</span>
+            <i class="fas fa-paw"></i>
+        </div>
+        <div class="article">
+                <img class="article-image" src="{{ MEDIA_URL }}{{ winner.image }}"/><br><br>
+                <div class="dog-name"> {{ winner.dog }}</div>
+                <div class="owned_by">
+                    Owned by <a class="owner-link" href=" {% url 'user_profile' winner.owner.user.username %}"> {{winner.owner.user.first_name}} {{winner.owner.user.last_name}} </a>
+                </div>
+                <div class="article-content">
+                    <pr>{{ article.article | linebreaks}}</pr>
+                </div>
+        </div>
+    </div>
 {% endblock %}
