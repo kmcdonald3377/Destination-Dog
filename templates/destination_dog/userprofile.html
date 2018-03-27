@@ -1,23 +1,6 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block style_block%}
-<style>
-    div{
-        margin: auto;
-    }
-
-    .header{
-        margin: auto;
-    }
-
-    .img{
-        border-radius: 25px;
-        padding: 20px;
-    }
-</style>
-{% endblock %}
-
 {% block header_block %}
 <div class = "header"><span class="title">{{ user.first_name }} {{ user.last_name }}</span></div>
 {% endblock %}
