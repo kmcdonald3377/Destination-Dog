@@ -71,6 +71,8 @@
             </li>
 
             <li><a href="/destinationdog/forum/">Forum</a></li>
+            
+            <div class="header"><li>DestinationDog</li></div>
 
             {% if user.is_authenticated %}
                 <li class="right"><a href="{% url 'user_profile' user.username %}">Profile</a></li>
@@ -79,16 +81,6 @@
                 <li class="right"><a href="{% url 'register' %}">Register</a></li>
                 <li class="right"><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
-
-            <li><a href="javascript:void(0);" style="font-size:15px;"
-                   class="icon" onclick="myFunction()">&#9776;</a></li>
-
-            <div class="search-container">
-                <form action="">
-                    <input type="text" placeholder="Go Fetch...." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
         </ul>
     </div>
 {% block topnav_block %}
@@ -120,7 +112,7 @@
 {% block footer_block %}
     <div class="footer">
         <br><br>
-        Copyright 2018
+        <p>Copyright 2018</p>
         <br><br>
     </div>
 {% endblock %}
