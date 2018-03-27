@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='user_profile'),
     url(r'^profile/(?P<username>[\w\-]+)/add_dog/$', views.add_dog, name='add_dog'),
     url(r'dogprofile/(?P<dog_name_slug>[\w\-]+)/', views.dogprofile, name='dogprofile'),
+    url(r'deactivate/$', views.deactivate_profile, name="deactivate")
 
 ]
