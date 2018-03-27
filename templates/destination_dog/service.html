@@ -1,16 +1,53 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    {{ service.name }}
+{% block script_block %}
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap"
+            async defer></script>
+
+    <script>
+        function initMap() {
+            var address = document.getElementById('address').innerHTML;
+
+            if (address == '') {
+                document.getElementById("map").style.display = "none"
+                document.getElementById("address").innerHTML = "No location provided";
+            }
+            else {
+                var geocoder = new google.maps.Geocoder();
+
+                geocoder.geocode({'address': address}, function (results, status) {
+                    if (status === 'OK') {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: results[0].geometry.location
+                        });
+
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    }
+                    else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+        }
+
+        function ajaxshit() {
+
+        }
+    </script>
 {% endblock %}
 
 {% block header_block %}
+    <span class="article-title">{{ service.name }}</span>
 {% endblock %}
 
 {% block body_block %}
     {% if service %}
-        <h3> {{ service.name }} </h3>
         <p id="address">{{ service.location }}</p>
         <div>
             <div id="map" style="width:350px;height:350px;background:yellow"></div>
@@ -27,48 +64,4 @@
     {% else %}
         Service does not exist
     {% endif %}
-
-    <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap" async defer></script>
-    </script>
-    
-    <script>
-        function initMap() 
-        {
-            var address = document.getElementById('address').innerHTML;
-            
-            if(address == '')
-            {
-                document.getElementById("map").style.display="none"
-                document.getElementById("address").innerHTML = "No location provided";
-            }
-            else
-            {
-                var geocoder = new google.maps.Geocoder();
-            
-                geocoder.geocode({'address': address}, function(results, status) {
-                if (status === 'OK') 
-                {
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 15,
-                    center: results[0].geometry.location
-                    });
-
-                    var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-              } 
-              else 
-              {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
-            });
-            }
-        }
-        
-        function ajaxshit(){
-
-        }
-    </script>
 {% endblock %}

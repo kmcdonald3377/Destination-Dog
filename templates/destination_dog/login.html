@@ -1,41 +1,21 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    Log In
+{% block header_block %}
+    <span class="article-title">Login</span>
 {% endblock %}
 
-
-
 {% block body_block %}
-<div id="fb-root"></div>
-
-<script>
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=621707921505287&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-</script>
-
-
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-
-<h1>Login to DestinationDog</h1>
-<form id="login_form" method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50"/>
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit" />
-</form>
-<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
+    <div id="fb-root"></div>
+    <form id="login_form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50"/>
+        <br/>
+        Password: <input type="password" name="password" value="" size="50"/>
+        <br/>
+        <input type="submit" value="submit"/>
+    </form>
+    <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with"
+         data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 {% endblock %}

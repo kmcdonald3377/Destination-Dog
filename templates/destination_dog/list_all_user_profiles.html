@@ -1,12 +1,10 @@
 {% extends 'destination_dog/base.html' %}
 
-{% load staticfiles %}
-
-{% block title %}User Profiles{% endblock %}
+{% block header_block %}
+    <span class="article-title">{{ Members }}</span>
+{% endblock %}
 
 {% block body_block %}
-<h1>User Profiles</h1>
-
     {% if userprofile_list %}
         {% for listuser in userprofile_list %}
             <a href="{% url 'user_profile' listuser.user.username %}">{{ listuser.user.username }}</a>

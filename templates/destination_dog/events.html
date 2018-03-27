@@ -1,66 +1,50 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block style_block %}
-<style>
-    li.event {
-        width: 100%;
-        background-color: #F5F5F5;
-    }
-
-    .addEventButton {
-        margin:30px;
-        text-align: center;
-        background-color:#F5F5F5;
-        }
-</style>
-{% endblock %}
-
-{% block title_block %}
-    Events
+{% block header_block %}
+    <span class="article-title">Events</span>
 {% endblock %}
 
 
 {% block body_block %}
     <div class="eventTitle">
         <br/>
-        <strong><font size="12" color ="lightslategrey">Dog Happy Events</font></strong><br/><br/>
+        <strong><font size="12" color="lightslategrey">Dog Happy Events</font></strong><br/><br/>
         <p>
-            Here at DestinationDog we are passionate about creating dog happy moments.  It can be so much fun
+            Here at DestinationDog we are passionate about creating dog happy moments. It can be so much fun
             to meet other dogs and their wonderful owners so please browse our dog friendly events below.
 
         </p>
         {% if events %}
-        <ul>
-            {% for event in events %}
+            <ul>
+                {% for event in events %}
 
-            <li class="event">
-                <div>
-                    <a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br>
-                    <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
-                    Event Location: {{ event.location }}<br/>
-                    Event Description: {{ event.description }}<br/>
+                    <li class="event">
+                        <div>
+                            <a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br>
+                            <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
+                            Event Location: {{ event.location }}<br/>
+                            Event Description: {{ event.description }}<br/>
 
-                </div><br/>
-            </li>
+                        </div>
+                        <br/>
+                    </li>
 
 
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
         {% else %}
             <strong>There are no events present.</strong><br/>
         {% endif %}
 
         <div class="addEventButton">
             <p><font size="5">
-                DestinationDog allows you to create and post events online.  It's a great way to
+                DestinationDog allows you to create and post events online. It's a great way to
                 get together with fellow dog lovers and share memorable experiences. If you would
                 like to add an event to our page, please click the link.
                 <a href="/destinationdog/events/add_event/" class="button">Add an Event</a><br/>
-                </font>
-        </p>
+            </font>
+            </p>
         </div>
     </div>
-
-
 {% endblock %}
