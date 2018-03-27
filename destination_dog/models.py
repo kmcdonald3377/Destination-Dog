@@ -35,11 +35,10 @@ class Dotm(models.Model):
         return self.dog
 
 class Dog(models.Model):
-    gender_choices = (('M','Male'),('F','Female'))
     name = models.CharField(max_length=128)
     picture = models.ImageField(upload_to='dogs')
     breed = models.CharField(max_length=128)
-    gender = models.CharField(max_length=1, choices=gender_choices)
+    gender = models.CharField(max_length=20)
     about_me = models.TextField()
     owner = models.ForeignKey('UserProfile', related_name="dog", on_delete=models.CASCADE)
     
