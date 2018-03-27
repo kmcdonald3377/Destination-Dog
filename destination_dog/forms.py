@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from destination_dog.models import UserProfile, Article, Event, Dotm, Service, Dog
+from destination_dog.models import UserProfile, Article, Event, Dotm, Service, Dog, Comment
 
 
 class UserForm(forms.ModelForm):
@@ -106,3 +106,9 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ('serType', 'name', 'location', 'mondayTimes', 'tuesdayTimes', 'wednesdayTimes', 'thursdayTimes', 'fridayTimes', 'saturdayTimes', 'sundayTimes', 'description', 'ratings',)
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('author', 'content',)

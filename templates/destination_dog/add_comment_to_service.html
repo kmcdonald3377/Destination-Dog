@@ -1,0 +1,18 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ service.name }}
+{% endblock %}
+
+{% block header_block %}
+{% endblock %}
+
+{% block body_block %}
+<h1>New comment</h1>
+<form method="POST" class="comment-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Send</button>
+</form>
+{% endblock %}

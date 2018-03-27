@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 from datetime import datetime, date
+import uuid
 
 class Article(models.Model):
     title = models.CharField(max_length=128, unique=True)
@@ -48,8 +49,8 @@ class Dog(models.Model):
         return self.name
     
 class Service(models.Model):
+    name = models.CharField(max_length=128, unique=True, primary_key=True)
     serType = models.CharField(max_length=128)
-    name = models.CharField(max_length=128, unique=True)
     location = models.CharField(max_length=128, default='')
     mondayTimes = models.CharField(max_length=128, default='')
     tuesdayTimes = models.CharField(max_length=128, default='')
@@ -98,6 +99,12 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Comment(models.Model):
+    commentref = models.CharField(max_length=100, unique=True, default=uuid.uuid4)
+    serviceRef = models.ForeignKey('Service', related_name="comment", default='')
+    author = models.ForeignKey('UserProfile', related_name="comment", on_delete=models.CASCADE)
+    datetime = models.DateTimeField(default=datetime.now)
+    content = models.TextField()
 
-
-
+    def __str__(self):
+        return self.content

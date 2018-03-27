@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^locateservice/$', views.locateServices, name='locateservice'),
     url(r'^locateservice/add_service/$', views.add_service, name='add_service'),
     url(r'^locateservice/(?P<service_name_slug>[\w\-]+)/', views.show_service, name='show_service'),
+    url(r'^locateservice/(?P<service_name_slug>[\w\-]+)/comment/$', views.add_comment_to_service, name='add_comment_to_service'),
     url(r'forum', views.forum, name='forum'),
     url(r'^events/$', views.events, name='events'),
     url(r'^events/add_event/$', views.add_events, name='add_events'),

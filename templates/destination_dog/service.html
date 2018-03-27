@@ -24,6 +24,19 @@
             {{ service.description }}<br>
             {{ service.ratings }}<br>
         </p>
+
+        <a class="btn btn-default" href="{% url 'show_service' service.slug %}add_comment_to_service/">Add comment</a>
+        {% for comment in service.comments.all %}
+        <div class="comment">
+            <div class="date">
+                {{ comment.datetime }}
+            </div>
+            <strong>{{ comment.author }}</strong>
+            <p>{{comment.text|linebreaks}}</p>
+        </div>
+        {% empty %}
+        <p>No comments here yet</p>
+        {% endfor %}
     {% else %}
         Service does not exist
     {% endif %}

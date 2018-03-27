@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404 
 
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
-from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm
+
+from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm, CommentForm
 from.models import Article, Event, Dotm, User, Service, Dog, UserProfile
 
 
@@ -385,3 +386,16 @@ def deactivate_profile(request, username):
     except:
         messages.unsuccessful(request, "Profile wasn't deactivated. Please try again.")
     return redirect('home')
+
+def add_comment_to_service(request, service_name_slug):
+    service = get_object_or_404(Service, slug=service_name_slug)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.service = service
+            comment.save()
+            return redirect('service')
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment_to_service.html', {'form': form})
