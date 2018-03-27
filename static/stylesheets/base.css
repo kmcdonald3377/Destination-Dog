@@ -16,7 +16,7 @@ ul.topnav li a, .dropbtn {
     color: black;
     text-align: center;
     padding: 14px 16px;
-    min-width: 160px;
+    min-width: 100%;
     text-decoration: none;
     color: white;
 }
