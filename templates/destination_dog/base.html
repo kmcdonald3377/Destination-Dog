@@ -258,7 +258,7 @@ function checkLoginState() {
                 <li class ="dropdown"><a href="{% url 'dotm' %}" class="dropbtn">Dog of the Month</a>
                     <div class="dropdown-content">
                         {% if user.is_authenticated %}
-                            <a href= {% url 'dotm_vote' %}>Vote</a>
+                            <a href= {% url 'dotm_vote' %}">Vote</a>
                             <a href="{% url 'dotm_enter' %}">Enter</a>
                         {% endif %}
                     <a href="{% url 'dotm_hall_of_fame' %}">Hall of Fame</a>
@@ -286,6 +286,7 @@ function checkLoginState() {
 
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user_profile' user.username %}">Profile</a></li>
+                    <li><a href="{% url 'list_profiles' %}">List Profiles</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'register' %}">Register</a></li>
