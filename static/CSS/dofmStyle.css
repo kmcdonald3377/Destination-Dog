@@ -1,0 +1,57 @@
+.dotm-entry {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.dotm-container {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 100%;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.month {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #00000091;
+}
+
+.dotm-image {
+    border-radius: 500px;
+}
+
+.year {
+    display: block;
+    font-size: 44px;
+    margin-bottom: 20px;
+    color: #00000091;
+}
+.dotm-header {
+    margin: 0 auto 40px auto;
+    width: 850px;
+    padding: 60px;
+    border: 4px solid white;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+}
+
+.dotm-title {
+    font-size: 88px;
+    color: #ffb8b8;
+    font-family: 'Pacifico', Helvetica, sans-serif;
+}
+
+.dotm-separator {
+    margin: 40px auto 40px auto;
+    width: 850px;
+    border: 0.5px solid #ffb8b8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+}
+
+.fa-paw {
+    font-size: 15px;
+    color: #ffb8b8;
+}

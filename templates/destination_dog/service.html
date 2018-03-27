@@ -9,7 +9,11 @@
 {% endblock %}
 
 {% block body_block %}
-    {% if service %}
+
+<div class="col-container">
+        <div class="column side"></div>
+        <div class="column middle">
+                {% if service %}
         <h3> {{ service.name }} </h3>
         <p id="address">{{ service.location }}</p>
         <div>
@@ -27,6 +31,11 @@
     {% else %}
         Service does not exist
     {% endif %}
+        </div>
+        <div class="column side"></div>
+    </div>
+
+    
 
     <script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap" async defer></script>
