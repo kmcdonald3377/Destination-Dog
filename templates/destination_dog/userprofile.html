@@ -9,7 +9,7 @@
     {% if user %}
         {% if userprofile.picture %}
             <img src="{{ MEDIA_URL }}{{ userprofile.picture }}"
-                 width="300" height="300" alt="{{ user.username }}"/><br>
+                 class="article-image" width="300" height="300" alt="{{ user.username }}"/><br>
         {% endif %}
         <div>
             {% if user.username == user.username %}

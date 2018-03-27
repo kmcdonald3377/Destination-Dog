@@ -75,6 +75,7 @@ input[type=submit]:hover {
 
 .form {
     padding: 60px;
+    margin: 0 auto 0 auto;
     color: #00000091;
 }
 
