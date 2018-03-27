@@ -12,15 +12,17 @@
 {% endblock %}
 
 {% block body_block %}
-<div>
-     {% if article%}
-
-                {% for article in article %}
-                    <a href="{% url 'show_article' article.slug %}">{{ article.title }}</a><br>
-                {% endfor %}
-
+<div class="col-container">
+    <div class="column side"></div>
+    <div class="column middle">
+        {% if article%}
+            {% for article in article %}
+                <a href="{% url 'show_article' article.slug %}">{{ article.title }}</a><br>
+            {% endfor %}
         {% else %}
             No articles found.
         {% endif %}
+    </div>
+    <div class="column side"></div>
 </div>
 {% endblock %}

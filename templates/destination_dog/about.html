@@ -8,7 +8,9 @@
 
 
 {% block body_block %}
-<div>
+<div class="col-container">
+    <div class="column side"></div>
+    <div class="column middle">
         DestinationDog is a web application which aims to provide a
         relaxed, informative, and friendly environment for dog lovers 
         from all walks of life to be able to share their experience. <br/>
@@ -22,7 +24,7 @@
         The application will provide a place for dog owners to post pictures of
         their dog where others can delight in the pictures and users can vote 
         for their dog of the week!<br/>
-
-        <strong>{{ boldmessage }}</strong><br/>
+    </div>
+    <div class="column side"></div>
 </div>
 {% endblock %}
