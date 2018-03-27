@@ -362,7 +362,6 @@ def add_dog(request, username):
                 dog.picture = request.FILES['picture']
 
             dog.save()
-            #return HttpResponseRedirect(reverse('user_profile'))
             return home(request)
         else:
             print(form.errors)
@@ -377,9 +376,12 @@ def list_profiles(request):
     return render(request, 'destination_dog/list_all_user_profiles.html', {'userprofile_list': userprofile_list})
 
 @ login_required
-def deactivate_profile(request):
-    user = request.user
-    user.is_active= False
-    user.save()
-    messages.success(request, 'Profile successfully deactivated.')
+def deactivate_profile(request, username):
+    try:
+        user = request.user
+        user.is_active= False
+        user.save()
+        messages.success(request, 'Profile successfully deactivated.')
+    except:
+        messages.unsuccessful(request, "Profile wasn't deactivated. Please try again.")
     return redirect('home')
