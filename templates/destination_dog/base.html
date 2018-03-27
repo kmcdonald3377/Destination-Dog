@@ -2,314 +2,142 @@
 {% load staticfiles %}
 
 <html>
+{% block script_block %}
     <head lang="en">
-            {% block script1_block %}
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-                <script src="/static/js/destinationdog-ajax.js"></script>
-            {% endblock %}
-        <style>
-
-
-            body {font-family: Verdana, sans-serif; margin:0}
-            html {
-                height:100%;
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="{% static 'js/destinationdog-ajax.js' %}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+        </script>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
             }
 
-            ul{
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #333;
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                document.body.style.backgroundColor = "rgb(216, 216, 216)";
             }
+        </script>
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/base.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/article.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/hall_of_fame.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/dotm_article.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/article_list.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/events.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/forms.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/vote.css">
 
-            li{
-                float: left;
-            }
-
-            li a, .dropbtn{
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-
-            li a:hover, .dropdown:hover .dropbtn {
-                background-color: #111;
-            }
-
-            li.dropdown{
-                display:inline-block;
-            }
-
-            .dropdown-content{
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-            .dropdown-content a{
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                text-align: left;
-            }
-
-            .dropdown-content a:hover{
-                background-color:teal;
-            }
-
-            .dropdown:hover .dropdown-content{
-                display: block;
-            }
-
-            .active {
-                background-color: #4caf50;
-            }
-
-            ul.topnav li a:hover:not(.active) {
-                background-color: #111;
-            }
-
-            ul.topnav li a.active {
-                background-color: #4CAF50;
-            }
-
-            ul.topnav li.right {
-                float: right;
-            }
-
-            @media screen and (max-width: 600px) {
-                ul.topnav li.right,
-                ul.topnav li {float: none;
-            }
-
-            .topnav .search-container {
-                float: right;
-            }
-
-            .topnav input[type=text] {
-                padding: 6px;
-                margin-top: 8px;
-                font-size: 17px;
-                border: none;
-            }
-
-            .topnav .search-container button {
-                float: right;
-                padding: 6px 10px;
-                margin-top: 8px;
-                margin-right: 16px;
-                background: #ddd;
-                font-size: 17px;
-                border: none;
-                cursor: pointer;
-            }
-
-            .topnav .search-container button:hover {
-                background: #ccc;
-            }
-
-            @media screen and (max-width: 600px) {
-                .topnav .search-container {
-                float: none;
-            }
-
-            .topnav a, .topnav input[type=text], .topnav .search-container button {
-                float: none;
-                display: block;
-                text-align: left;
-                width: 100%;
-                margin: 0;
-                padding: 14px;
-            }
-
-            .topnav input[type=text] {
-                border: 1px solid #ccc;
-            }
-
-            .bottomnav {
-            bottom: 0;
-            width: 100%;
-            position: fixed;
-            }
-
-
-
-
-
-
-
-        </style>
-        {% block style_block %}
-        {% endblock %}
-        <meta charset="UTF-8" />
-        <meta name="google-signin-client_id" content="1018670492225-ln78iuke55dahg8ehtf3khp481gn4bb0.apps.googleusercontent.com">
-        <title>
-            DestinationDog -
-            {% block title_block %}
-            It's about the destination....
-            {% endblock %}
-        </title>
-
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+              integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+              crossorigin="anonymous">
+        <meta charset="UTF-8"/>
     </head>
+{% endblock %}
 
-    <body>
-    <script>
+<body>
 
+{% block topnav_block %}
+    <div class="myTopnav">
+        <ul class="topnav">
+            <li><a href="/destinationdog/">Home</a></li>
 
-
-
-        {#window.fbAsyncInit = function() {#}
-        {#    FB.init({#}
-        {#        appId      : 621707921505287,#}
-        {#        cookie     : true,#}
-        {#        xfbml      : true,#}
-        {#        version    : v3738502#}
-        {#    });#}
-        {##}
-        {#    FB.AppEvents.logPageView();#}
-        {##}
-        {#};#}
-        {##}
-        {#(function(d, s, id){#}
-        {#var js, fjs = d.getElementsByTagName(s)[0];#}
-        {#if (d.getElementById(id)) {return;}#}
-        {#js = d.createElement(s); js.id = id;#}
-        {#js.src = "https://connect.facebook.net/en_US/sdk.js";#}
-        {#fjs.parentNode.insertBefore(js, fjs);#}
-        {#}(document, 'script', 'facebook-jssdk'));#}
-
-
-        {#FB.getLoginStatus(function(response) {#}
-        {#    statusChangeCallback(response);#}
-        {#});#}
-
-
-      var auth =  {
-            status: 'connected',
-            authResponse: {
-                accessToken: '...',
-                expiresIn:'...',
-                signedRequest:'...',
-                userID:'...'
-            }
-        };
-
-
-
-{#<fb:login-button#}
-{#  scope="public_profile,email"#}
-{#  onlogin="checkLoginState();">#}
-{#</fb:login-button>#}
-
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-    </script>
-
-    <script>
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            console.log('User signed out.');
-            });
-        }
-
-
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId());
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-</script>
-
-    <h1>DestinationDog </h1><h3>it's all about the destination...</h3>
-        <div class="topnav">
-            <ul>
-                <li><a href="/destinationdog/">Home</a></li>
-
-
-                <li class="dropdown"><a href="/destinationdog/articles/" class="dropbtn">Articles</a>
-                    {% if user.is_authenticated %}
+            <li class="dropdown"><a href="/destinationdog/articles/" class="dropbtn">Articles</a>
+                {% if user.is_authenticated %}
                     <div class="dropdown-content">
                         <a href="/destinationdog/articles/add_article/">Add Article</a>
                     </div>
-                    {%  endif %}
-                </li>
-
-                <li class ="dropdown"><a href="{% url 'dotm' %}" class="dropbtn">Dog of the Month</a>
-                    <div class="dropdown-content">
-                        {% if user.is_authenticated %}
-                            <a href= {% url 'dotm_vote' %}">Vote</a>
-                            <a href="{% url 'dotm_enter' %}">Enter</a>
-                        {% endif %}
-                    <a href="{% url 'dotm_hall_of_fame' %}">Hall of Fame</a>
-                    </div>
-                </li>
-
-                <li class ="dropdown"><a href="/destinationdog/locateservice/" class="dropbtn">Locate Services</a>
-                    <div class="dropdown-content">
-                    {% if user.is_authenticated %}
-                    <a href="/destinationdog/locateservice/add_service/">Add a Service</a>
-                    {% endif %}
-
-                </div>
-                </li>
-
-                <li class ="dropdown"><a href="/destinationdog/events/" class="dropbtn">Events</a>
-                    <div class="dropdown-content">
-                    {% if user.is_authenticated %}
-                    <a href="/destinationdog/events/add_event/">Add an Event</a>
-                    {% endif %}
-                </div>
-                </li>
-
-                <li><a href="/destinationdog/forum/">Forum</a></li>
-
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_profile' user.username %}">Profile</a></li>
-                    <li><a href="{% url 'list_profiles' %}">List Profiles</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                    <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
+            </li>
 
-                
-
-                <div class="search-container">
-                    <form action="">
-                        <input type="text" placeholder="Go Fetch...." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+            <li class="dropdown"><a href="{% url 'dotm' %}" class="dropbtn">Dog of the Month</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href= {% url 'dotm_vote' %}>Vote</a>
+                        <a href="{% url 'dotm_enter' %}">Enter</a>
+                    {% endif %}
+                    <a href="{% url 'dotm_hall_of_fame' %}">Hall of Fame</a>
                 </div>
+            </li>
 
+            <li class="dropdown"><a href="/destinationdog/locateservice/" class="dropbtn">Locate Services</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="/destinationdog/locateservice/add_service/">Add a Service</a>
+                    {% endif %}
+                </div>
+            </li>
 
-            </ul>
-        </div>
-        {% block body_block %}
+            <li class="dropdown"><a href="/destinationdog/events/" class="dropbtn">Events</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="/destinationdog/events/add_event/">Add an Event</a>
+                    {% endif %}
+                </div>
+            </li>
+
+            <li><a href="/destinationdog/forum/">Forum</a></li>
+
+            {% if user.is_authenticated %}
+                <li class="right"><a href="{% url 'user_profile' user.username %}">Profile</a></li>
+                <li class="right"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li class="right"><a href="{% url 'register' %}">Register</a></li>
+                <li class="right"><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+
+            <li><a href="javascript:void(0);" style="font-size:15px;"
+                   class="icon" onclick="myFunction()">&#9776;</a></li>
+
+            <div class="search-container">
+                <form action="">
+                    <input type="text" placeholder="Go Fetch...." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </ul>
+    </div>
+{% endblock %}
+
+<div class="article-container">
+    <div class="article-header">
+        {% block header_block %}
         {% endblock %}
+        <i class="fas fa-paw"></i>
 
-        {% block script_block %}
-        {% endblock %}
+    </div>
+</div>
 
-        <div class=bottomnav">
-            <ul>
-                <li><a href="/destinationdog/about/">About</a></li>
-                <li><a href="/destinationdog/contactus/">Contact Us</a></li>
-                <li><a href="/destinationdog/sitemap/">Site Map</a></li>
-            </ul>
-        </div>
-    </body>
+<div class="article-container">
+    {% block body_block %}
+    {% endblock %}
+</div>
+
+
+{% block footer_block %}
+    <div class="footer">
+        <br><br>
+        Copyright 2018
+        <br><br>
+    </div>
+{% endblock %}
+
+</body>
 </html>

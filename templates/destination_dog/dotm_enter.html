@@ -1,25 +1,19 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    Dog Of The Month Enter
-{% endblock %}
-
-
 {% block header_block %}
-<h1>DestinationDog - Dog of the Month <br/>
-</h1>
+    <span class="title">Enter</span>
 {% endblock %}
 
 {% block body_block %}
-    <div>
+    <div class="form">
         <form method="post" action="{% url 'dotm_enter' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form.visible_fields %}
                 {{ field.help_text }}
                 {{ field }}<br><br>
             {% endfor %}
-            <input type="submit" name="submit" value="Enter" />
+            <input type="submit" name="submit" value="Enter"/>
         </form>
     </div>
 {% endblock %}

@@ -1,27 +1,38 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    Register
+{% block header_block %}
+    <span class="title">Register</span>
 {% endblock %}
-
-
 
 {% block body_block %}
-<h1>Register for DestinationDog!</h1>
-{% if registered %}
-You're registered!
-{% else %}
-Register here:<br>
-<form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
-{% csrf_token %}
-
-<!-- Display each form -->
-{{ user_form.as_p }}
-{{ profile_form.as_p }}
-
-<input type="submit" name="submit" value="Register"/>
-
-</form>
-{% endif %}
+    {% if registered %}
+        <h2>You're registered! Welcome to DestinationDog!</h2>
+    {% else %}
+        <h2>Register here:</h2><br>
+        <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in user_form %}
+                <div class="col-25">
+                    {{field.label}}:
+                </div>
+                <div class="col-75">
+                    {{field}}
+                </div>
+            {% endfor %}
+            {% for field in profile_form %}
+                <div class="col-25">
+                    {{field.label}}:
+                </div>
+                <div class="col-75">
+                    {{field}}
+                </div>
+            {% endfor %}
+            <input type="submit" name="submit" value="Register"/>
+        </form>
+    {% endif %}
 {% endblock %}
+
+
+
+

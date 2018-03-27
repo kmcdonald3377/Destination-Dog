@@ -67,10 +67,15 @@ def add_article(request):
 def dotm(request):
 
     context_dict = {}
+    month = datetime.now().month - 1
+    year = datetime.now().year
+
 
     try:
         article = Article.objects.get(is_dotm=True)
+        winner = Dotm.objects.get(winner=True, created_at__month=month, created_at__year=year)
 
+        context_dict['winner'] = winner
         context_dict['article'] = article
 
     except Article.DoesNotExist:
@@ -135,8 +140,12 @@ def dotm_enter(request):
 def dotm_hall_of_fame(request):
 
     context_dict = {}
-    thisyear = Dotm.objects.filter(winner=True, created_at__year=2018)
-    lastyear = Dotm.objects.filter(winner=True, created_at__year=2017)
+    this_year = datetime.now().year
+    last_year = this_year - 1
+
+
+    thisyear = Dotm.objects.filter(winner=True, created_at__year=this_year)
+    lastyear = Dotm.objects.filter(winner=True, created_at__year=last_year)
 
     context_dict['thisyear'] = thisyear
     context_dict['lastyear'] = lastyear

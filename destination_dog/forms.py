@@ -61,9 +61,9 @@ class AddEventForm(forms.ModelForm):
     name = forms.CharField(label="Event Name:", max_length=128,help_text="Event Name:")
     description = forms.CharField(widget=forms.Textarea, help_text="Event Description:", required=False)
     location = forms.CharField(help_text="Event Location:", required=False)
-    date = forms.DateField(widget=forms.DateInput(format="%"), help_text="Date:(format yyyy-mm-dd)")
+    date = forms.DateField(widget=forms.DateInput(format="%"), help_text="Date:(yyyy-mm-dd)")
 
-    time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"), help_text="Time:(format hh:mm)")
+    time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"), help_text="Time:(hh:mm)")
 
     class Meta:
         model = Event

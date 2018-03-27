@@ -1,27 +1,25 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    Add Events
+{% block header_block %}
+    <span class="title">Add Event</span>
 {% endblock %}
 
-
 {% block body_block %}
-<p><h1><strong>Add An Event</strong></h1></p>
-<div>
-    <form id="add_event_form" method="post" action="{% url 'add_events' %}">
-        {% csrf_token %}
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}<br/>
-        {% endfor %}
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}<br/>
-        {% endfor %}
-        <div>
-            <input type="submit" name="submit" value="Add Event"/>
-        </div>
-    </form>
-</div>
+    <div class="form">
+        <form id="add_event_form" method="post" action="{% url 'add_events' %}">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}<br/>
+            {% endfor %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}<br/>
+            {% endfor %}
+            <div>
+                <input type="submit" name="submit" value="Add Event"/>
+            </div>
+        </form>
+    </div>
 {% endblock %}
