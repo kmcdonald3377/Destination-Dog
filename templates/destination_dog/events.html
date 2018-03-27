@@ -21,7 +21,7 @@
 
                     <li class="event">
                         <div>
-                            <a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br>
+                            <h3><a href="{% url 'show_event' event.slug %}">{{ event.name }}</a><br></h3>
                             <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
                             Event Location: {{ event.location }}<br/>
                             Event Description: {{ event.description }}<br/>
@@ -40,9 +40,11 @@
         <div class="addEventButton">
             <p><font size="5">
                 DestinationDog allows you to create and post events online. It's a great way to
-                get together with fellow dog lovers and share memorable experiences. If you would
-                like to add an event to our page, please click the link.
+                get together with fellow dog lovers and share memorable experiences.<br>
+                {% if user.is_authenticated %}
+                If you would like to add an event to our page, please click the link.
                 <a href="/destinationdog/events/add_event/" class="button">Add an Event</a><br/>
+                {% endif %}
             </font>
             </p>
         </div>

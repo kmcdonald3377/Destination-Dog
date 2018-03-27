@@ -7,15 +7,32 @@
 
 {% block body_block %}
     {% if registered %}
-        You're already registered!
+        <h2>You're registered! Welcome to DestinationDog!</h2>
     {% else %}
-        Register here:<br>
+        <h2>Register here:</h2><br>
         <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <!-- Display each form -->
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+            {% for field in user_form %}
+                <div class="col-25">
+                    {{field.label}}:
+                </div>
+                <div class="col-75">
+                    {{field}}
+                </div>
+            {% endfor %}
+            {% for field in profile_form %}
+                <div class="col-25">
+                    {{field.label}}:
+                </div>
+                <div class="col-75">
+                    {{field}}
+                </div>
+            {% endfor %}
             <input type="submit" name="submit" value="Register"/>
         </form>
     {% endif %}
 {% endblock %}
+
+
+
+
