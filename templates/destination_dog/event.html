@@ -1,6 +1,27 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
+    
+
+{% block header_block %}
+    <span class="title">{{ event.name }}</span>
+{% endblock %}
+
+
+{% block body_block %}
+    {% if event %}
+        <strong>Location: <i id="address">{{ event.location }}</i></strong><br>
+        <strong>Date: <i>{{ event.date }}</i></strong><br>
+        <strong>Time: </strong><i>{{event.time}}</i></strong><br>
+        <strong><i>{{event.attendees}}</i> people are attending this event.</strong><br>
+        <strong>Description: </strong><i>{{event.description}}</i></strong><br>
+        <div>
+            <div id="map" style="width:100%;height:600px;background:yellow"></div>
+        </div>
+    {% else %}
+        Event does not exist
+    {% endif %}
+
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap"
             async defer></script>
@@ -27,42 +48,6 @@
                 }
             });
         }
-
-        function attendance() {
-            if (event.attendees == 0) {
-                document.getElementById("going").innerHTML = "You are attending.";
-            }
-            else {
-                document.getElementById("going").innerHTML = "You and " + event.attendees + " are attending.";
-            }
-        }
     </script>
 
-{% block header_block %}
-    <span class="title">{{ event.name }}</span>
-{% endblock %}
-
-
-{% block body_block %}
-    {% if event %}
-        <p id="address">{{ event.location }}</p>
-        <div>
-            <div id="map" style="width:350px;height:350px;background:yellow"></div>
-        </div>
-        <p>
-            {{ event.description }}<br>
-            {{ event.date }}<br>
-            {{ event.time }}<br>
-        </p>
-        <div id="attendance_count">
-            {{ event.attendees }} are attending.
-        </div>
-
-        <button id="goingBtn" onclick="attendance()">Attend</button>
-        <button id="notGoingBtn" onclick="dropOut()" display="none">Can't Make It</button>
-    {% else %}
-        Event does not exist
-    {% endif %}
-
-    <p>Comments section where people can ask questions about the event etc</p>
 {% endblock %}

@@ -105,4 +105,4 @@ class ServiceForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ('serType', 'name', 'location', 'mondayTimes', 'tuesdayTimes', 'wednesdayTimes', 'thursdayTimes', 'fridayTimes', 'saturdayTimes', 'sundayTimes', 'description', 'ratings',)
+        fields = ('serType', 'name', 'location', 'mondayTimes', 'tuesdayTimes', 'wednesdayTimes', 'thursdayTimes', 'fridayTimes', 'saturdayTimes', 'sundayTimes', 'contact', 'email', 'description', 'ratings', )
