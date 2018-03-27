@@ -5,9 +5,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-
-
 from.forms import UserForm, UserProfileForm, AddArticleForm, DotmForm, AddEventForm, ServiceForm, AddDogForm
 from.models import Article, Event, Dotm, User, Service, Dog, UserProfile
 
@@ -303,20 +300,6 @@ def register(request):
         profile_form = UserProfileForm()
     return render(request, 'destination_dog/register.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
-def userprofile(request, username):
-
-    context_dict = {}
-
-    try:
-        user = User.objects.get(username=username)
-        profile = user.userprofile
-
-        context_dict['profile'] = profile
-
-    except User.DoesNotExist:
-        context_dict['profile'] = None
-
-    return render(request, 'destination_dog/userprofile.html', context_dict)
 
 def profile(request, username):
     try:
@@ -325,18 +308,22 @@ def profile(request, username):
         return redirect('home')
 
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
+
     form = UserProfileForm({'picture': userprofile.picture})
+
+
+    dog_list = Dog.objects.filter(owner=userprofile)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
             form.save(commit=True)
-            return redirect('profile', user.username)
+            return redirect('user_profile', user.username)
         else:
             print(form.errors)
 
     return render(request, 'destination_dog/userprofile.html',
-                  {'userprofile': userprofile, 'user': user, 'form': form})
+                  {'userprofile': userprofile, 'user': user, 'form': form, 'dog': dog_list})
 
 def dogprofile(request, dog):
     
@@ -371,8 +358,8 @@ def add_dog(request, username):
                 dog.picture = request.FILES['picture']
 
             dog.save()
-            #return HttpResponseRedirect(reverse('user_profile'))
-            return home(request)
+            return HttpResponseRedirect(reverse('user_profile'))
+            #return home(request)
         else:
             print(form.errors)
 
@@ -387,8 +374,13 @@ def list_profiles(request):
 
 @ login_required
 def deactivate_profile(request):
+
     user = request.user
     user.is_active= False
     user.save()
-    messages.success(request, 'Profile successfully deactivated.')
-    return redirect('home')
+    context_dict = 'Profile successfully deactivated'
+
+   # messages.success(request, 'Profile successfully deactivated.')
+   # return redirect('home')
+
+    return render(request, 'destination_dog/deactivate_profile.html', context=context_dict)
