@@ -6,7 +6,12 @@
             {% block script1_block %}
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
                 <script src="/static/js/destinationdog-ajax.js"></script>
-            {% endblock %}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>            {% endblock %}
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/hall_of_fame.css">
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
         <style>
 
 
@@ -150,12 +155,12 @@
         {% endblock %}
         <meta charset="UTF-8" />
         <meta name="google-signin-client_id" content="1018670492225-ln78iuke55dahg8ehtf3khp481gn4bb0.apps.googleusercontent.com">
-        <title>
-            DestinationDog -
-            {% block title_block %}
-            It's about the destination....
-            {% endblock %}
-        </title>
+        {% block title_block %}
+            <title>
+                DestinationDog -
+            </title>
+        {% endblock %}
+
 
     </head>
 
@@ -234,7 +239,6 @@ function checkLoginState() {
         }
 </script>
 
-    <h1>DestinationDog </h1><h3>it's all about the destination...</h3>
         <div class="topnav">
             <ul>
                 <li><a href="/destinationdog/">Home</a></li>
