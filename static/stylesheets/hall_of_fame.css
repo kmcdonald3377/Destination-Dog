@@ -7,7 +7,7 @@
 .dotm-container {
     margin: 0 auto;
     padding-top: 20px;
-    width: 100%;
+    width: 75%;
     background-color: whitesmoke;
     text-align: center;
 }
@@ -33,7 +33,7 @@
 
 .dotm-header {
     margin: 0 auto 40px auto;
-    width: 90%;
+    width: 60%;
     padding: 60px;
     border: 4px solid white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
