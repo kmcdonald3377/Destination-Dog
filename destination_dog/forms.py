@@ -48,7 +48,7 @@ class DotmForm(forms.ModelForm):
 class AddDogForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Name:")
     breed = forms.CharField(max_length=128, help_text="Breed:")
-    gender = forms.ChoiceField(widget=forms.RadioSelect(choices=Dog.gender_choices), help_text="Gender (M/F):")
+    gender = forms.CharField(max_length=20, help_text="Gender:")
     picture = forms.ImageField(required=False, help_text="Dog Image:")
     about_me = forms.CharField(widget=forms.Textarea, help_text="About me:")
     

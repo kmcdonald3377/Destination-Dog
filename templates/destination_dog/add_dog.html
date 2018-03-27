@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body_block %}
-        <form method="post" id="add_dog_form" action="{% url 'add_dog' %}" enctype="multipart/form-data">
+        <form method="post" id="add_dog_form" action="{% url 'user_profile' user.username %}add_dog/" enctype="multipart/form-data">
             {% csrf_token %}
             <p>This is the page to add a dog</p>
             {% for hidden in form.hidden_fields %}
