@@ -1,5 +1,6 @@
+
 from django.test import TestCase, Client, override_settings
-#from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse
 
 @override_settings(SECURE_SSL_REDIRECT=False)
 class TestAbout(TestCase):

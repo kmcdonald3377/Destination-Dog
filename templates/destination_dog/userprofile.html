@@ -13,7 +13,7 @@
         {% endif %}
         <div>
             {% if user.username == user.username %}
-                <form method="post" action="." enctype="multipart/form-data">
+                <form method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit" value="Update"/>
@@ -22,14 +22,12 @@
         </div>
 
         <h4><u>{{ user.first_name }}'s Dogs</u></h4><br/>
-        {% if dogs %}
+        {% if dog %}
             <ul>
-                {% for dog in dogs %}
-                    <li>
-                        <div>
-                            {{ dog.user.first_name }} {{ userprofile.dog.picture }}<br/>
-                        </div>
-                    </li>
+
+                {% for d in dog %}
+                <p><h5>{{d.name }}</h5></p>
+              
                 {% endfor %}
             </ul>
         {% else %}
@@ -37,7 +35,9 @@
         {% endif %}
 
         <p><a href="{% url 'user_profile' user.username %}add_dog/" class="button">Add a Dog</a></p>
-        <p>To deactivate your profile, click here - deactivate in view</p>
+        <p>To deactivate your profile, click here <a href="/destinationdog/deactivate/" class="button">Deactivate Profile</a><br/> </p>
+
+
     {% else %}
         No user found
     {% endif %}
