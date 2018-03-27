@@ -41,5 +41,14 @@
 .circles {
     padding-left: 40px;
     padding-right: 40px;
+    color: #00000091;
 }
 
+.vote-entry {
+    color: #00000091;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #ffb8b8;
+}
