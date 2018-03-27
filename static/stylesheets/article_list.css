@@ -8,6 +8,10 @@
     background-color: whitesmoke;
 }
 
+.article-list-item:hover{
+    background-color: #ffb8b8;
+}
+
 a.article-title-link {
     color: #00000091;
 }
