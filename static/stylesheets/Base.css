@@ -3,13 +3,12 @@ ul.topnav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: #00000091;
     color: white;
 }
 
 ul.topnav li {
-    float: left;
-    border-right: 1px solid #ffb8b8;
+    float: right;
 }
 
 ul.topnav li a, .dropbtn {
@@ -29,11 +28,6 @@ ul.topnav li a:hover:not(.active), .dropdown:hover .dropbtn{
 
 ul.topnav li a.active {
     background-color: #4CAF50;
-}
-
-ul.topnav li.right {
-    float: right;
-    border-right: 1px solid #ffb8b8;
 }
 
 ul.topnav li:last-child{
@@ -176,7 +170,7 @@ input[type=submit]:hover {
     width:100%;
     text-align:center;
     margin-top: 20px;
-    background-color: black;
+    background-color: #00000091;
     overflow: hidden;
     color: white;
 }

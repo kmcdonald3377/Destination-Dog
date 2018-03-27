@@ -33,15 +33,34 @@
 
 
     <div class="topnav">
+        
+        
         <ul class="topnav">
-            <li><a href="/destinationdog/">Home</a></li>
+            <font size="5">DestinationDog   </font><img src="{% static "DestinationDog_Logo.png" %}" alt="DestinationDog" height="48" width="30"/>
+            {% if user.is_authenticated %}
+                <li class="right"><a href="{% url 'user_profile' user.username %}">Profile</a></li>
+                <li class="right"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li class="right"><a href="{% url 'register' %}">Register</a></li>
+                <li class="right"><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
 
-            <li class="dropdown"><a href="/destinationdog/articles/" class="dropbtn">Articles</a>
-                {% if user.is_authenticated %}
-                    <div class="dropdown-content">
-                        <a href="/destinationdog/articles/add_article/">Add Article</a>
-                    </div>
-                {% endif %}
+            <li><a href="/destinationdog/forum/">Forum</a></li>
+
+            <li class="dropdown"><a href="/destinationdog/events/" class="dropbtn">Events</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="/destinationdog/events/add_event/">Add an Event</a>
+                    {% endif %}
+                </div>
+            </li>
+
+            <li class="dropdown"><a href="/destinationdog/locateservice/" class="dropbtn">Locate Services</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="/destinationdog/locateservice/add_service/">Add a Service</a>
+                    {% endif %}
+                </div>
             </li>
 
             <li class="dropdown"><a href="{% url 'dotm' %}" class="dropbtn">Dog of the Month</a>
@@ -54,33 +73,28 @@
                 </div>
             </li>
 
-            <li class="dropdown"><a href="/destinationdog/locateservice/" class="dropbtn">Locate Services</a>
-                <div class="dropdown-content">
-                    {% if user.is_authenticated %}
-                        <a href="/destinationdog/locateservice/add_service/">Add a Service</a>
-                    {% endif %}
-                </div>
+            <li class="dropdown"><a href="/destinationdog/articles/" class="dropbtn">Articles</a>
+                {% if user.is_authenticated %}
+                    <div class="dropdown-content">
+                        <a href="/destinationdog/articles/add_article/">Add Article</a>
+                    </div>
+                {% endif %}
             </li>
 
-            <li class="dropdown"><a href="/destinationdog/events/" class="dropbtn">Events</a>
-                <div class="dropdown-content">
-                    {% if user.is_authenticated %}
-                        <a href="/destinationdog/events/add_event/">Add an Event</a>
-                    {% endif %}
-                </div>
-            </li>
+            <li><a href="/destinationdog/">Home</a></li>
 
-            <li><a href="/destinationdog/forum/">Forum</a></li>
             
-            <div class="header"><li>DestinationDog</li></div>
 
-            {% if user.is_authenticated %}
-                <li class="right"><a href="{% url 'user_profile' user.username %}">Profile</a></li>
-                <li class="right"><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-                <li class="right"><a href="{% url 'register' %}">Register</a></li>
-                <li class="right"><a href="{% url 'login' %}">Login</a></li>
-            {% endif %}
+            
+
+            
+
+            
+
+            
+            
+
+            
         </ul>
     </div>
 {% block topnav_block %}
