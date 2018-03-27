@@ -1,7 +1,6 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block script_block %}{
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap"
             async defer></script>
@@ -38,7 +37,6 @@
             }
         }
     </script>
-{% endblock %}
 
 {% block header_block %}
     <span class="title">{{ event.name }}</span>
