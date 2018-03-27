@@ -1,28 +1,22 @@
 {% extends 'destination_dog/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    {{ user.username }} Profile
-{% endblock %}
-
 {% block header_block %}
-<h1>DestinationDog Profiles<br/>
-</h1>
+    <span class="title">{{ user.first_name }} {{ user.last_name }}</span>
 {% endblock %}
 
 {% block body_block %}
     {% if user %}
-        <h1> {{ user.first_name }} {{ user.last_name }}'s Profile </h1>
         {% if userprofile.picture %}
-         <img src="{{ MEDIA_URL }}{{ userprofile.picture }}"
-            width="300" height="300" alt="{{user.username}}"/><br>
+            <img src="{{ MEDIA_URL }}{{ userprofile.picture }}"
+                 width="300" height="300" alt="{{ user.username }}"/><br>
         {% endif %}
         <div>
             {% if user.username == user.username %}
                 <form method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input type="submit" value="Update" />
+                    <input type="submit" value="Update"/>
                 </form>
             {% endif %}
         </div>
@@ -30,14 +24,16 @@
         <h4><u>{{ user.first_name }}'s Dogs</u></h4><br/>
         {% if dog %}
             <ul>
+
                 {% for d in dog %}
-                        <p><h5>{{d.name }}</h5></p>
+                <p><h5>{{d.name }}</h5></p>
+              
                 {% endfor %}
             </ul>
         {% else %}
             <p>You don't have any dogs</p>
         {% endif %}
-            
+
         <p><a href="{% url 'user_profile' user.username %}add_dog/" class="button">Add a Dog</a></p>
         <p>To deactivate your profile, click here <a href="/destinationdog/deactivate/" class="button">Deactivate Profile</a><br/> </p>
 
