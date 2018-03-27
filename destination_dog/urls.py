@@ -23,8 +23,11 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^register/$', views.register, name='register'),
-    url(r'profile/(?P<username>[\w\-]+)/', views.userprofile, name='user_profile'),
-    url(r'dogprofile', views.dogprofile, name='dogprofile'),
-    url(r'^profile/(?P<username>[\w\-]+)/add_dog/$', views.add_dog, name='add_dog'),
     url(r'^like/$', views.vote_dotm, name='vote_dotm'),
+    url(r'^profiles/$', views.list_profiles, name='list_profiles'),
+    #url(r'profile/(?P<username>[\w\-]+)/', views.userprofile, name='user_profile'),
+    url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='user_profile'),
+    url(r'^profile/(?P<username>[\w\-]+)/add_dog/$', views.add_dog, name='add_dog'),
+    url(r'dogprofile/(?P<dog_name_slug>[\w\-]+)/', views.dogprofile, name='dogprofile'),
+
 ]
