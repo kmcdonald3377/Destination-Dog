@@ -2,12 +2,11 @@
 {% load staticfiles %}
 
 {% block header_block %}
-    <span class="article-title">Add Event</span>
+    <span class="title">Add Event</span>
 {% endblock %}
 
 {% block body_block %}
-    <p><h1><strong>Add An Event</strong></h1></p>
-    <div>
+    <div class="form">
         <form id="add_event_form" method="post" action="{% url 'add_events' %}">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}

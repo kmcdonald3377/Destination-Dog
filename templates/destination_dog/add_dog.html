@@ -2,10 +2,11 @@
 {% load staticfiles %}
 
 {% block header_block %}
-    <span class="article-title">Add Dog</span>
+    <span class="title">Add Dog</span>
 {% endblock %}
 
 {% block body_block %}
+    <div class="form">
     <form method="post" id="add_dog_form" action="{% url 'user_profile' user.username %}add_dog/"
           enctype="multipart/form-data">
         {% csrf_token %}
@@ -26,4 +27,5 @@
 
         <input type="submit" name="submit" value="Add Dog to my profile"/>
     </form>
+    </div>
 {% endblock %}

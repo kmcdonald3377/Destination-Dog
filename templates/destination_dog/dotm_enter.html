@@ -2,11 +2,11 @@
 {% load staticfiles %}
 
 {% block header_block %}
-    <span class="article-title">Enter</span>
+    <span class="title">Enter</span>
 {% endblock %}
 
 {% block body_block %}
-    <div>
+    <div class="form">
         <form method="post" action="{% url 'dotm_enter' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form.visible_fields %}

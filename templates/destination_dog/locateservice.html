@@ -124,6 +124,10 @@
 
 {% block body_block %}
 
+        
+        map.addListener('bounds_changed', function() {
+         searchBox.setBounds(map.getBounds());
+        });
 
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
