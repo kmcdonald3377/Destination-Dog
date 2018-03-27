@@ -358,8 +358,7 @@ def add_dog(request, username):
                 dog.picture = request.FILES['picture']
 
             dog.save()
-            return HttpResponseRedirect(reverse('user_profile'))
-            #return home(request)
+            return home(request)
         else:
             print(form.errors)
 
