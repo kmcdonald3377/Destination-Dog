@@ -8,9 +8,8 @@
 {% block body_block %}
     {% if user %}
     <div>
-        {% if userprofile.picture %}
-            <img class = "profile" src="{{ MEDIA_URL }}{{ userprofile.picture }}"
-                 width="500" height="500" alt="{{ user.username }}"/><br>
+        {% if userprofile.picture %}<img class = "profile" src="{{ MEDIA_URL }}{{ userprofile.picture }}"
+                 width="400" height="400" alt="{{ user.username }}"/><br>
         {% endif %}
         <div>
             {% if user.username == user.username %}
