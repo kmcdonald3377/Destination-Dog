@@ -13,9 +13,9 @@
     <div class="row circles">
         {% for dotm in thisyear %}
             <div class="col-xs-4 dotm-entry">
-                <span>{{ dotm.created_at|date:"F" }}</span>
+                <span class="month">{{ dotm.created_at|date:"F" }}</span>
                 {% if dotm.image %}
-                    <img class="dotm-vote-image" src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
+                    <img class="dotm-image" src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
                 {% else %}
                     No images
                 {% endif %}

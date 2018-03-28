@@ -7,7 +7,6 @@
 
 {% block body_block %}
     <div>
-        <h3>Add a Service</h3>
         * denotes those fields which are required<br><br>
         <form method="post" action="{% url 'add_service' %}" enctype="multipart/form-data">
             {% csrf_token %}
